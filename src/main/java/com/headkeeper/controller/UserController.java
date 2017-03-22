@@ -1,14 +1,10 @@
 package com.headkeeper.controller;
 
 import com.headkeeper.bean.User;
-import com.headkeeper.dao.UserDAO;
 import com.headkeeper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Created by User on 03.03.2017.

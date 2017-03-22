@@ -1,6 +1,5 @@
 package com.headkeeper.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
