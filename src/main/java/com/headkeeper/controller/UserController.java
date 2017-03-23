@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Created by User on 03.03.2017.
- */
-
 @Controller
 public class UserController {
 
@@ -46,7 +42,6 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     @ResponseBody
     public void addNewUser(@RequestBody User user) {
-        System.out.println("Prishedshi user pass: " + user.getPassword() + ", name =: " + user.getNickname() + ", email: " + user.getEmail());
         userService.registration(user);
     }
 

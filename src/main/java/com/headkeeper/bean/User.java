@@ -1,5 +1,6 @@
 package com.headkeeper.bean;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -110,6 +111,7 @@ public class User implements Serializable {
 
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @JsonManagedReference
     public Set<Skill> getSkills() {
         return skills;
     }
@@ -121,6 +123,7 @@ public class User implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false, updatable = false)
+    @JsonManagedReference
     public Role getRole() {
         return role;
     }

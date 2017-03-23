@@ -2,9 +2,6 @@ package com.headkeeper.dao;
 
 import com.headkeeper.bean.User;
 
-/**
- * Created by User on 06.03.2017.
- */
 public interface UserDAO {
     static final int USER_ROLE_ID = 1;
     /* CRUD operations */

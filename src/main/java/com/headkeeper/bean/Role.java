@@ -1,5 +1,6 @@
 package com.headkeeper.bean;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -54,7 +55,7 @@ public class Role implements Serializable {
     }
 
     @OneToMany(mappedBy = "role")
-    @JsonIgnore
+    @JsonBackReference
     public Set<User> getUsers() {
         return users;
     }

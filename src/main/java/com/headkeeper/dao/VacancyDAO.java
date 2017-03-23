@@ -4,10 +4,6 @@ import com.headkeeper.bean.Vacancy;
 
 import java.util.Collection;
 
-/**
- * Created by User on 22.03.2017.
- */
-
 public interface VacancyDAO {
     /* CRUD operations */
     // CREATE
@@ -20,7 +16,7 @@ public interface VacancyDAO {
     // READ
     Vacancy getVacancyById(int id);
     Collection<Vacancy> getAllVacancies();
-    Collection<Vacancy> getVacanciesByActivity();
+    Collection<Vacancy> getVacanciesByStatus(boolean status);
 
     // DELETE
     void deleteVacancy(int id);

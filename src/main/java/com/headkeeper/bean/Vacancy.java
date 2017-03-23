@@ -1,5 +1,9 @@
 package com.headkeeper.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -18,7 +22,7 @@ public class Vacancy {
     private BigDecimal minSalary;
     private BigDecimal maxSalary;
     private String additionalInfoAboutSalary;
-    private byte isActive;
+    private boolean isActive;
     private Set<Skill> skills;
     private User userByUserId;
 
@@ -134,11 +138,12 @@ public class Vacancy {
 
     @Basic
     @Column(name = "is_active", nullable = false)
-    public byte getIsActive() {
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(byte isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 
@@ -180,11 +185,11 @@ public class Vacancy {
         result = 31 * result + (minSalary != null ? minSalary.hashCode() : 0);
         result = 31 * result + (maxSalary != null ? maxSalary.hashCode() : 0);
         result = 31 * result + (additionalInfoAboutSalary != null ? additionalInfoAboutSalary.hashCode() : 0);
-        result = 31 * result + (int) isActive;
         return result;
     }
 
-    @ManyToMany(mappedBy = "vacancies")
+    @ManyToMany(mappedBy = "vacancies", fetch = FetchType.EAGER)
+    @JsonManagedReference
     public Set<Skill> getSkills() {
         return skills;
     }
@@ -195,6 +200,7 @@ public class Vacancy {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     public User getUserByUserId() {
         return userByUserId;
     }

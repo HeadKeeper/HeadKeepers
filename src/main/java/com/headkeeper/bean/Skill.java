@@ -1,5 +1,6 @@
 package com.headkeeper.bean;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -68,8 +69,8 @@ public class Skill implements Serializable {
     }
 
     @ManyToMany
-    @JoinTable(name = "skill_to_user", catalog = "", schema = "headhunters_mpp", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false))
-    @JsonIgnore
+    @JoinTable(name = "skill_to_user", catalog = "", schema = "head_keepers", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false))
+    @JsonBackReference
     public Set<User> getUsers() {
         return users;
     }
@@ -79,8 +80,8 @@ public class Skill implements Serializable {
     }
 
     @ManyToMany
-    @JoinTable(name = "skill_to_vacancy", catalog = "", schema = "headhunters_mpp", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "vacancy_id", referencedColumnName = "id", nullable = false))
-    @JsonIgnore
+    @JoinTable(name = "skill_to_vacancy", catalog = "", schema = "head_keepers", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "vacancy_id", referencedColumnName = "id", nullable = false))
+    @JsonBackReference
     public Set<Vacancy> getVacancies() {
         return vacancies;
     }
