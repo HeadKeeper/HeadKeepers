@@ -2,3 +2,4 @@
 /out
 /target
 *.iml
+/src/main/web/WEB-INF/spring.properties
