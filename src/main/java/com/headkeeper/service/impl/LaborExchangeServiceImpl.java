@@ -1,7 +1,9 @@
 package com.headkeeper.service.impl;
 
 import com.headkeeper.bean.*;
+import com.headkeeper.dao.VacancyDAO;
 import com.headkeeper.service.LaborExchangeService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -9,32 +11,35 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* -------------------- Vacancy -------------------- */
 
-    public void createVacancy(Vacancy vacancy) {
+    @Autowired
+    private VacancyDAO vacancyDAO;
 
+    public void createVacancy(Vacancy vacancy) {
+        vacancyDAO.addVacancy(vacancy,vacancy.getUserByUserId().getId());
     }
 
     public void updateVacancy(int id, Vacancy vacancy) {
-
+        vacancyDAO.updateVacancy(id, vacancy);
     }
 
     public Vacancy getVacancy(int id) {
-        return null;
+        return vacancyDAO.getVacancyById(id);
     }
 
     public List<Vacancy> getAllVacancies() {
-        return null;
+        return (List<Vacancy>) vacancyDAO.getAllVacancies();
     }
 
     public List<Vacancy> getVacanciesForEmployer(int employerId) {
-        return null;
+        return (List<Vacancy>) vacancyDAO.getVacanciesById(employerId);
     }
 
     public void setVacancyActiveStatus(int id, boolean status) {
-
+        vacancyDAO.updateVacancy(id, status);
     }
 
     public void deleteVacancy(int id) {
-
+        vacancyDAO.deleteVacancy(id);
     }
 
     /* ------------------------------------------------- */
