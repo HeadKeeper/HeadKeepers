@@ -1,6 +1,6 @@
 package com.headkeeper.dao;
 
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.entity.User;
 
 public interface UserDAO {
     static final int USER_ROLE_ID = 1;

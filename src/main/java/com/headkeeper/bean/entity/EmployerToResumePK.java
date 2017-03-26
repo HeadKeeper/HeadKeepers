@@ -1,21 +1,21 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-public class ResumeToVacancyPK implements Serializable {
-    private int vacancyId;
+public class EmployerToResumePK implements Serializable {
+    private int userId;
     private int userResumeId;
 
-    @Column(name = "vacancy_id", nullable = false)
+    @Column(name = "user_id", nullable = false)
     @Id
-    public int getVacancyId() {
-        return vacancyId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setVacancyId(int vacancyId) {
-        this.vacancyId = vacancyId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Column(name = "user_resume_id", nullable = false)
@@ -33,9 +33,9 @@ public class ResumeToVacancyPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ResumeToVacancyPK that = (ResumeToVacancyPK) o;
+        EmployerToResumePK that = (EmployerToResumePK) o;
 
-        if (vacancyId != that.vacancyId) return false;
+        if (userId != that.userId) return false;
         if (userResumeId != that.userResumeId) return false;
 
         return true;
@@ -43,7 +43,7 @@ public class ResumeToVacancyPK implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = vacancyId;
+        int result = userId;
         result = 31 * result + userResumeId;
         return result;
     }

@@ -1,7 +1,6 @@
 package com.headkeeper.dao;
 
-import com.headkeeper.bean.Vacancy;
-import sun.text.resources.el.CollationData_el;
+import com.headkeeper.bean.entity.Vacancy;
 
 import java.util.Collection;
 

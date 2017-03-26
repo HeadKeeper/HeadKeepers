@@ -1,7 +1,7 @@
 package com.headkeeper.dao.impl;
 
-import com.headkeeper.bean.Role;
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.entity.Role;
+import com.headkeeper.bean.entity.User;
 import com.headkeeper.dao.UserDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

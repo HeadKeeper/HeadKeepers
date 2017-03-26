@@ -1,14 +1,13 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.ResumeLanguageBase;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume_language", schema = "head_keepers", catalog = "")
-public class ResumeLanguage {
-    private int id;
-    private String language;
-    private String level;
-    private int userResumeId;
+public class ResumeLanguage extends ResumeLanguageBase {
+
     private UserResume userResume;
 
     @Id

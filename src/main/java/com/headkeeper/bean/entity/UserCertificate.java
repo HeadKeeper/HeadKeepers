@@ -1,14 +1,13 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.UserCertificateBase;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_certificate", schema = "head_keepers", catalog = "")
-public class UserCertificate {
-    private int id;
-    private String certificateHref;
-    private String realName;
-    private int userId;
+public class UserCertificate extends UserCertificateBase {
+
     private User user;
 
     @Id

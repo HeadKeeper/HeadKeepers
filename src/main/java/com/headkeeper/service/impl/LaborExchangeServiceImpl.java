@@ -1,6 +1,7 @@
 package com.headkeeper.service.impl;
 
-import com.headkeeper.bean.*;
+import com.headkeeper.bean.entity.Skill;
+import com.headkeeper.bean.entity.*;
 import com.headkeeper.dao.VacancyDAO;
 import com.headkeeper.service.LaborExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class LaborExchangeServiceImpl implements LaborExchangeService {
 
-    /* -------------------- Vacancy -------------------- */
+    /* -------------------- VacancyBase -------------------- */
 
     @Autowired
     private VacancyDAO vacancyDAO;
@@ -74,7 +75,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
     /* ------------------------------------------------- */
 
 
-    /* --------------------- Skill --------------------- */
+    /* --------------------- SkillBase --------------------- */
 
     public void createSkill(Skill skill) {
 

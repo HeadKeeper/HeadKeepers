@@ -1,14 +1,13 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.CompanyInfoBase;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "employer_info", schema = "head_keepers", catalog = "")
-public class EmployerInfo {
-    private int id;
-    private String name;
-    private String phoneNumber;
-    private int userId;
+@Table(name = "company_info", schema = "head_keepers", catalog = "")
+public class CompanyInfo extends CompanyInfoBase {
+
     private User user;
 
     @Id
@@ -32,13 +31,23 @@ public class EmployerInfo {
     }
 
     @Basic
-    @Column(name = "phone_number", nullable = false, length = 20)
-    public String getPhoneNumber() {
-        return phoneNumber;
+    @Column(name = "description", nullable = true, length = 45)
+    public String getDescription() {
+        return description;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Basic
+    @Column(name = "address", nullable = false, length = 255)
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Basic
@@ -56,12 +65,13 @@ public class EmployerInfo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        EmployerInfo that = (EmployerInfo) o;
+        CompanyInfo that = (CompanyInfo) o;
 
         if (id != that.id) return false;
         if (userId != that.userId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
 
         return true;
     }
@@ -70,7 +80,8 @@ public class EmployerInfo {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + userId;
         return result;
     }

@@ -1,6 +1,7 @@
 package com.headkeeper.controller;
 
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.entity.User;
+import com.headkeeper.bean.view.UserView;
 import org.springframework.web.bind.annotation.*;
 
 public interface UserController {
@@ -18,7 +19,7 @@ public interface UserController {
 
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     @ResponseBody
-    User getUserById(@PathVariable int id);
+    UserView getUserById(@PathVariable int id);
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     @ResponseBody

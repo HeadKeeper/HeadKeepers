@@ -1,14 +1,13 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.ResumePhotoBase;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume_photo", schema = "head_keepers", catalog = "")
-public class ResumePhoto {
-    private int id;
-    private String photoHref;
-    private String realName;
-    private int userResumeId;
+public class ResumePhoto extends ResumePhotoBase {
+
     private UserResume userResume;
 
     @Id

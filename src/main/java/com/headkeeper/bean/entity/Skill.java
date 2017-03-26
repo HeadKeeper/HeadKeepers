@@ -1,18 +1,15 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.headkeeper.bean.base.SkillBase;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "skill", schema = "head_keepers")
-public class Skill implements Serializable {
-    private int id;
-    private String name;
-    private byte level;
+public class Skill extends SkillBase {
+
     private Set<User> users;
     private Set<Vacancy> vacancies;
 
@@ -92,7 +89,7 @@ public class Skill implements Serializable {
 
     @Override
     public String toString() {
-        return "Skill{" +
+        return "SkillBase{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", level=" + level +

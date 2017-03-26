@@ -1,22 +1,17 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.headkeeper.bean.base.UserBase;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
 @Table(name = "user", schema = "head_keepers")
-public class User implements Serializable {
-    private int id;
-    private String email;
-    private String password;
-    private String nickname;
-    private boolean isActive;
-    private Timestamp creationDate;
+public class User extends UserBase {
+
     private Set<Skill> skills;
     private Role role;
 
@@ -104,7 +99,6 @@ public class User implements Serializable {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
-        result = 31 * result + (isActive != true ? nickname.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         return result;
     }

@@ -1,18 +1,14 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.ResumeWorkExperienceBase;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "resume_work_experience", schema = "head_keepers", catalog = "")
-public class ResumeWorkExperience {
-    private int id;
-    private String companyName;
-    private String position;
-    private String duties;
-    private Date dateStart;
-    private Date dateFinish;
-    private int userResumeId;
+public class ResumeWorkExperience extends ResumeWorkExperienceBase {
+
     private UserResume userResumeByUserResumeId;
 
     @Id

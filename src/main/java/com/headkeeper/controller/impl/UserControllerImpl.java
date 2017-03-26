@@ -1,6 +1,7 @@
 package com.headkeeper.controller.impl;
 
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.entity.User;
+import com.headkeeper.bean.view.UserView;
 import com.headkeeper.controller.UserController;
 import com.headkeeper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class UserControllerImpl implements UserController {
         userService.updateUserInfo(id, user);
     }
 
-    public User getUserById(@PathVariable int id) {
+    public UserView getUserById(@PathVariable int id) {
         return userService.getUser(id);
     }
 

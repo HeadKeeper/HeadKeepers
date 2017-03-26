@@ -1,4 +1,6 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.UserResumeBase;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -6,18 +8,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user_resume", schema = "head_keepers", catalog = "")
-public class UserResume {
-    private int id;
-    private int userId;
-    private String firstName;
-    private String lastName;
-    private String middleName;
-    private Date birthdayDate;
-    private String address;
-    private String martialStatus;
-    private String references;
-    private String additionalInformation;
-    private byte isActive;
+public class UserResume extends UserResumeBase {
+
     private Set<EmployerToResume> employerToResumes;
     private Set<ResumeAchievement> resumeAchievements;
     private Set<ResumeAdditionalEducation> resumeAdditionalEducations;

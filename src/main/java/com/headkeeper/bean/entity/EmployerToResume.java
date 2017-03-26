@@ -1,4 +1,4 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

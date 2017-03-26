@@ -1,7 +1,8 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.headkeeper.bean.base.VacancyBase;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,19 +11,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vacancy", schema = "head_keepers")
-public class Vacancy {
-    private int id;
-    private String title;
-    private String description;
-    private int essentialSkills;
-    private Integer preferableSkills;
-    private byte jobType;
-    private String phoneNumber;
-    private String email;
-    private BigDecimal minSalary;
-    private BigDecimal maxSalary;
-    private String additionalInfoAboutSalary;
-    private boolean isActive;
+public class Vacancy extends VacancyBase {
+
     private Set<Skill> skills;
     private User userByUserId;
 
@@ -58,21 +48,21 @@ public class Vacancy {
 
     @Basic
     @Column(name = "essential_skills", nullable = false)
-    public int getEssentialSkills() {
+    public String getEssentialSkills() {
         return essentialSkills;
     }
 
-    public void setEssentialSkills(int essentialSkills) {
+    public void setEssentialSkills(String essentialSkills) {
         this.essentialSkills = essentialSkills;
     }
 
     @Basic
     @Column(name = "preferable_skills", nullable = true)
-    public Integer getPreferableSkills() {
+    public String getPreferableSkills() {
         return preferableSkills;
     }
 
-    public void setPreferableSkills(Integer preferableSkills) {
+    public void setPreferableSkills(String preferableSkills) {
         this.preferableSkills = preferableSkills;
     }
 
@@ -177,7 +167,7 @@ public class Vacancy {
         int result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + essentialSkills;
+        result = 31 * result + (essentialSkills != null ? title.hashCode() : 0);
         result = 31 * result + (preferableSkills != null ? preferableSkills.hashCode() : 0);
         result = 31 * result + (int) jobType;
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);

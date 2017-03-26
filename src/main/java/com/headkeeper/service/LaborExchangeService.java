@@ -1,12 +1,13 @@
 package com.headkeeper.service;
 
-import com.headkeeper.bean.*;
+import com.headkeeper.bean.entity.Skill;
+import com.headkeeper.bean.entity.*;
 
 import java.util.List;
 
 public interface LaborExchangeService {
 
-    /* -------------------- Vacancy -------------------- */
+    /* -------------------- VacancyBase -------------------- */
 
     void createVacancy(Vacancy vacancy);
 
@@ -41,7 +42,7 @@ public interface LaborExchangeService {
     /* ------------------------------------------------- */
 
 
-    /* --------------------- Skill --------------------- */
+    /* --------------------- SkillBase --------------------- */
 
     void createSkill(Skill skill);
 

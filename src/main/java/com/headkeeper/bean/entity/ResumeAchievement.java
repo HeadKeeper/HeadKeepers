@@ -1,14 +1,13 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.ResumeAchievementBase;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume_achievement", schema = "head_keepers", catalog = "")
-public class ResumeAchievement {
-    private int id;
-    private String name;
-    private String value;
-    private int userResumeId;
+public class ResumeAchievement extends ResumeAchievementBase {
+
     private UserResume userResume;
 
     @Id

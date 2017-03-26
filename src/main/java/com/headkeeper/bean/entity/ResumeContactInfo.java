@@ -1,14 +1,13 @@
-package com.headkeeper.bean;
+package com.headkeeper.bean.entity;
+
+import com.headkeeper.bean.base.ResumeContactInfoBase;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume_contact_info", schema = "head_keepers", catalog = "")
-public class ResumeContactInfo {
-    private int id;
-    private String type;
-    private String value;
-    private int userResumeId;
+public class ResumeContactInfo extends ResumeContactInfoBase {
+
     private UserResume userResumeByUserResumeId;
 
     @Id

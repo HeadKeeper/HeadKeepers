@@ -1,6 +1,7 @@
 package com.headkeeper.service.impl;
 
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.entity.User;
+import com.headkeeper.bean.view.UserView;
 import com.headkeeper.dao.UserDAO;
 import com.headkeeper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by User on 21.03.2017.
+ * Created by UserBase on 21.03.2017.
  */
 
 @Service
@@ -38,8 +39,18 @@ public class UserServiceImpl implements UserService {
         userDAO.updateUser(id, user);
     }
 
-    public User getUser(int id) {
-        return (User) userDAO.getUserById(id);
+    public UserView getUser(int id) {
+        User userEntity = (User) userDAO.getUserById(id);
+        UserView userView = new UserView();
+
+        userView.setId(userEntity.getId());
+        userView.setEmail(userEntity.getEmail());
+        userView.setPassword(userEntity.getPassword());
+        userView.setNickname(userEntity.getNickname());
+        userView.setCreationDate(userEntity.getCreationDate());
+        userView.setIsActive(userEntity.getIsActive());
+
+        return userView;
     }
 
     public Collection<User> getAllUsers() {
