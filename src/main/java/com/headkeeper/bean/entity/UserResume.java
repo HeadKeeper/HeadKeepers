@@ -1,6 +1,7 @@
 package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -19,7 +20,7 @@ public class UserResume {
     private String martialStatus;
     private String references;
     private String additionalInformation;
-    private byte isActive;
+    private boolean isActive;
     private Set<EmployerToResume> employerToResumes;
     private Set<ResumeAchievement> resumeAchievements;
     private Set<ResumeAdditionalEducation> resumeAdditionalEducations;
@@ -122,11 +123,12 @@ public class UserResume {
 
     @Basic
     @Column(name = "is_active", nullable = false)
-    public byte getIsActive() {
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(byte isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 
@@ -164,7 +166,6 @@ public class UserResume {
         result = 31 * result + (martialStatus != null ? martialStatus.hashCode() : 0);
         result = 31 * result + (references != null ? references.hashCode() : 0);
         result = 31 * result + (additionalInformation != null ? additionalInformation.hashCode() : 0);
-        result = 31 * result + (int) isActive;
         return result;
     }
 

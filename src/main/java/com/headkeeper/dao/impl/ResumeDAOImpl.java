@@ -157,8 +157,7 @@ public class ResumeDAOImpl implements ResumeDAO {
     public void updateResumeStatus(int id, boolean status) {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.load(UserResume.class, id);
-        // TODO change UserResume.isActive to boolean
-        resume.setIsActive((byte) 1); // change to status
+        resume.setIsActive(status);
     }
 
     public void updateResume(int id, UserResume resume) {
