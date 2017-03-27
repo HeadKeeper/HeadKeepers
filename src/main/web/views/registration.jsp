@@ -12,10 +12,11 @@
     <script src="/resources/script/send_userdata.js"></script>
 </head>
 <body>
+    <h1>USER REGISTRATION</h1>
     <form>
-        <input type="text" name="user-email">
-        <input type="text" name="user-password">
-        <input type="text" name="user-nickname">
+        EMAIL:<input type="text" name="user-email">
+        PASSWORD:<input type="text" name="user-password">
+        NICKNAME:<input type="text" name="user-nickname">
     </form>
     <button name="send-info" onclick="sendDataToServer('registration')">Send</button>
 

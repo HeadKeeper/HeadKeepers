@@ -1,5 +1,6 @@
 package com.headkeeper.bean.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.headkeeper.bean.base.UserResumeBase;
 
 import javax.persistence.*;
@@ -171,6 +172,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResume")
+    @JsonIgnore
     public Set<EmployerToResume> getEmployerToResumes() {
         return employerToResumes;
     }
@@ -180,6 +182,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResume")
+    @JsonIgnore
     public Set<ResumeAchievement> getResumeAchievements() {
         return resumeAchievements;
     }
@@ -189,6 +192,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResume")
+    @JsonIgnore
     public Set<ResumeAdditionalEducation> getResumeAdditionalEducations() {
         return resumeAdditionalEducations;
     }
@@ -198,6 +202,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResumeByUserResumeId")
+    @JsonIgnore
     public Set<ResumeContactInfo> getResumeContactInfos() {
         return resumeContactInfos;
     }
@@ -207,6 +212,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResume")
+    @JsonIgnore
     public Set<ResumeEducation> getResumeEducations() {
         return resumeEducations;
     }
@@ -216,6 +222,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResume")
+    @JsonIgnore
     public Set<ResumeLanguage> getResumeLanguages() {
         return resumeLanguages;
     }
@@ -225,6 +232,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResume")
+    @JsonIgnore
     public Set<ResumePhoto> getResumePhotos() {
         return resumePhotos;
     }
@@ -234,6 +242,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResume")
+    @JsonIgnore
     public Set<ResumeToVacancy> getResumeToVacancies() {
         return resumeToVacancies;
     }
@@ -243,6 +252,7 @@ public class UserResume extends UserResumeBase {
     }
 
     @OneToMany(mappedBy = "userResumeByUserResumeId")
+    @JsonIgnore
     public Set<ResumeWorkExperience> getResumeWorkExperiences() {
         return resumeWorkExperiences;
     }
