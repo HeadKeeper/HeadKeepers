@@ -17,6 +17,10 @@ public class UserDAOImpl implements UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    /* CRUD OPERATIONS */
+
+    // ------------------------------- CREATE -------------------------------
+
     public void addNewUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         Role role = session.get(Role.class, USER_ROLE_ID);
@@ -24,11 +28,15 @@ public class UserDAOImpl implements UserDAO {
         session.save(user);
     }
 
+    // ------------------------------- READ -------------------------------
+
     public User getUserById(int id) {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class, id);
         return user;
     }
+
+    // ------------------------------- UPDATE -------------------------------
 
     public void updateUser(int id, boolean status) {
         Session session = sessionFactory.getCurrentSession();
@@ -45,6 +53,8 @@ public class UserDAOImpl implements UserDAO {
         oldUser.setPassword(user.getPassword());
         session.update(oldUser);
     }
+
+    // ------------------------------- DELETE -------------------------------
 
     public void deleteUser(int id) {
         Session session = sessionFactory.getCurrentSession();

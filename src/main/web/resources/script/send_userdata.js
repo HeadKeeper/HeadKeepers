@@ -11,5 +11,6 @@ function sendDataToServer(page) {
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
     xmlhttp.open("POST", "/".concat(page));
     xmlhttp.setRequestHeader("Content-Type", "application/json");
+    alert(JSON.stringify(userData));
     xmlhttp.send(JSON.stringify(userData));
 }

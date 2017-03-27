@@ -15,5 +15,19 @@
         <mapping class="com.headkeeper.bean.entity.Role" />
         <mapping class="com.headkeeper.bean.entity.User" />
         <mapping class="com.headkeeper.bean.entity.Skill" />
+        <mapping class="com.headkeeper.bean.entity.UserResume" />
+        <mapping class="com.headkeeper.bean.entity.CompanyInfo" />
+        <mapping class="com.headkeeper.bean.entity.EmployerInfo" />
+        <mapping class="com.headkeeper.bean.entity.ResumeAchievement" />
+        <mapping class="com.headkeeper.bean.entity.ResumeContactInfo" />
+        <mapping class="com.headkeeper.bean.entity.ResumeEducation" />
+        <mapping class="com.headkeeper.bean.entity.ResumeAdditionalEducation" />
+        <mapping class="com.headkeeper.bean.entity.ResumeLanguage" />
+        <mapping class="com.headkeeper.bean.entity.ResumePhoto" />
+        <mapping class="com.headkeeper.bean.entity.ResumeWorkExperience" />
+        <mapping class="com.headkeeper.bean.entity.EmployerToResume" />
+        <mapping class="com.headkeeper.bean.entity.EmployerToResumePK" />
+        <mapping class="com.headkeeper.bean.entity.ResumeToVacancy" />
+        <mapping class="com.headkeeper.bean.entity.ResumeToVacancyPK" />
     </session-factory>
 </hibernate-configuration>

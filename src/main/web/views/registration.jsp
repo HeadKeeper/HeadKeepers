@@ -13,9 +13,9 @@
 </head>
 <body>
     <form>
-        <input type="text" name="userBase-email">
-        <input type="text" name="userBase-password">
-        <input type="text" name="userBase-nickname">
+        <input type="text" name="user-email">
+        <input type="text" name="user-password">
+        <input type="text" name="user-nickname">
     </form>
     <button name="send-info" onclick="sendDataToServer('registration')">Send</button>
 
