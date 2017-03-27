@@ -53,7 +53,6 @@ public class Role extends RoleBase {
     }
 
     @OneToMany(mappedBy = "role")
-    @JsonBackReference
     public Set<User> getUsers() {
         return users;
     }

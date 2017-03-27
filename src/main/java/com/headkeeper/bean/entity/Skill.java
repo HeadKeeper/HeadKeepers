@@ -67,7 +67,6 @@ public class Skill extends SkillBase {
 
     @ManyToMany
     @JoinTable(name = "skill_to_user", catalog = "", schema = "head_keepers", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false))
-    @JsonBackReference
     public Set<User> getUsers() {
         return users;
     }
@@ -78,7 +77,6 @@ public class Skill extends SkillBase {
 
     @ManyToMany
     @JoinTable(name = "skill_to_vacancy", catalog = "", schema = "head_keepers", joinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id", nullable = false), inverseJoinColumns = @JoinColumn(name = "vacancy_id", referencedColumnName = "id", nullable = false))
-    @JsonBackReference
     public Set<Vacancy> getVacancies() {
         return vacancies;
     }

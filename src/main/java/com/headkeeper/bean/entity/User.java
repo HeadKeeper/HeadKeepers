@@ -105,7 +105,6 @@ public class User extends UserBase {
 
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
-    @JsonManagedReference
     public Set<Skill> getSkills() {
         return skills;
     }
@@ -117,7 +116,6 @@ public class User extends UserBase {
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false, updatable = false)
-    @JsonManagedReference
     public Role getRole() {
         return role;
     }

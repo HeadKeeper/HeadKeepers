@@ -179,7 +179,6 @@ public class Vacancy extends VacancyBase {
     }
 
     @ManyToMany(mappedBy = "vacancies", fetch = FetchType.EAGER)
-    @JsonManagedReference
     public Set<Skill> getSkills() {
         return skills;
     }
@@ -190,7 +189,6 @@ public class Vacancy extends VacancyBase {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    @JsonIgnore
     public User getUserByUserId() {
         return userByUserId;
     }
