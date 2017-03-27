@@ -1,13 +1,14 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.EmployerInfoBase;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "employer_info", schema = "head_keepers", catalog = "")
-public class EmployerInfo extends EmployerInfoBase {
+public class EmployerInfo {
 
+    private int id;
+    private String name;
+    private String phoneNumber;
     private User user;
 
     @Id
@@ -40,16 +41,6 @@ public class EmployerInfo extends EmployerInfoBase {
         this.phoneNumber = phoneNumber;
     }
 
-    @Basic
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +49,6 @@ public class EmployerInfo extends EmployerInfoBase {
         EmployerInfo that = (EmployerInfo) o;
 
         if (id != that.id) return false;
-        if (userId != that.userId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
 
@@ -70,7 +60,6 @@ public class EmployerInfo extends EmployerInfoBase {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + userId;
         return result;
     }
 

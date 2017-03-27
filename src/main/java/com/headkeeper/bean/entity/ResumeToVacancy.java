@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 @Table(name = "resume_to_vacancy", schema = "head_keepers", catalog = "")
 @IdClass(ResumeToVacancyPK.class)
 public class ResumeToVacancy {
+
     private Timestamp requestTime;
     private byte isClosed;
     private String message;
@@ -14,6 +15,26 @@ public class ResumeToVacancy {
     private int userResumeId;
     private Vacancy vacancy;
     private UserResume userResume;
+
+    @Id
+    @Column(name = "vacancy_id", nullable = false)
+    public int getVacancyId() {
+        return vacancyId;
+    }
+
+    public void setVacancyId(int vacancyId) {
+        this.vacancyId = vacancyId;
+    }
+
+    @Id
+    @Column(name = "user_resume_id", nullable = false)
+    public int getUserResumeId() {
+        return userResumeId;
+    }
+
+    public void setUserResumeId(int userResumeId) {
+        this.userResumeId = userResumeId;
+    }
 
     @Basic
     @Column(name = "request_time", nullable = false)
@@ -45,26 +66,6 @@ public class ResumeToVacancy {
         this.message = message;
     }
 
-    @Id
-    @Column(name = "vacancy_id", nullable = false)
-    public int getVacancyId() {
-        return vacancyId;
-    }
-
-    public void setVacancyId(int vacancyId) {
-        this.vacancyId = vacancyId;
-    }
-
-    @Id
-    @Column(name = "user_resume_id", nullable = false)
-    public int getUserResumeId() {
-        return userResumeId;
-    }
-
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,8 +74,6 @@ public class ResumeToVacancy {
         ResumeToVacancy that = (ResumeToVacancy) o;
 
         if (isClosed != that.isClosed) return false;
-        if (vacancyId != that.vacancyId) return false;
-        if (userResumeId != that.userResumeId) return false;
         if (requestTime != null ? !requestTime.equals(that.requestTime) : that.requestTime != null) return false;
         if (message != null ? !message.equals(that.message) : that.message != null) return false;
 
@@ -86,8 +85,6 @@ public class ResumeToVacancy {
         int result = requestTime != null ? requestTime.hashCode() : 0;
         result = 31 * result + (int) isClosed;
         result = 31 * result + (message != null ? message.hashCode() : 0);
-        result = 31 * result + vacancyId;
-        result = 31 * result + userResumeId;
         return result;
     }
 

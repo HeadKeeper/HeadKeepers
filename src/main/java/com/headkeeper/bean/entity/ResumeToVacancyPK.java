@@ -5,11 +5,12 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 public class ResumeToVacancyPK implements Serializable {
+
     private int vacancyId;
     private int userResumeId;
 
-    @Column(name = "vacancy_id", nullable = false)
     @Id
+    @Column(name = "vacancy_id", nullable = false)
     public int getVacancyId() {
         return vacancyId;
     }
@@ -18,8 +19,8 @@ public class ResumeToVacancyPK implements Serializable {
         this.vacancyId = vacancyId;
     }
 
-    @Column(name = "user_resume_id", nullable = false)
     @Id
+    @Column(name = "user_resume_id", nullable = false)
     public int getUserResumeId() {
         return userResumeId;
     }

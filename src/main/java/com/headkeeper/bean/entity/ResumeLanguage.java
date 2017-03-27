@@ -1,13 +1,14 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.ResumeLanguageBase;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume_language", schema = "head_keepers", catalog = "")
-public class ResumeLanguage extends ResumeLanguageBase {
+public class ResumeLanguage {
 
+    private int id;
+    private String language;
+    private String level;
     private UserResume userResume;
 
     @Id
@@ -40,16 +41,6 @@ public class ResumeLanguage extends ResumeLanguageBase {
         this.level = level;
     }
 
-    @Basic
-    @Column(name = "user_resume_id", nullable = false)
-    public int getUserResumeId() {
-        return userResumeId;
-    }
-
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +49,6 @@ public class ResumeLanguage extends ResumeLanguageBase {
         ResumeLanguage that = (ResumeLanguage) o;
 
         if (id != that.id) return false;
-        if (userResumeId != that.userResumeId) return false;
         if (language != null ? !language.equals(that.language) : that.language != null) return false;
         if (level != null ? !level.equals(that.level) : that.level != null) return false;
 
@@ -70,7 +60,6 @@ public class ResumeLanguage extends ResumeLanguageBase {
         int result = id;
         result = 31 * result + (language != null ? language.hashCode() : 0);
         result = 31 * result + (level != null ? level.hashCode() : 0);
-        result = 31 * result + userResumeId;
         return result;
     }
 

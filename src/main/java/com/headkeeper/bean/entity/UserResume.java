@@ -1,15 +1,23 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.UserResumeBase;
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "user_resume", schema = "head_keepers", catalog = "")
-public class UserResume extends UserResumeBase {
+public class UserResume {
 
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private Date birthdayDate;
+    private String address;
+    private String martialStatus;
+    private String references;
+    private String additionalInformation;
+    private byte isActive;
     private Set<EmployerToResume> employerToResumes;
     private Set<ResumeAchievement> resumeAchievements;
     private Set<ResumeAdditionalEducation> resumeAdditionalEducations;
@@ -28,16 +36,6 @@ public class UserResume extends UserResumeBase {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     @Basic
@@ -138,7 +136,6 @@ public class UserResume extends UserResumeBase {
         UserResume that = (UserResume) o;
 
         if (id != that.id) return false;
-        if (userId != that.userId) return false;
         if (isActive != that.isActive) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
         if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
@@ -157,7 +154,6 @@ public class UserResume extends UserResumeBase {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + userId;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (middleName != null ? middleName.hashCode() : 0);

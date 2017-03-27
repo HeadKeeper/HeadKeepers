@@ -2,7 +2,6 @@ package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.headkeeper.bean.base.VacancyBase;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -11,8 +10,20 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vacancy", schema = "head_keepers")
-public class Vacancy extends VacancyBase {
+public class Vacancy {
 
+    private int id;
+    private String title;
+    private String description;
+    private String essentialSkills;
+    private String preferableSkills;
+    private byte jobType;
+    private String phoneNumber;
+    private String email;
+    private BigDecimal minSalary;
+    private BigDecimal maxSalary;
+    private String additionalInfoAboutSalary;
+    private boolean isActive;
     private Set<Skill> skills;
     private User userByUserId;
 
@@ -167,7 +178,6 @@ public class Vacancy extends VacancyBase {
         int result = id;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (essentialSkills != null ? title.hashCode() : 0);
         result = 31 * result + (preferableSkills != null ? preferableSkills.hashCode() : 0);
         result = 31 * result + (int) jobType;
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);

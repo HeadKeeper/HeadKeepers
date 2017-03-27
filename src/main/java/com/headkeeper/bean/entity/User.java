@@ -1,7 +1,6 @@
 package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.headkeeper.bean.base.UserBase;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,8 +9,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user", schema = "head_keepers")
-public class User extends UserBase {
+public class User {
 
+    private int id;
+    private String email;
+    private String password;
+    private String nickname;
+    private boolean isActive;
+    private Timestamp creationDate;
     private Set<Skill> skills;
     private Role role;
 

@@ -1,10 +1,15 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.ResumeWorkExperienceBase;
-
 import java.sql.Date;
 
-public class ResumeWorkExperienceView extends ResumeWorkExperienceBase {
+public class ResumeWorkExperienceView {
+    private int id;
+    private String companyName;
+    private String position;
+    private String duties;
+    private Date dateStart;
+    private Date dateFinish;
+    private int userResumeId;
 
     public int getId() {
         return id;

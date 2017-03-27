@@ -11,6 +11,7 @@
         <!-- This will drop our existing database and re-create a new one.
           Existing data will be deleted! -->
         <property name="hbm2ddl.auto">update</property>
+
         <mapping class="com.headkeeper.bean.entity.Vacancy" />
         <mapping class="com.headkeeper.bean.entity.Role" />
         <mapping class="com.headkeeper.bean.entity.User" />

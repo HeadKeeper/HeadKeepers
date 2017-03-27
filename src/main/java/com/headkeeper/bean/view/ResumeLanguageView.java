@@ -1,8 +1,10 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.ResumeLanguageBase;
-
-public class ResumeLanguageView extends ResumeLanguageBase {
+public class ResumeLanguageView {
+    private int id;
+    private String language;
+    private String level;
+    private int userResumeId;
 
     public int getId() {
         return id;

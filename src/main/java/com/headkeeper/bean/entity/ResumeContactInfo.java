@@ -1,13 +1,14 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.ResumeContactInfoBase;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume_contact_info", schema = "head_keepers", catalog = "")
-public class ResumeContactInfo extends ResumeContactInfoBase {
+public class ResumeContactInfo {
 
+    private int id;
+    private String type;
+    private String value;
     private UserResume userResumeByUserResumeId;
 
     @Id
@@ -40,16 +41,6 @@ public class ResumeContactInfo extends ResumeContactInfoBase {
         this.value = value;
     }
 
-    @Basic
-    @Column(name = "user_resume_id", nullable = false)
-    public int getUserResumeId() {
-        return userResumeId;
-    }
-
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +49,6 @@ public class ResumeContactInfo extends ResumeContactInfoBase {
         ResumeContactInfo that = (ResumeContactInfo) o;
 
         if (id != that.id) return false;
-        if (userResumeId != that.userResumeId) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (value != null ? !value.equals(that.value) : that.value != null) return false;
 
@@ -70,7 +60,6 @@ public class ResumeContactInfo extends ResumeContactInfoBase {
         int result = id;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (value != null ? value.hashCode() : 0);
-        result = 31 * result + userResumeId;
         return result;
     }
 

@@ -1,8 +1,10 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.EmployerInfoBase;
-
-public class EmployerInfoView extends EmployerInfoBase {
+public class EmployerInfoView {
+    private int id;
+    private String name;
+    private String phoneNumber;
+    private int userId;
 
     public int getId() {
         return id;

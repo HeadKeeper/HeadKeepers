@@ -1,14 +1,18 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.ResumeAdditionalEducationBase;
-
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "resume_additional_education", schema = "head_keepers", catalog = "")
-public class ResumeAdditionalEducation extends ResumeAdditionalEducationBase {
+public class ResumeAdditionalEducation {
 
+    private int id;
+    private String type;
+    private String institutionName;
+    private String name;
+    private Date startDate;
+    private Date finishDate;
     private UserResume userResume;
 
     @Id
@@ -71,16 +75,6 @@ public class ResumeAdditionalEducation extends ResumeAdditionalEducationBase {
         this.finishDate = finishDate;
     }
 
-    @Basic
-    @Column(name = "user_resume_id", nullable = false)
-    public int getUserResumeId() {
-        return userResumeId;
-    }
-
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,7 +83,6 @@ public class ResumeAdditionalEducation extends ResumeAdditionalEducationBase {
         ResumeAdditionalEducation that = (ResumeAdditionalEducation) o;
 
         if (id != that.id) return false;
-        if (userResumeId != that.userResumeId) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (institutionName != null ? !institutionName.equals(that.institutionName) : that.institutionName != null)
             return false;
@@ -108,7 +101,6 @@ public class ResumeAdditionalEducation extends ResumeAdditionalEducationBase {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (finishDate != null ? finishDate.hashCode() : 0);
-        result = 31 * result + userResumeId;
         return result;
     }
 

@@ -1,8 +1,10 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.ResumeAchievementBase;
-
-public class ResumeAchievementView extends ResumeAchievementBase {
+public class ResumeAchievementView {
+    private int id;
+    private String name;
+    private String value;
+    private int userResumeId;
 
     public int getId() {
         return id;

@@ -1,8 +1,10 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.RoleBase;
+import java.io.Serializable;
 
-public class RoleView extends RoleBase {
+public class RoleView implements Serializable {
+    protected int id;
+    protected String value;
 
     public int getId() {
         return id;

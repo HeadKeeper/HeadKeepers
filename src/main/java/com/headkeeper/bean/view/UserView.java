@@ -1,10 +1,15 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.UserBase;
-
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class UserView extends UserBase {
+public class UserView implements Serializable {
+    private int id;
+    private String email;
+    private String password;
+    private String nickname;
+    private boolean isActive;
+    private Timestamp creationDate;
 
     public int getId() {
         return id;
@@ -38,11 +43,11 @@ public class UserView extends UserBase {
         this.nickname = nickname;
     }
 
-    public boolean getIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    public void setIsActive(boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 

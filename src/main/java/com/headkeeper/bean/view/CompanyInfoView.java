@@ -1,8 +1,13 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.CompanyInfoBase;
+import java.io.Serializable;
 
-public class CompanyInfoView extends CompanyInfoBase {
+public class CompanyInfoView implements Serializable {
+    private int id;
+    private String name;
+    private String description;
+    private String address;
+    private int userId;
 
     public int getId() {
         return id;

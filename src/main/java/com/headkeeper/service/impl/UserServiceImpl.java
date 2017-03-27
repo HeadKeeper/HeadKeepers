@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by UserBase on 21.03.2017.
+ * Created by UserView on 21.03.2017.
  */
 
 @Service
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         userView.setPassword(userEntity.getPassword());
         userView.setNickname(userEntity.getNickname());
         userView.setCreationDate(userEntity.getCreationDate());
-        userView.setIsActive(userEntity.getIsActive());
+        userView.setActive(userEntity.getIsActive());
 
         return userView;
     }

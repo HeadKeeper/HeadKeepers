@@ -1,8 +1,11 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.SkillBase;
+import java.io.Serializable;
 
-public class SkillView extends SkillBase {
+public class SkillView implements Serializable {
+    private int id;
+    private String name;
+    private byte level;
 
     public int getId() {
         return id;

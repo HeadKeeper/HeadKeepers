@@ -1,13 +1,14 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.ResumeAchievementBase;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "resume_achievement", schema = "head_keepers", catalog = "")
-public class ResumeAchievement extends ResumeAchievementBase {
+public class ResumeAchievement {
 
+    private int id;
+    private String name;
+    private String value;
     private UserResume userResume;
 
     @Id
@@ -40,16 +41,6 @@ public class ResumeAchievement extends ResumeAchievementBase {
         this.value = value;
     }
 
-    @Basic
-    @Column(name = "user_resume_id", nullable = false)
-    public int getUserResumeId() {
-        return userResumeId;
-    }
-
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +49,6 @@ public class ResumeAchievement extends ResumeAchievementBase {
         ResumeAchievement that = (ResumeAchievement) o;
 
         if (id != that.id) return false;
-        if (userResumeId != that.userResumeId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (value != null ? !value.equals(that.value) : that.value != null) return false;
 
@@ -70,7 +60,6 @@ public class ResumeAchievement extends ResumeAchievementBase {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (value != null ? value.hashCode() : 0);
-        result = 31 * result + userResumeId;
         return result;
     }
 

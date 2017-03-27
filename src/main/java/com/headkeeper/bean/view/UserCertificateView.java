@@ -1,8 +1,10 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.UserCertificateBase;
-
-public class UserCertificateView extends UserCertificateBase {
+public class UserCertificateView {
+    private int id;
+    private String certificateHref;
+    private String realName;
+    private int userId;
 
     public int getId() {
         return id;
