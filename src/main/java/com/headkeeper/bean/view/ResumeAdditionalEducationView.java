@@ -1,10 +1,15 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.ResumeAdditionalEducationBase;
-
 import java.sql.Date;
 
-public class ResumeAdditionalEducationView extends ResumeAdditionalEducationBase {
+public class ResumeAdditionalEducationView {
+    private int id;
+    private String type;
+    private String institutionName;
+    private String name;
+    private Date startDate;
+    private Date finishDate;
+    private int userResumeId;
 
     public int getId() {
         return id;

@@ -8,8 +8,8 @@ public class EmployerToResumePK implements Serializable {
     private int userId;
     private int userResumeId;
 
-    @Column(name = "user_id", nullable = false)
     @Id
+    @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -18,8 +18,8 @@ public class EmployerToResumePK implements Serializable {
         this.userId = userId;
     }
 
-    @Column(name = "user_resume_id", nullable = false)
     @Id
+    @Column(name = "user_resume_id", nullable = false)
     public int getUserResumeId() {
         return userResumeId;
     }

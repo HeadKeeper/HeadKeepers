@@ -1,8 +1,10 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.ResumePhotoBase;
-
-public class ResumePhotoView extends ResumePhotoBase {
+public class ResumePhotoView {
+    private int id;
+    private String photoHref;
+    private String realName;
+    private int userResumeId;
 
     public int getId() {
         return id;

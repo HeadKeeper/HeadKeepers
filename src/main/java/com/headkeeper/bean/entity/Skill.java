@@ -1,15 +1,17 @@
 package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.headkeeper.bean.base.SkillBase;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "skill", schema = "head_keepers")
-public class Skill extends SkillBase {
+public class Skill {
 
+    private int id;
+    private String name;
+    private byte level;
     private Set<User> users;
     private Set<Vacancy> vacancies;
 
@@ -87,7 +89,7 @@ public class Skill extends SkillBase {
 
     @Override
     public String toString() {
-        return "SkillBase{" +
+        return "SkillView{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", level=" + level +

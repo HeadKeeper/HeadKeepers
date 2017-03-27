@@ -1,15 +1,16 @@
 package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.headkeeper.bean.base.RoleBase;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "role", schema = "head_keepers")
-public class Role extends RoleBase {
+public class Role {
 
+    private int id;
+    private String value;
     private Set<User> users;
 
     @Id

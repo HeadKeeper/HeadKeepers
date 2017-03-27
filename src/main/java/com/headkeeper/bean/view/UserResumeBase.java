@@ -1,10 +1,19 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.UserResumeBase;
-
 import java.sql.Date;
 
-public class UserResumeView extends UserResumeBase {
+public class UserResumeBase {
+    private int id;
+    private int userId;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private Date birthdayDate;
+    private String address;
+    private String martialStatus;
+    private String references;
+    private String additionalInformation;
+    private byte isActive;
 
     public int getId() {
         return id;

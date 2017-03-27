@@ -1,10 +1,20 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.VacancyBase;
-
 import java.math.BigDecimal;
 
-public class VacancyView extends VacancyBase {
+public class VacancyView {
+    private int id;
+    private String title;
+    private String description;
+    private String essentialSkills;
+    private String preferableSkills;
+    private byte jobType;
+    private String phoneNumber;
+    private String email;
+    private BigDecimal minSalary;
+    private BigDecimal maxSalary;
+    private String additionalInfoAboutSalary;
+    private boolean isActive;
 
     public int getId() {
         return id;
@@ -94,11 +104,11 @@ public class VacancyView extends VacancyBase {
         this.additionalInfoAboutSalary = additionalInfoAboutSalary;
     }
 
-    public boolean getIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
-    public void setIsActive(boolean active) {
+    public void setActive(boolean active) {
         isActive = active;
     }
 }

@@ -1,14 +1,18 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.ResumeWorkExperienceBase;
-
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "resume_work_experience", schema = "head_keepers", catalog = "")
-public class ResumeWorkExperience extends ResumeWorkExperienceBase {
+public class ResumeWorkExperience {
 
+    private int id;
+    private String companyName;
+    private String position;
+    private String duties;
+    private Date dateStart;
+    private Date dateFinish;
     private UserResume userResumeByUserResumeId;
 
     @Id
@@ -71,16 +75,6 @@ public class ResumeWorkExperience extends ResumeWorkExperienceBase {
         this.dateFinish = dateFinish;
     }
 
-    @Basic
-    @Column(name = "user_resume_id", nullable = false)
-    public int getUserResumeId() {
-        return userResumeId;
-    }
-
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,7 +83,6 @@ public class ResumeWorkExperience extends ResumeWorkExperienceBase {
         ResumeWorkExperience that = (ResumeWorkExperience) o;
 
         if (id != that.id) return false;
-        if (userResumeId != that.userResumeId) return false;
         if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
         if (position != null ? !position.equals(that.position) : that.position != null) return false;
         if (duties != null ? !duties.equals(that.duties) : that.duties != null) return false;
@@ -107,7 +100,6 @@ public class ResumeWorkExperience extends ResumeWorkExperienceBase {
         result = 31 * result + (duties != null ? duties.hashCode() : 0);
         result = 31 * result + (dateStart != null ? dateStart.hashCode() : 0);
         result = 31 * result + (dateFinish != null ? dateFinish.hashCode() : 0);
-        result = 31 * result + userResumeId;
         return result;
     }
 

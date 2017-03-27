@@ -1,13 +1,14 @@
 package com.headkeeper.bean.entity;
 
-import com.headkeeper.bean.base.UserCertificateBase;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_certificate", schema = "head_keepers", catalog = "")
-public class UserCertificate extends UserCertificateBase {
+public class UserCertificate {
 
+    private int id;
+    private String certificateHref;
+    private String realName;
     private User user;
 
     @Id
@@ -40,16 +41,6 @@ public class UserCertificate extends UserCertificateBase {
         this.realName = realName;
     }
 
-    @Basic
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +49,6 @@ public class UserCertificate extends UserCertificateBase {
         UserCertificate that = (UserCertificate) o;
 
         if (id != that.id) return false;
-        if (userId != that.userId) return false;
         if (certificateHref != null ? !certificateHref.equals(that.certificateHref) : that.certificateHref != null)
             return false;
         if (realName != null ? !realName.equals(that.realName) : that.realName != null) return false;
@@ -71,7 +61,6 @@ public class UserCertificate extends UserCertificateBase {
         int result = id;
         result = 31 * result + (certificateHref != null ? certificateHref.hashCode() : 0);
         result = 31 * result + (realName != null ? realName.hashCode() : 0);
-        result = 31 * result + userId;
         return result;
     }
 

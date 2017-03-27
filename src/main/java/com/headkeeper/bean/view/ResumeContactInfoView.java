@@ -1,8 +1,10 @@
 package com.headkeeper.bean.view;
 
-import com.headkeeper.bean.base.ResumeContactInfoBase;
-
-public class ResumeContactInfoView extends ResumeContactInfoBase {
+public class ResumeContactInfoView {
+    private int id;
+    private String type;
+    private String value;
+    private int userResumeId;
 
     public int getId() {
         return id;
