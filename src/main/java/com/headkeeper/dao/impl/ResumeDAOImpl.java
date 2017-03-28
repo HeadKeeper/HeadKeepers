@@ -2,6 +2,7 @@ package com.headkeeper.dao.impl;
 
 import com.headkeeper.bean.entity.*;
 import com.headkeeper.dao.ResumeDAO;
+import com.headkeeper.dao.exception.DAOException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,14 @@ import java.util.List;
 @Repository
 public class ResumeDAOImpl implements ResumeDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
-    private void replaceResumeData(UserResume oldResume, UserResume newResume) {
+    @Autowired
+    public ResumeDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    private void replaceResumeData(UserResume oldResume, UserResume newResume) throws DAOException {
         oldResume.setAdditionalInformation(newResume.getAdditionalInformation());
         oldResume.setAddress(newResume.getAddress());
         oldResume.setBirthdayDate(newResume.getBirthdayDate());
@@ -33,55 +38,55 @@ public class ResumeDAOImpl implements ResumeDAO {
 
     // -------------------------------- CREATE -------------------------------------------
 
-    public void addNewResume(UserResume resume) {
+    public void addNewResume(UserResume resume) throws DAOException {
         /* USER_ID FK (resume.userId) it should be packed on the user side */
         Session session = sessionFactory.getCurrentSession();
         session.save(resume);
     }
 
-    public void addResumeAchievement(ResumeAchievement achievement, int resumeId) {
+    public void addResumeAchievement(ResumeAchievement achievement, int resumeId) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resumeId);
         userResume.getResumeAchievements().add(achievement);
         session.update(userResume);
     }
 
-    public void addAdditionalEducation(ResumeAdditionalEducation additionalEducation, int resumeId) {
+    public void addAdditionalEducation(ResumeAdditionalEducation additionalEducation, int resumeId) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resumeId);
         userResume.getResumeAdditionalEducations().add(additionalEducation);
         session.update(userResume);
     }
 
-    public void addContactInfo(ResumeContactInfo contactInfo, int resumeId) {
+    public void addContactInfo(ResumeContactInfo contactInfo, int resumeId) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resumeId);
         userResume.getResumeContactInfos().add(contactInfo);
         session.update(userResume);
     }
 
-    public void addEducation(ResumeEducation education, int resumeId) {
+    public void addEducation(ResumeEducation education, int resumeId) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resumeId);
         userResume.getResumeEducations().add(education);
         session.update(userResume);
     }
 
-    public void addLanguage(ResumeLanguage language, int resumeId) {
+    public void addLanguage(ResumeLanguage language, int resumeId) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resumeId);
         userResume.getResumeLanguages().add(language);
         session.update(userResume);
     }
 
-    public void addPhoto(ResumePhoto photo, int resumeId) {
+    public void addPhoto(ResumePhoto photo, int resumeId) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resumeId);
         userResume.getResumePhotos().add(photo);
         session.update(userResume);
     }
 
-    public void addWorkExpirience(ResumeWorkExperience workExperience, int resumeId) {
+    public void addWorkExpirience(ResumeWorkExperience workExperience, int resumeId) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resumeId);
         userResume.getResumeWorkExperiences().add(workExperience);
@@ -90,13 +95,13 @@ public class ResumeDAOImpl implements ResumeDAO {
 
     // -------------------------------- READ ---------------------------------------------
 
-    public UserResume getResumeById(int id) {
+    public UserResume getResumeById(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.get(UserResume.class, id);
         return userResume;
     }
 
-    public List<ResumeAchievement> getResumeAchievements(int id) {
+    public List<ResumeAchievement> getResumeAchievements(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.get(UserResume.class, id);
         List<ResumeAchievement> achievements = new ArrayList<ResumeAchievement>();
@@ -104,7 +109,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         return achievements;
     }
 
-    public List<ResumeAdditionalEducation> getAdditionalEducations(int id) {
+    public List<ResumeAdditionalEducation> getAdditionalEducations(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.get(UserResume.class, id);
         List<ResumeAdditionalEducation> additionalEducations = new ArrayList<ResumeAdditionalEducation>();
@@ -112,7 +117,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         return additionalEducations;
     }
 
-    public List<ResumeContactInfo> getContactInfo(int id) {
+    public List<ResumeContactInfo> getContactInfo(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.get(UserResume.class, id);
         List<ResumeContactInfo> contactInfos = new ArrayList<ResumeContactInfo>();
@@ -120,7 +125,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         return contactInfos;
     }
 
-    public List<ResumeEducation> getResumeEducations(int id) {
+    public List<ResumeEducation> getResumeEducations(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.get(UserResume.class, id);
         List<ResumeEducation> educations = new ArrayList<ResumeEducation>();
@@ -128,7 +133,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         return educations;
     }
 
-    public List<ResumeLanguage> getResumeLanguages(int id) {
+    public List<ResumeLanguage> getResumeLanguages(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.get(UserResume.class, id);
         List<ResumeLanguage> languages = new ArrayList<ResumeLanguage>();
@@ -136,7 +141,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         return languages;
     }
 
-    public List<ResumePhoto> getResumePhotos(int id) {
+    public List<ResumePhoto> getResumePhotos(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.get(UserResume.class, id);
         List<ResumePhoto> photos = new ArrayList<ResumePhoto>();
@@ -144,7 +149,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         return photos;
     }
 
-    public List<ResumeWorkExperience> getResumeWorkExpirience(int id) {
+    public List<ResumeWorkExperience> getResumeWorkExpirience(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.get(UserResume.class, id);
         List<ResumeWorkExperience> workExperiences = new ArrayList<ResumeWorkExperience>();
@@ -154,13 +159,13 @@ public class ResumeDAOImpl implements ResumeDAO {
 
     // -------------------------------- UPDATE -------------------------------------------
 
-    public void updateResumeStatus(int id, boolean status) {
+    public void updateResumeStatus(int id, boolean status) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.load(UserResume.class, id);
         resume.setIsActive(status);
     }
 
-    public void updateResume(int id, UserResume resume) {
+    public void updateResume(int id, UserResume resume) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume oldResume = session.load(UserResume.class, id);
         replaceResumeData(oldResume, resume);
@@ -169,35 +174,35 @@ public class ResumeDAOImpl implements ResumeDAO {
 
     // -------------------------------- DELETE -------------------------------------------
 
-    public void deleteResume(int id) {
+    public void deleteResume(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume resume = session.load(UserResume.class, id);
         session.delete(resume);
     }
 
-    public void deleteResumeAchievemet(int achievementId, UserResume resume) {
+    public void deleteResumeAchievement(int achievementId, UserResume resume) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resume.getId());
         userResume.getResumeAchievements();
     }
 
-    public void deleteAdditionalEducation(int additionalEducationId, UserResume resume) {
+    public void deleteAdditionalEducation(int additionalEducationId, UserResume resume) throws DAOException {
 
     }
 
-    public void deleteContactInfo(int contactInfoId, UserResume resume) {
+    public void deleteContactInfo(int contactInfoId, UserResume resume) throws DAOException {
 
     }
 
-    public void deleteEducation(int educationId, UserResume resume) {
+    public void deleteEducation(int educationId, UserResume resume) throws DAOException {
 
     }
 
-    public void deleteLangugage(int languageId, UserResume resume) {
+    public void deleteLangugage(int languageId, UserResume resume) throws DAOException {
 
     }
 
-    public void deletePhoto(int photoId, UserResume resume) {
+    public void deletePhoto(int photoId, UserResume resume) throws DAOException {
 
     }
 }

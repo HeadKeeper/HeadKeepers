@@ -3,6 +3,7 @@ package com.headkeeper.dao.impl;
 import com.headkeeper.bean.entity.Role;
 import com.headkeeper.bean.entity.User;
 import com.headkeeper.dao.UserDAO;
+import com.headkeeper.dao.exception.DAOException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDAOImpl implements UserDAO {
 
     // TODO Add logging for all operations
+    private final SessionFactory sessionFactory;
+
     @Autowired
-    private SessionFactory sessionFactory;
+    public UserDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     /* CRUD OPERATIONS */
 
     // ------------------------------- CREATE -------------------------------
 
-    public void addNewUser(User user) {
+    public void addNewUser(User user) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         Role role = session.get(Role.class, USER_ROLE_ID);
         user.setRole(role);
@@ -30,9 +35,12 @@ public class UserDAOImpl implements UserDAO {
 
     // ------------------------------- READ -------------------------------
 
-    public User getUserById(int id) {
+    public User getUserById(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class, id);
+        if (user == null) {
+            throw new DAOException("User not found");
+        }
         return user;
     }
 
@@ -45,7 +53,7 @@ public class UserDAOImpl implements UserDAO {
         session.update(oldUser);
     }
 
-    public void updateUser(int id, User user) {
+    public void updateUser(int id, User user) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         User oldUser = (User) session.load(User.class, id);
         oldUser.setEmail(user.getEmail());
@@ -56,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 
     // ------------------------------- DELETE -------------------------------
 
-    public void deleteUser(int id) {
+    public void deleteUser(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         User user = (User) session.load(User.class, id);
         session.delete(user);

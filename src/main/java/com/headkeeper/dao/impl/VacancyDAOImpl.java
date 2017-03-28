@@ -3,6 +3,7 @@ package com.headkeeper.dao.impl;
 import com.headkeeper.bean.entity.User;
 import com.headkeeper.bean.entity.Vacancy;
 import com.headkeeper.dao.VacancyDAO;
+import com.headkeeper.dao.exception.DAOException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,15 @@ import java.util.List;
 @Repository
 public class VacancyDAOImpl implements VacancyDAO {
 
-    @Autowired
+    final
     SessionFactory sessionFactory;
 
-    private void replaceVacancyData(Vacancy oldVacancy, Vacancy newVacancy) {
+    @Autowired
+    public VacancyDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    private void replaceVacancyData(Vacancy oldVacancy, Vacancy newVacancy) throws DAOException {
         oldVacancy.setEmail(newVacancy.getEmail());
         oldVacancy.setAdditionalInfoAboutSalary(newVacancy.getAdditionalInfoAboutSalary());
         oldVacancy.setDescription(newVacancy.getDescription());
@@ -36,7 +42,7 @@ public class VacancyDAOImpl implements VacancyDAO {
     /* CRUD OPERATIONS  */
 
     //------------------------------------ CREATE ---------------------------------------------
-    public void addVacancy(Vacancy vacancy, int id) {
+    public void addVacancy(Vacancy vacancy, int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class, id);
         vacancy.setUserByUserId(user);
@@ -44,14 +50,14 @@ public class VacancyDAOImpl implements VacancyDAO {
     }
 
     //------------------------------------ UPDATE ---------------------------------------------
-    public void updateVacancy(int id, Vacancy vacancy) {
+    public void updateVacancy(int id, Vacancy vacancy) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         Vacancy oldVacancy = session.load(Vacancy.class, id);
         replaceVacancyData(oldVacancy,vacancy);
         session.update(oldVacancy);
     }
 
-    public void updateVacancy(int id, boolean status) {
+    public void updateVacancy(int id, boolean status) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         Vacancy oldVacancy = session.load(Vacancy.class, id);
         oldVacancy.setIsActive(status);
@@ -59,19 +65,19 @@ public class VacancyDAOImpl implements VacancyDAO {
     }
 
     // ------------------------------------ READ ---------------------------------------------
-    public Vacancy getVacancyById(int id) {
+    public Vacancy getVacancyById(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         Vacancy vacancy = session.get(Vacancy.class, id);
         return vacancy;
     }
 
-    public Collection<Vacancy> getAllVacancies() {
+    public Collection<Vacancy> getAllVacancies() throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         List<Vacancy> vacancyList = (List<Vacancy>) session.createQuery("from Vacancy").list();
         return vacancyList;
     }
 
-    public Collection<Vacancy> getVacanciesByStatus(boolean status) {
+    public Collection<Vacancy> getVacanciesByStatus(boolean status) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         List<Vacancy> vacancies = (List<Vacancy>) session.createQuery(
                 "from Vacancy vacancy where vacancy.isActive = " + status
@@ -79,7 +85,7 @@ public class VacancyDAOImpl implements VacancyDAO {
         return vacancies;
     }
 
-    public Collection<Vacancy> getVacanciesById(int id) {
+    public Collection<Vacancy> getVacanciesById(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         List<Vacancy> vacancies = (List<Vacancy>) session.createQuery(
                 "from Vacancy vacancy where vacancy.userByUserId.id = " + id
@@ -88,7 +94,7 @@ public class VacancyDAOImpl implements VacancyDAO {
     }
 
     // ------------------------------------ DELETE ---------------------------------------------
-    public void deleteVacancy(int id) {
+    public void deleteVacancy(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         Vacancy vacancy = session.load(Vacancy.class, id);
         session.delete(vacancy);

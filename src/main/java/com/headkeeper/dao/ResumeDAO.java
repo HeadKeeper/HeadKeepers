@@ -1,6 +1,7 @@
 package com.headkeeper.dao;
 
 import com.headkeeper.bean.entity.*;
+import com.headkeeper.dao.exception.DAOException;
 
 import java.util.List;
 
@@ -8,33 +9,33 @@ public interface ResumeDAO {
     /* CRUD OPERATIONS */
 
     // CREATE
-    void addNewResume(UserResume resume);
-    void addResumeAchievement(ResumeAchievement achievement, int resumeId);
-    void addAdditionalEducation(ResumeAdditionalEducation additionalEducation, int resumeId);
-    void addContactInfo(ResumeContactInfo contactInfo, int resumeId);
-    void addEducation(ResumeEducation education, int resumeId);
-    void addLanguage(ResumeLanguage language, int resumeId);
-    void addPhoto(ResumePhoto photo, int resumeId);
+    void addNewResume(UserResume resume) throws DAOException;
+    void addResumeAchievement(ResumeAchievement achievement, int resumeId) throws DAOException;
+    void addAdditionalEducation(ResumeAdditionalEducation additionalEducation, int resumeId) throws DAOException;
+    void addContactInfo(ResumeContactInfo contactInfo, int resumeId) throws DAOException;
+    void addEducation(ResumeEducation education, int resumeId) throws DAOException;
+    void addLanguage(ResumeLanguage language, int resumeId) throws DAOException;
+    void addPhoto(ResumePhoto photo, int resumeId) throws DAOException;
 
     // READ
-    UserResume getResumeById(int id);
-    List<ResumeAchievement> getResumeAchievements(int id);
-    List<ResumeAdditionalEducation> getAdditionalEducations(int id);
-    List<ResumeContactInfo> getContactInfo(int id);
-    List<ResumeEducation> getResumeEducations(int id);
-    List<ResumeLanguage> getResumeLanguages(int id);
-    List<ResumePhoto> getResumePhotos(int id);
+    UserResume getResumeById(int id) throws DAOException;
+    List<ResumeAchievement> getResumeAchievements(int id) throws DAOException;
+    List<ResumeAdditionalEducation> getAdditionalEducations(int id) throws DAOException;
+    List<ResumeContactInfo> getContactInfo(int id) throws DAOException;
+    List<ResumeEducation> getResumeEducations(int id) throws DAOException;
+    List<ResumeLanguage> getResumeLanguages(int id) throws DAOException;
+    List<ResumePhoto> getResumePhotos(int id) throws DAOException;
 
     // UPDATE
-    void updateResumeStatus(int id, boolean status);
-    void updateResume(int id, UserResume resume);
+    void updateResumeStatus(int id, boolean status) throws DAOException;
+    void updateResume(int id, UserResume resume) throws DAOException;
 
     // DELETE
-    void deleteResume(int id);
-    void deleteResumeAchievemet(int achievementId, UserResume resume);
-    void deleteAdditionalEducation(int additionalEducationId, UserResume resume);
-    void deleteContactInfo(int contactInfoId, UserResume resume);
-    void deleteEducation(int educationId, UserResume resume);
-    void deleteLangugage(int languageId, UserResume resume);
-    void deletePhoto(int photoId, UserResume resume);
+    void deleteResume(int id) throws DAOException;
+    void deleteResumeAchievement(int achievementId, UserResume resume) throws DAOException;
+    void deleteAdditionalEducation(int additionalEducationId, UserResume resume) throws DAOException;
+    void deleteContactInfo(int contactInfoId, UserResume resume) throws DAOException;
+    void deleteEducation(int educationId, UserResume resume) throws DAOException;
+    void deleteLangugage(int languageId, UserResume resume) throws DAOException;
+    void deletePhoto(int photoId, UserResume resume) throws DAOException;
 }
