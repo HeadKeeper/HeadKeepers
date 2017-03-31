@@ -4,7 +4,7 @@ public class EmployerInfoView {
     private int id;
     private String name;
     private String phoneNumber;
-    private int userId;
+    private UserView user;
 
     public int getId() {
         return id;
@@ -30,11 +30,11 @@ public class EmployerInfoView {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getUserId() {
-        return userId;
+    public UserView getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(UserView user) {
+        this.user = user;
     }
 }

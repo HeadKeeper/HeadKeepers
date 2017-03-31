@@ -1,10 +1,13 @@
 package com.headkeeper.bean.view;
 
-public class UserCertificateView {
+import java.io.Serializable;
+
+public class UserCertificateView implements Serializable {
     private int id;
     private String certificateHref;
     private String realName;
-    private int userId;
+
+    private UserView user;
 
     public int getId() {
         return id;
@@ -30,11 +33,11 @@ public class UserCertificateView {
         this.realName = realName;
     }
 
-    public int getUserId() {
-        return userId;
+    public UserView getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(UserView user) {
+        this.user = user;
     }
 }

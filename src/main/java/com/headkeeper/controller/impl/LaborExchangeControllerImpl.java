@@ -2,6 +2,7 @@ package com.headkeeper.controller.impl;
 
 
 import com.headkeeper.bean.entity.UserResume;
+import com.headkeeper.bean.view.UserResumeView;
 import com.headkeeper.controller.LaborExchangeController;
 import com.headkeeper.dao.ResumeDAO;
 import com.headkeeper.dao.VacancyDAO;
@@ -23,8 +24,8 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
         this.service = service;
     }
 
-    public UserResume getResumeById(@PathVariable int id) {
-        UserResume resume = null;
+    public UserResumeView getResumeById(@PathVariable int id) {
+        UserResumeView resume = null;
         try {
             resume = service.getResume(id);
         } catch (ServiceException e) {
@@ -34,7 +35,7 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
         if (resume == null) {
             throw new ResourceNotFoundException();
         }
-
+        //TODO: Write
         System.out.println(resume.getId() + " " + resume.getAdditionalInformation());
         return null;
     }
@@ -43,7 +44,7 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
         return "resume";
     }
 
-    public void addNewResume(@RequestBody UserResume resume) {
+    public void addNewResume(@RequestBody UserResumeView resume) {
 
     }
 }

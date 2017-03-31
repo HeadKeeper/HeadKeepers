@@ -36,7 +36,7 @@ public class UserControllerImpl implements UserController {
         return "profile";
     }
 
-    public void changeProfile(@PathVariable int id,@RequestBody User user) {
+    public void changeProfile(@PathVariable int id,@RequestBody UserView user) {
         try {
             userService.updateUserInfo(id, user);
         } catch (ServiceException e) {
@@ -52,13 +52,12 @@ public class UserControllerImpl implements UserController {
         }
     }
 
-    public void addNewUser(@RequestBody User user) {
+    public void addNewUser(@RequestBody UserView user) {
         try {
             userService.registration(user);
         } catch (ServiceException e) {
             throw new ResourceNotFoundException(e);
         }
     }
-
 
 }

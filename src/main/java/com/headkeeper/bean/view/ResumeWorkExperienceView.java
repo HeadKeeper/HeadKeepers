@@ -9,7 +9,8 @@ public class ResumeWorkExperienceView {
     private String duties;
     private Date dateStart;
     private Date dateFinish;
-    private int userResumeId;
+
+    private UserResumeView userResume;
 
     public int getId() {
         return id;
@@ -59,11 +60,11 @@ public class ResumeWorkExperienceView {
         this.dateFinish = dateFinish;
     }
 
-    public int getUserResumeId() {
-        return userResumeId;
+    public UserResumeView getUserResume() {
+        return userResume;
     }
 
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
+    public void setUserResume(UserResumeView userResume) {
+        this.userResume = userResume;
     }
 }

@@ -4,7 +4,7 @@ public class ResumeContactInfoView {
     private int id;
     private String type;
     private String value;
-    private int userResumeId;
+    private UserResumeView userResume;
 
     public int getId() {
         return id;
@@ -30,11 +30,11 @@ public class ResumeContactInfoView {
         this.value = value;
     }
 
-    public int getUserResumeId() {
-        return userResumeId;
+    public UserResumeView getUserResume() {
+        return userResume;
     }
 
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
+    public void setUserResume(UserResumeView userResume) {
+        this.userResume = userResume;
     }
 }
