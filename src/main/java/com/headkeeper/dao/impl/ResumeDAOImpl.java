@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 @Repository
@@ -183,26 +184,100 @@ public class ResumeDAOImpl implements ResumeDAO {
     public void deleteResumeAchievement(int achievementId, UserResume resume) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         UserResume userResume = session.load(UserResume.class, resume.getId());
-        userResume.getResumeAchievements();
+        Set<ResumeAchievement> resumeAchievements = userResume.getResumeAchievements();
+        ResumeAchievement deletingAchievement = null;
+        for (ResumeAchievement achievement : resumeAchievements) {
+            if (achievement.getId() == achievementId) {
+                deletingAchievement = achievement;
+                break;
+            }
+        }
+        resumeAchievements.remove(deletingAchievement);
     }
 
     public void deleteAdditionalEducation(int additionalEducationId, UserResume resume) throws DAOException {
-
+        Session session = sessionFactory.getCurrentSession();
+        UserResume userResume = session.load(UserResume.class, resume.getId());
+        Set<ResumeAdditionalEducation> additionalEducations = userResume.getResumeAdditionalEducations();
+        ResumeAdditionalEducation deleteingAdditionalEducation = null;
+        for (ResumeAdditionalEducation additionalEducation : additionalEducations) {
+            if (additionalEducation.getId() == additionalEducationId) {
+                deleteingAdditionalEducation = additionalEducation;
+                break;
+            }
+        }
+        additionalEducations.remove(deleteingAdditionalEducation);
     }
 
     public void deleteContactInfo(int contactInfoId, UserResume resume) throws DAOException {
-
-    }
+        Session session = sessionFactory.getCurrentSession();
+        UserResume userResume = session.load(UserResume.class, resume.getId());
+        Set<ResumeContactInfo> contactInfos = userResume.getResumeContactInfos();
+        ResumeContactInfo deletingContactInfo = null;
+        for (ResumeContactInfo contactInfo : contactInfos) {
+            if (contactInfo.getId() == contactInfoId) {
+                deletingContactInfo = contactInfo;
+                break;
+            }
+        }
+        contactInfos.remove(deletingContactInfo);
+     }
 
     public void deleteEducation(int educationId, UserResume resume) throws DAOException {
-
+        Session session = sessionFactory.getCurrentSession();
+        UserResume userResume = session.load(UserResume.class, resume.getId());
+        Set<ResumeEducation> educations = userResume.getResumeEducations();
+        ResumeEducation deletingEducation = null;
+        for (ResumeEducation education : educations) {
+            if (education.getId() == educationId) {
+                deletingEducation = education;
+                break;
+            }
+        }
+        educations.remove(deletingEducation);
     }
 
     public void deleteLangugage(int languageId, UserResume resume) throws DAOException {
-
+        Session session = sessionFactory.getCurrentSession();
+        UserResume userResume = session.load(UserResume.class, resume.getId());
+        Set<ResumeLanguage> languages = userResume.getResumeLanguages();
+        ResumeLanguage deletingLanguage = null;
+        for (ResumeLanguage language : languages) {
+            if (language.getId() == languageId) {
+                deletingLanguage = language;
+                break;
+            }
+        }
+        languages.remove(deletingLanguage);
     }
 
     public void deletePhoto(int photoId, UserResume resume) throws DAOException {
-
+        Session session = sessionFactory.getCurrentSession();
+        UserResume userResume = session.load(UserResume.class, resume.getId());
+        Set<ResumePhoto> photos = userResume.getResumePhotos();
+        ResumePhoto deletingPhoto = null;
+        for (ResumePhoto photo : photos) {
+            if (photo.getId() == photoId) {
+                deletingPhoto = photo;
+                break;
+            }
+        }
+        photos.remove(deletingPhoto);
     }
+
+    public void deleteWorkExpirience(int workExpirienceId, UserResume resume) throws DAOException {
+        Session session = sessionFactory.getCurrentSession();
+        UserResume userResume = session.load(UserResume.class, resume.getId());
+        Set<ResumeWorkExperience> workExperiences = userResume.getResumeWorkExperiences();
+        ResumeWorkExperience deletingExpirience = null;
+        for (ResumeWorkExperience workExperience : workExperiences) {
+            if (workExperience.getId() == workExpirienceId) {
+                deletingExpirience = workExperience;
+                break;
+            }
+        }
+        workExperiences.remove(deletingExpirience);
+    }
+
+
 }

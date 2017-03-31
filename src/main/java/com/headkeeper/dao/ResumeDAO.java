@@ -38,4 +38,5 @@ public interface ResumeDAO {
     void deleteEducation(int educationId, UserResume resume) throws DAOException;
     void deleteLangugage(int languageId, UserResume resume) throws DAOException;
     void deletePhoto(int photoId, UserResume resume) throws DAOException;
+    void deleteWorkExpirience(int workExpirienceId, UserResume resume) throws DAOException;
 }
