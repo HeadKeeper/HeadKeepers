@@ -7,7 +7,7 @@ public class CompanyInfoView implements Serializable {
     private String name;
     private String description;
     private String address;
-    private int userId;
+    private UserView user;
 
     public int getId() {
         return id;
@@ -41,11 +41,11 @@ public class CompanyInfoView implements Serializable {
         this.address = address;
     }
 
-    public int getUserId() {
-        return userId;
+    public UserView getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(UserView user) {
+        this.user = user;
     }
 }

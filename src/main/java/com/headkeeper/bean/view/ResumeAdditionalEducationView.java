@@ -9,7 +9,7 @@ public class ResumeAdditionalEducationView {
     private String name;
     private Date startDate;
     private Date finishDate;
-    private int userResumeId;
+    private UserResumeView userResume;
 
     public int getId() {
         return id;
@@ -59,11 +59,11 @@ public class ResumeAdditionalEducationView {
         this.finishDate = finishDate;
     }
 
-    public int getUserResumeId() {
-        return userResumeId;
+    public UserResumeView getUserResume() {
+        return userResume;
     }
 
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
+    public void setUserResume(UserResumeView userResume) {
+        this.userResume = userResume;
     }
 }

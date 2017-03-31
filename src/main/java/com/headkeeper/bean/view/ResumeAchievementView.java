@@ -4,7 +4,7 @@ public class ResumeAchievementView {
     private int id;
     private String name;
     private String value;
-    private int userResumeId;
+    private UserResumeView userResume;
 
     public int getId() {
         return id;
@@ -30,11 +30,11 @@ public class ResumeAchievementView {
         this.value = value;
     }
 
-    public int getUserResumeId() {
-        return userResumeId;
+    public UserResumeView getUserResume() {
+        return userResume;
     }
 
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
+    public void setUserResume(UserResumeView userResume) {
+        this.userResume = userResume;
     }
 }

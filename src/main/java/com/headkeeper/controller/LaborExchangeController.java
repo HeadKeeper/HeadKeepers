@@ -1,6 +1,6 @@
 package com.headkeeper.controller;
 
-import com.headkeeper.bean.entity.UserResume;
+import com.headkeeper.bean.view.UserResumeView;
 import org.springframework.web.bind.annotation.*;
 
 public interface LaborExchangeController {
@@ -9,11 +9,11 @@ public interface LaborExchangeController {
 
     @RequestMapping(value = "/resume/{id}", method = RequestMethod.GET)
     @ResponseBody
-    UserResume getResumeById(@PathVariable int id);
+    UserResumeView getResumeById(@PathVariable int id);
 
     @RequestMapping(value = "/resume", method = RequestMethod.GET)
     String getResumePage();
 
     @RequestMapping(value = "/resume", method = RequestMethod.POST)
-    void addNewResume(@RequestBody UserResume resume);
+    void addNewResume(@RequestBody UserResumeView resume);
 }

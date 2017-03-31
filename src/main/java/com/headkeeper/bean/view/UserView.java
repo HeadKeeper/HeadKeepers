@@ -2,6 +2,7 @@ package com.headkeeper.bean.view;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class UserView implements Serializable {
     private int id;
@@ -10,6 +11,9 @@ public class UserView implements Serializable {
     private String nickname;
     private boolean isActive;
     private Timestamp creationDate;
+
+    private List<SkillView> skills;
+    private RoleView role;
 
     public int getId() {
         return id;
@@ -57,5 +61,21 @@ public class UserView implements Serializable {
 
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public List<SkillView> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<SkillView> skills) {
+        this.skills = skills;
+    }
+
+    public RoleView getRole() {
+        return role;
+    }
+
+    public void setRole(RoleView role) {
+        this.role = role;
     }
 }

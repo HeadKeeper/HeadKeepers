@@ -1,7 +1,5 @@
 package com.headkeeper.bean.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -25,7 +23,7 @@ public class Vacancy {
     private String additionalInfoAboutSalary;
     private boolean isActive;
     private Set<Skill> skills;
-    private User userByUserId;
+    private User user;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -199,11 +197,11 @@ public class Vacancy {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public User getUserByUserId() {
-        return userByUserId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

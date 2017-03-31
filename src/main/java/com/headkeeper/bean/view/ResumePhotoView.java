@@ -4,7 +4,8 @@ public class ResumePhotoView {
     private int id;
     private String photoHref;
     private String realName;
-    private int userResumeId;
+
+    private UserResumeView userResume;
 
     public int getId() {
         return id;
@@ -30,11 +31,11 @@ public class ResumePhotoView {
         this.realName = realName;
     }
 
-    public int getUserResumeId() {
-        return userResumeId;
+    public UserResumeView getUserResume() {
+        return userResume;
     }
 
-    public void setUserResumeId(int userResumeId) {
-        this.userResumeId = userResumeId;
+    public void setUserResume(UserResumeView userResume) {
+        this.userResume = userResume;
     }
 }

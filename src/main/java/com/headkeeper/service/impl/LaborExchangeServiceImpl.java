@@ -1,64 +1,93 @@
 package com.headkeeper.service.impl;
 
-import com.headkeeper.bean.entity.Skill;
 import com.headkeeper.bean.entity.*;
+import com.headkeeper.bean.view.*;
+import com.headkeeper.dao.ResumeDAO;
 import com.headkeeper.dao.VacancyDAO;
 import com.headkeeper.dao.exception.DAOException;
 import com.headkeeper.service.LaborExchangeService;
 import com.headkeeper.service.exception.ServiceException;
+import com.headkeeper.service.util.Exchanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class LaborExchangeServiceImpl implements LaborExchangeService {
 
-    /* -------------------- Vacancy -------------------- */
-
     private final VacancyDAO vacancyDAO;
+    private final ResumeDAO resumeDAO;
 
     @Autowired
-    public LaborExchangeServiceImpl(VacancyDAO vacancyDAO) {
+    public LaborExchangeServiceImpl(VacancyDAO vacancyDAO, ResumeDAO resumeDAO) {
         this.vacancyDAO = vacancyDAO;
+        this.resumeDAO = resumeDAO;
     }
 
-    public void createVacancy(Vacancy vacancy) throws ServiceException {
+    /* -------------------- Vacancy -------------------- */
+
+    public void createVacancy(VacancyView vacancy) throws ServiceException {
         try {
-            int userId = vacancy.getUserByUserId().getId();
-            vacancyDAO.addVacancy(vacancy, userId);
+            int userId = vacancy.getUser().getId();
+
+            Vacancy vacancyEntity = Exchanger.exchangeViewToEntity(vacancy);
+            vacancyDAO.addVacancy(vacancyEntity, userId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
     }
 
-    public void updateVacancy(int id, Vacancy vacancy) throws ServiceException {
+    public void updateVacancy(int id, VacancyView vacancy) throws ServiceException {
         try {
-            vacancyDAO.updateVacancy(id, vacancy);
+            Vacancy vacancyEntity = Exchanger.exchangeViewToEntity(vacancy);
+
+            vacancyDAO.updateVacancy(id, vacancyEntity);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
     }
 
-    public Vacancy getVacancy(int id) throws ServiceException {
+    public VacancyView getVacancy(int id) throws ServiceException {
         try {
-            return vacancyDAO.getVacancyById(id);
+            Vacancy vacancyEntity = vacancyDAO.getVacancyById(id);
+
+            return Exchanger.exchangeEntityToView(vacancyEntity);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
     }
 
-    public List<Vacancy> getAllVacancies() throws ServiceException {
+    public List<VacancyView> getAllVacancies() throws ServiceException {
         try {
-            return (List<Vacancy>) vacancyDAO.getAllVacancies();
+            //TODO: Change to List
+            List<Vacancy> vacancyEntities = (List<Vacancy>) vacancyDAO.getAllVacancies();
+            List<VacancyView> vacancyViews = new LinkedList<VacancyView>();
+
+            for (Vacancy vacancyEntity : vacancyEntities) {
+                VacancyView vacancyView = Exchanger.exchangeEntityToView(vacancyEntity);
+                vacancyViews.add(vacancyView);
+            }
+
+            return vacancyViews;
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
     }
 
-    public List<Vacancy> getVacanciesForEmployer(int employerId) throws ServiceException {
+    public List<VacancyView> getVacanciesForEmployer(int employerId) throws ServiceException {
         try {
-            return (List<Vacancy>) vacancyDAO.getVacanciesById(employerId);
+            //TODO: Change to List
+            List<Vacancy> vacancyEntities = (List<Vacancy>) vacancyDAO.getVacanciesById(employerId);
+            List<VacancyView> vacancyViews = new LinkedList<VacancyView>();
+
+            for (Vacancy vacancyEntity : vacancyEntities) {
+                VacancyView vacancyView = Exchanger.exchangeEntityToView(vacancyEntity);
+                vacancyViews.add(vacancyView);
+            }
+
+            return vacancyViews;
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -85,19 +114,19 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* -------------------- Resume --------------------- */
 
-    public void createResume(UserResume resume) throws ServiceException {
+    public void createResume(UserResumeView resume) throws ServiceException {
 
     }
 
-    public void updateResume(int resumeId, UserResume resume) throws ServiceException {
+    public void updateResume(int resumeId, UserResumeView resume) throws ServiceException {
 
     }
 
-    public UserResume getResume(int resumeId) throws ServiceException {
+    public UserResumeView getResume(int resumeId) throws ServiceException {
         return null;
     }
 
-    public List<UserResume> getResumesForUser(int userId) throws ServiceException {
+    public List<UserResumeView> getResumesForUser(int userId) throws ServiceException {
         return null;
     }
 
@@ -114,19 +143,19 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* --------------------- Skill --------------------- */
 
-    public void createSkill(Skill skill) throws ServiceException {
+    public void createSkill(SkillView skill) throws ServiceException {
 
     }
 
-    public void updateSkill(int skillId, Skill skill) throws ServiceException {
+    public void updateSkill(int skillId, SkillView skill) throws ServiceException {
 
     }
 
-    public List<Skill> getSkillsForUser(int userId) throws ServiceException {
+    public List<SkillView> getSkillsForUser(int userId) throws ServiceException {
         return null;
     }
 
-    public List<Skill> getSkillsForVacancy(int vacancyId) throws ServiceException {
+    public List<SkillView> getSkillsForVacancy(int vacancyId) throws ServiceException {
         return null;
     }
 
@@ -139,11 +168,11 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------ Certificate ------------------ */
 
-    public void uploadCertificate(UserCertificate certificate) throws ServiceException {
+    public void uploadCertificate(UserCertificateView certificate) throws ServiceException {
 
     }
 
-    public List<UserCertificate> getCetificatesForUser(int userId) throws ServiceException {
+    public List<UserCertificateView> getCetificatesForUser(int userId) throws ServiceException {
         return null;
     }
 
@@ -156,15 +185,15 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------ Achievement ------------------ */
 
-    public void addAchievement(ResumeAchievement achievement) throws ServiceException {
+    public void addAchievement(ResumeAchievementView achievement) throws ServiceException {
 
     }
 
-    public void updateAchievement(int achievementId, ResumeAchievement achievement) throws ServiceException {
+    public void updateAchievement(int achievementId, ResumeAchievementView achievement) throws ServiceException {
 
     }
 
-    public List<ResumeAchievement> getAchievementsForResume(int resumeId) throws ServiceException {
+    public List<ResumeAchievementView> getAchievementsForResume(int resumeId) throws ServiceException {
         return null;
     }
 
@@ -177,15 +206,15 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------- Education ------------------- */
 
-    public void addEducation(ResumeEducation education) throws ServiceException {
+    public void addEducation(ResumeEducationView education) throws ServiceException {
 
     }
 
-    public void updateEducation(int educationId, ResumeEducation education) throws ServiceException {
+    public void updateEducation(int educationId, ResumeEducationView education) throws ServiceException {
 
     }
 
-    public List<ResumeEducation> getEducationsForResume(int resumeId) throws ServiceException {
+    public List<ResumeEducationView> getEducationsForResume(int resumeId) throws ServiceException {
         return null;
     }
 
@@ -198,15 +227,15 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------- Additional education -------------- */
 
-    public void addAdditionalEducation(ResumeAdditionalEducation education) throws ServiceException {
+    public void addAdditionalEducation(ResumeAdditionalEducationView education) throws ServiceException {
 
     }
 
-    public void updateAdditionalEducation(int educationId, ResumeAdditionalEducation education) throws ServiceException {
+    public void updateAdditionalEducation(int educationId, ResumeAdditionalEducationView education) throws ServiceException {
 
     }
 
-    public List<ResumeAdditionalEducation> getAdditionalEducationsForResume(int resumeId) throws ServiceException {
+    public List<ResumeAdditionalEducationView> getAdditionalEducationsForResume(int resumeId) throws ServiceException {
         return null;
     }
 
@@ -219,15 +248,15 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ----------------- Contact info ------------------ */
 
-    public void addContactInfo(ResumeContactInfo contactInfo) throws ServiceException {
+    public void addContactInfo(ResumeContactInfoView contactInfo) throws ServiceException {
 
     }
 
-    public void updateContactInfo(int contactInfoId, ResumeContactInfo contactInfo) throws ServiceException {
+    public void updateContactInfo(int contactInfoId, ResumeContactInfoView contactInfo) throws ServiceException {
 
     }
 
-    public List<ResumeContactInfo> getContactInfosForResume(int resumeId) throws ServiceException {
+    public List<ResumeContactInfoView> getContactInfosForResume(int resumeId) throws ServiceException {
         return null;
     }
 
@@ -240,15 +269,15 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------- Language -------------------- */
 
-    public void addLanguage(ResumeLanguage language) throws ServiceException {
+    public void addLanguage(ResumeLanguageView language) throws ServiceException {
 
     }
 
-    public void updateLanguage(int languageId, ResumeLanguage language) throws ServiceException {
+    public void updateLanguage(int languageId, ResumeLanguageView language) throws ServiceException {
 
     }
 
-    public List<ResumeContactInfo> getLanguagesForResume(int resumeId) throws ServiceException {
+    public List<ResumeContactInfoView> getLanguagesForResume(int resumeId) throws ServiceException {
         return null;
     }
 
@@ -261,11 +290,11 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* --------------------- Photo --------------------- */
 
-    public void uploadPhoto(ResumePhoto photo) throws ServiceException {
+    public void uploadPhoto(ResumePhotoView photo) throws ServiceException {
 
     }
 
-    public List<ResumePhoto> getPhotosForResume(int resumeId) throws ServiceException {
+    public List<ResumePhotoView> getPhotosForResume(int resumeId) throws ServiceException {
         return null;
     }
 
@@ -278,15 +307,15 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ---------------- Work experience ---------------- */
 
-    public void addWorkExperience(ResumeWorkExperience workExperience) throws ServiceException {
+    public void addWorkExperience(ResumeWorkExperienceView workExperience) throws ServiceException {
 
     }
 
-    public void updateWorkExperience(int workExperienceId, ResumeWorkExperience workExperience) throws ServiceException {
+    public void updateWorkExperience(int workExperienceId, ResumeWorkExperienceView workExperience) throws ServiceException {
 
     }
 
-    public List<ResumeWorkExperience> getWorkExperiencesForResume(int resumeId) throws ServiceException {
+    public List<ResumeWorkExperienceView> getWorkExperiencesForResume(int resumeId) throws ServiceException {
         return null;
     }
 

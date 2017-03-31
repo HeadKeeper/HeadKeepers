@@ -45,7 +45,7 @@ public class VacancyDAOImpl implements VacancyDAO {
     public void addVacancy(Vacancy vacancy, int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class, id);
-        vacancy.setUserByUserId(user);
+        vacancy.setUser(user);
         session.save(vacancy);
     }
 
@@ -88,7 +88,7 @@ public class VacancyDAOImpl implements VacancyDAO {
     public Collection<Vacancy> getVacanciesById(int id) throws DAOException {
         Session session = sessionFactory.getCurrentSession();
         List<Vacancy> vacancies = (List<Vacancy>) session.createQuery(
-                "from Vacancy vacancy where vacancy.userByUserId.id = " + id
+                "from Vacancy vacancy where vacancy.user.id = " + id
         ).list();
         return vacancies;
     }

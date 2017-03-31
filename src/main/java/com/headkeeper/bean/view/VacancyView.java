@@ -1,6 +1,7 @@
 package com.headkeeper.bean.view;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class VacancyView {
     private int id;
@@ -15,6 +16,9 @@ public class VacancyView {
     private BigDecimal maxSalary;
     private String additionalInfoAboutSalary;
     private boolean isActive;
+
+    private UserView user;
+    private List<SkillView> skills;
 
     public int getId() {
         return id;
@@ -110,5 +114,21 @@ public class VacancyView {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public UserView getUser() {
+        return user;
+    }
+
+    public void setUser(UserView user) {
+        this.user = user;
+    }
+
+    public List<SkillView> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<SkillView> skills) {
+        this.skills = skills;
     }
 }
