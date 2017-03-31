@@ -1,6 +1,7 @@
 package com.headkeeper.bean.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class User {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -31,7 +33,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 90)
+    @Column(name = "email", nullable = false, length = 90, unique = true)
     public String getEmail() {
         return email;
     }
