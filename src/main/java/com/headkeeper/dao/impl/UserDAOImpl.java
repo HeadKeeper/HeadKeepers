@@ -4,9 +4,9 @@ import com.headkeeper.bean.entity.Role;
 import com.headkeeper.bean.entity.User;
 import com.headkeeper.dao.UserDAO;
 import com.headkeeper.dao.exception.DAOException;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
             user.setRole(role);
             System.out.println(session.save(user));
         }
-        catch (ConstraintViolationException exception) {
+        catch (HibernateException exception) {
             throw new DAOException("Can't add user to database. This user already exist.");
         }
     }
@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
             oldUser.setIsActive(status);
             session.update(oldUser);
         }
-        catch (ConstraintViolationException exception) {
+        catch (HibernateException exception) {
             throw new DAOException("User with id = " + id +" not found.");
         }
     }
@@ -74,7 +74,7 @@ public class UserDAOImpl implements UserDAO {
             oldUser.setPassword(user.getPassword());
             session.update(oldUser);
         }
-        catch (ConstraintViolationException exception) {
+        catch (HibernateException exception) {
             throw new DAOException("User with id = " + id +" not found.");
         }
     }
@@ -87,7 +87,7 @@ public class UserDAOImpl implements UserDAO {
             User user = (User) session.load(User.class, id);
             session.delete(user);
         }
-        catch (ConstraintViolationException exception) {
+        catch (HibernateException exception) {
             throw new DAOException("User with id = " + id +" not found.");
         }
     }
