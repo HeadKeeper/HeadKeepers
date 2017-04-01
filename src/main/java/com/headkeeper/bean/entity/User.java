@@ -31,7 +31,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "email", nullable = false, length = 90)
+    @Column(name = "email", nullable = false, length = 90, unique = true)
     public String getEmail() {
         return email;
     }

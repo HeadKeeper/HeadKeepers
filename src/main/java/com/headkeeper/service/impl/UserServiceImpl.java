@@ -78,17 +78,18 @@ public class UserServiceImpl implements UserService {
 
     public List<UserView> getAllUsers() throws ServiceException {
         List<UserView> userViews = new LinkedList<UserView>();
-        try {
-            List<User> userEntities = userDAO.getUsers();
-
-            for (User userEntity : userEntities) {
-                UserView userView = Exchanger.exchangeEntityToView(userEntity);
-                userViews.add(userView);
-            }
-
-            return userViews;
-        } catch (DAOException e) {
-            throw new ServiceException(e);
-        }
+//        try {
+////            List<User> userEntities = userDAO.getUsers();
+//
+////            for (User userEntity : userEntities) {
+////                UserView userView = Exchanger.exchangeEntityToView(userEntity);
+////                userViews.add(userView);
+////            }
+//
+//            return userViews;
+//        } catch (DAOException e) {
+//            throw new ServiceException(e);
+//        }
+        return userViews;
     }
 }
