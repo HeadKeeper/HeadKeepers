@@ -6,12 +6,14 @@ import com.headkeeper.dao.UserDAO;
 import com.headkeeper.dao.exception.DAOException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+
 @Repository
+@Transactional
 public class UserDAOImpl implements UserDAO {
 
     // TODO Add logging for all operations
@@ -27,10 +29,15 @@ public class UserDAOImpl implements UserDAO {
     // ------------------------------- CREATE -------------------------------
 
     public void addNewUser(User user) throws DAOException {
-        Session session = sessionFactory.getCurrentSession();
-        Role role = session.get(Role.class, USER_ROLE_ID);
-        user.setRole(role);
-        session.save(user);
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            Role role = session.load(Role.class, USER_ROLE_ID);
+            user.setRole(role);
+            System.out.println(session.save(user));
+        }
+        catch (ConstraintViolationException exception) {
+            throw new DAOException("Can't add user to database. This user already exist.");
+        }
     }
 
     // ------------------------------- READ -------------------------------
@@ -46,28 +53,43 @@ public class UserDAOImpl implements UserDAO {
 
     // ------------------------------- UPDATE -------------------------------
 
-    public void updateUser(int id, boolean status) {
-        Session session = sessionFactory.getCurrentSession();
-        User oldUser = (User) session.load(User.class, id);
-        oldUser.setIsActive(status);
-        session.update(oldUser);
+    public void updateUser(int id, boolean status) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            User oldUser = (User) session.load(User.class, id);
+            oldUser.setIsActive(status);
+            session.update(oldUser);
+        }
+        catch (ConstraintViolationException exception) {
+            throw new DAOException("User with id = " + id +" not found.");
+        }
     }
 
     public void updateUser(int id, User user) throws DAOException {
-        Session session = sessionFactory.getCurrentSession();
-        User oldUser = (User) session.load(User.class, id);
-        oldUser.setEmail(user.getEmail());
-        oldUser.setNickname(user.getNickname());
-        oldUser.setPassword(user.getPassword());
-        session.update(oldUser);
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            User oldUser = (User) session.load(User.class, id);
+            oldUser.setEmail(user.getEmail());
+            oldUser.setNickname(user.getNickname());
+            oldUser.setPassword(user.getPassword());
+            session.update(oldUser);
+        }
+        catch (ConstraintViolationException exception) {
+            throw new DAOException("User with id = " + id +" not found.");
+        }
     }
 
     // ------------------------------- DELETE -------------------------------
 
     public void deleteUser(int id) throws DAOException {
-        Session session = sessionFactory.getCurrentSession();
-        User user = (User) session.load(User.class, id);
-        session.delete(user);
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            User user = (User) session.load(User.class, id);
+            session.delete(user);
+        }
+        catch (ConstraintViolationException exception) {
+            throw new DAOException("User with id = " + id +" not found.");
+        }
     }
 
 }
