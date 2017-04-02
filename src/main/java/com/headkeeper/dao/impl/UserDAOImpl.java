@@ -6,10 +6,13 @@ import com.headkeeper.dao.UserDAO;
 import com.headkeeper.dao.exception.DAOException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Repository
@@ -24,6 +27,19 @@ public class UserDAOImpl implements UserDAO {
         this.sessionFactory = sessionFactory;
     }
 
+    private void checkUserOnExist(User user, Session session) throws HibernateException {
+        /*
+            Here we make a request to database through proxy, which we get from session.load
+            If User doesn't exist, hibernate throw exception
+            If User exist - hibernate execute query
+        */
+        String query = "from User where id = " + user.getId();
+        List resultList = session.createQuery(query).list();
+        if (resultList.size() == 0) {
+            throw new HibernateException("Can't find user with id = " + user.getId());
+        }
+    }
+
     /* CRUD OPERATIONS */
 
     // ------------------------------- CREATE -------------------------------
@@ -33,7 +49,10 @@ public class UserDAOImpl implements UserDAO {
             Session session = sessionFactory.getCurrentSession();
             Role role = session.load(Role.class, USER_ROLE_ID);
             user.setRole(role);
-            System.out.println(session.save(user));
+            session.save(user);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
             throw new DAOException("Can't add user to database. This user already exist.");
@@ -43,12 +62,18 @@ public class UserDAOImpl implements UserDAO {
     // ------------------------------- READ -------------------------------
 
     public User getUserById(int id) throws DAOException {
-        Session session = sessionFactory.getCurrentSession();
-        User user = session.get(User.class, id);
-        if (user == null) {
-            throw new DAOException("User not found");
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            User user = session.load(User.class, id);
+            checkUserOnExist(user, session);
+            return user;
         }
-        return user;
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session.");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("User with id = " + id +" not found.");
+        }
     }
 
     // ------------------------------- UPDATE -------------------------------
@@ -57,8 +82,12 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User oldUser = (User) session.load(User.class, id);
+            checkUserOnExist(oldUser, session);
             oldUser.setIsActive(status);
             session.update(oldUser);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
             throw new DAOException("User with id = " + id +" not found.");
@@ -69,10 +98,14 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User oldUser = (User) session.load(User.class, id);
+            checkUserOnExist(user, session);
             oldUser.setEmail(user.getEmail());
             oldUser.setNickname(user.getNickname());
             oldUser.setPassword(user.getPassword());
             session.update(oldUser);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
             throw new DAOException("User with id = " + id +" not found.");
@@ -85,7 +118,11 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User user = (User) session.load(User.class, id);
+            checkUserOnExist(user, session);
             session.delete(user);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
             throw new DAOException("User with id = " + id +" not found.");
