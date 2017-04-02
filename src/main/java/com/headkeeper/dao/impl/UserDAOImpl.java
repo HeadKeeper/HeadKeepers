@@ -64,15 +64,14 @@ public class UserDAOImpl implements UserDAO {
     public User getUserById(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            User user = session.load(User.class, id);
-            checkUserOnExist(user, session);
+            User user = session.get(User.class, id);
+            if (user == null) {
+                throw new DAOException("User with id = " + id +" not found.");
+            }
             return user;
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
-        }
-        catch (HibernateException exception) {
-            throw new DAOException("User with id = " + id +" not found.");
         }
     }
 

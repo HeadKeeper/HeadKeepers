@@ -37,6 +37,19 @@ public class ResumeDAOImpl implements ResumeDAO {
         oldResume.setMartialStatus(newResume.getMartialStatus());
     }
 
+    private void checkUserResumeOnExist(UserResume userResume, Session session) throws HibernateException {
+        /*
+            Here we make a request to database through proxy, which we get from session.load
+            If UserResume doesn't exist, hibernate throw exception
+            If UserResume exist - hibernate execute query
+        */
+        String query = "from UserResume where id = " + userResume.getId();
+        List resultList = session.createQuery(query).list();
+        if (resultList.size() == 0) {
+            throw new HibernateException("Can't find user with id = " + userResume.getId());
+        }
+    }
+
     /* CRUD OPERATIONS */
 
     // -------------------------------- CREATE -------------------------------------------
@@ -59,6 +72,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
+            checkUserResumeOnExist(userResume, session);
             userResume.getResumeAchievements().add(achievement);
             session.update(userResume);
         }
@@ -74,6 +88,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
+            checkUserResumeOnExist(userResume, session);
             userResume.getResumeAdditionalEducations().add(additionalEducation);
             session.update(userResume);
         }
@@ -89,6 +104,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
+            checkUserResumeOnExist(userResume, session);
             userResume.getResumeContactInfos().add(contactInfo);
             session.update(userResume);
         }
@@ -104,6 +120,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
+            checkUserResumeOnExist(userResume, session);
             userResume.getResumeEducations().add(education);
             session.update(userResume);
         }
@@ -119,6 +136,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
+            checkUserResumeOnExist(userResume, session);
             userResume.getResumeLanguages().add(language);
             session.update(userResume);
         }
@@ -134,6 +152,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
+            checkUserResumeOnExist(userResume, session);
             userResume.getResumePhotos().add(photo);
             session.update(userResume);
         }
@@ -149,6 +168,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
+            checkUserResumeOnExist(userResume, session);
             userResume.getResumeWorkExperiences().add(workExperience);
             session.update(userResume);
         }
@@ -166,13 +186,13 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.get(UserResume.class, id);
+            if (userResume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             return userResume;
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
-        }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
         }
     }
 
@@ -180,6 +200,9 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
+            if (resume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             List<ResumeAchievement> achievements = new ArrayList<ResumeAchievement>();
             achievements.addAll(resume.getResumeAchievements());
             return achievements;
@@ -187,15 +210,15 @@ public class ResumeDAOImpl implements ResumeDAO {
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
-        }
     }
 
     public List<ResumeAdditionalEducation> getAdditionalEducations(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
+            if (resume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             List<ResumeAdditionalEducation> additionalEducations = new ArrayList<ResumeAdditionalEducation>();
             additionalEducations.addAll(resume.getResumeAdditionalEducations());
             return additionalEducations;
@@ -203,15 +226,15 @@ public class ResumeDAOImpl implements ResumeDAO {
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
-        }
     }
 
     public List<ResumeContactInfo> getContactInfo(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
+            if (resume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             List<ResumeContactInfo> contactInfos = new ArrayList<ResumeContactInfo>();
             contactInfos.addAll(resume.getResumeContactInfos());
             return contactInfos;
@@ -219,15 +242,15 @@ public class ResumeDAOImpl implements ResumeDAO {
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
-        }
     }
 
     public List<ResumeEducation> getResumeEducations(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
+            if (resume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             List<ResumeEducation> educations = new ArrayList<ResumeEducation>();
             educations.addAll(resume.getResumeEducations());
             return educations;
@@ -235,15 +258,15 @@ public class ResumeDAOImpl implements ResumeDAO {
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
-        }
     }
 
     public List<ResumeLanguage> getResumeLanguages(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
+            if (resume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             List<ResumeLanguage> languages = new ArrayList<ResumeLanguage>();
             languages.addAll(resume.getResumeLanguages());
             return languages;
@@ -251,15 +274,15 @@ public class ResumeDAOImpl implements ResumeDAO {
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
-        }
     }
 
     public List<ResumePhoto> getResumePhotos(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
+            if (resume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             List<ResumePhoto> photos = new ArrayList<ResumePhoto>();
             photos.addAll(resume.getResumePhotos());
             return photos;
@@ -267,24 +290,21 @@ public class ResumeDAOImpl implements ResumeDAO {
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
-        }
     }
 
     public List<ResumeWorkExperience> getResumeWorkExpirience(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
+            if (resume == null) {
+                throw new DAOException("Can't find resume with id = " + id);
+            }
             List<ResumeWorkExperience> workExperiences = new ArrayList<ResumeWorkExperience>();
             workExperiences.addAll(resume.getResumeWorkExperiences());
             return workExperiences;
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
-        }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
         }
     }
 
@@ -294,6 +314,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.load(UserResume.class, id);
+            checkUserResumeOnExist(resume, session);
             resume.setIsActive(status);
         }
         catch (SessionException exception) {
@@ -308,6 +329,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume oldResume = session.load(UserResume.class, id);
+            checkUserResumeOnExist(oldResume, session);
             replaceResumeData(oldResume, resume);
             session.update(oldResume);
         }
@@ -325,6 +347,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.load(UserResume.class, id);
+            checkUserResumeOnExist(resume, session);
             session.delete(resume);
         }
         catch (SessionException exception) {
@@ -339,6 +362,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resume.getId());
+            checkUserResumeOnExist(userResume, session);
             Set<ResumeAchievement> resumeAchievements = userResume.getResumeAchievements();
             ResumeAchievement deletingAchievement = null;
             for (ResumeAchievement achievement : resumeAchievements) {
@@ -361,6 +385,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resume.getId());
+            checkUserResumeOnExist(userResume, session);
             Set<ResumeAdditionalEducation> additionalEducations = userResume.getResumeAdditionalEducations();
             ResumeAdditionalEducation deleteingAdditionalEducation = null;
             for (ResumeAdditionalEducation additionalEducation : additionalEducations) {
@@ -383,6 +408,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resume.getId());
+            checkUserResumeOnExist(userResume, session);
             Set<ResumeContactInfo> contactInfos = userResume.getResumeContactInfos();
             ResumeContactInfo deletingContactInfo = null;
             for (ResumeContactInfo contactInfo : contactInfos) {
@@ -405,6 +431,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resume.getId());
+            checkUserResumeOnExist(userResume, session);
             Set<ResumeEducation> educations = userResume.getResumeEducations();
             ResumeEducation deletingEducation = null;
             for (ResumeEducation education : educations) {
@@ -427,6 +454,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resume.getId());
+            checkUserResumeOnExist(userResume, session);
             Set<ResumeLanguage> languages = userResume.getResumeLanguages();
             ResumeLanguage deletingLanguage = null;
             for (ResumeLanguage language : languages) {
@@ -449,6 +477,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resume.getId());
+            checkUserResumeOnExist(userResume, session);
             Set<ResumePhoto> photos = userResume.getResumePhotos();
             ResumePhoto deletingPhoto = null;
             for (ResumePhoto photo : photos) {
@@ -471,6 +500,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resume.getId());
+            checkUserResumeOnExist(userResume, session);
             Set<ResumeWorkExperience> workExperiences = userResume.getResumeWorkExperiences();
             ResumeWorkExperience deletingExpirience = null;
             for (ResumeWorkExperience workExperience : workExperiences) {
