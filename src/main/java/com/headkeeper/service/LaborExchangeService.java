@@ -1,7 +1,6 @@
 package com.headkeeper.service;
 
-import com.headkeeper.bean.entity.Skill;
-import com.headkeeper.bean.entity.*;
+import com.headkeeper.bean.entity.ResumeLanguage;
 import com.headkeeper.bean.view.*;
 import com.headkeeper.service.exception.ServiceException;
 
@@ -13,9 +12,9 @@ public interface LaborExchangeService {
 
     void createVacancy(VacancyView vacancy) throws ServiceException;
 
-    void updateVacancy(int id, VacancyView vacancy) throws ServiceException;
+    void updateVacancy(int vacancyId, VacancyView vacancy) throws ServiceException;
 
-    VacancyView getVacancy(int id) throws ServiceException;
+    VacancyView getVacancy(int vacancyId) throws ServiceException;
 
     List<VacancyView> getAllVacancies() throws ServiceException;
     List<VacancyView> getVacanciesForEmployer(int employerId) throws ServiceException;
@@ -46,7 +45,8 @@ public interface LaborExchangeService {
 
     /* --------------------- SkillBase --------------------- */
 
-    void createSkill(SkillView skill) throws ServiceException;
+    void createSkillForUser(int userId, SkillView skill) throws ServiceException;
+    void createSkillForVacancy(int vacancyId, SkillView skill) throws ServiceException;
 
     void updateSkill(int skillId, SkillView skill) throws ServiceException;
 
@@ -127,7 +127,7 @@ public interface LaborExchangeService {
 
     void updateLanguage(int languageId, ResumeLanguageView language) throws ServiceException;
 
-    List<ResumeContactInfoView> getLanguagesForResume(int resumeId) throws ServiceException;
+    List<ResumeLanguageView> getLanguagesForResume(int resumeId) throws ServiceException;
 
     void deleteLanguage(int languageId) throws ServiceException;
 
