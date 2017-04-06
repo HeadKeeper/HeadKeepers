@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
         User userEntity = Exchanger.exchangeViewToEntity(user);
         try {
-            userDAO.addNewUser(userEntity);
+            userDAO.addNewUser(userEntity, 1);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
