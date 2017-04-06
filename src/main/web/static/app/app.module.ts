@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
-import ApplicationComponent from './components/application/application';
+import { ApplicationComponent } from './components/application/application';
 
 /*
 import CarouselComponent from './components/carousel/carousel';
@@ -19,16 +19,19 @@ import StarsComponent from './components/stars/stars';
 import { ONLINE_AUCTION_SERVICES } from './services/services';
 */
 
+/* for imports!
+RouterModule.forRoot([
+  { path: '',                    component: HomeComponent },
+  { path: 'products/:productId', component: ProductDetailComponent }
+])
+*/
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule
-   /* RouterModule.forRoot([
-      {path: '',                    component: HomeComponent},
-      {path: 'products/:productId', component: ProductDetailComponent}
-    ])*/
   ],
   declarations: [
     ApplicationComponent
