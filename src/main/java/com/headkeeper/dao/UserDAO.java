@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserDAO {
     /* CRUD operations */
 
+
     // CREATE
     void addNewUser(User user, int roleId) throws DAOException;
     void addCompanyInfo(CompanyInfo companyInfo, int ownerId) throws DAOException;
