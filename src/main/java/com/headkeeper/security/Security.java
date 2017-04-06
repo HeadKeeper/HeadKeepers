@@ -1,4 +1,4 @@
 package com.headkeeper.security;
 
-public class Security {
+public class Security  {
 }
