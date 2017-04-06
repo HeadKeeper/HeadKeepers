@@ -48,11 +48,8 @@ public class UserServiceImpl implements UserService {
         int userId = user.getId();
         User userEntity = Exchanger.exchangeViewToEntity(user);
         try {
-<<<<<<< HEAD
             userDAO.addNewUser(userEntity, 1);
-=======
-            userDAO.addNewUser(userEntity, userId);
->>>>>>> 93caf9f3015b0474344ee53ab3cad7a7b3634dfa
+            //userDAO.addNewUser(userEntity, userId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
