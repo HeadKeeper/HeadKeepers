@@ -45,10 +45,14 @@ public class UserServiceImpl implements UserService {
         user.setActive(true);
         //TODO: Set in the table
         user.setCreationDate(new Timestamp(System.currentTimeMillis()));
-
+        int userId = user.getId();
         User userEntity = Exchanger.exchangeViewToEntity(user);
         try {
+<<<<<<< HEAD
             userDAO.addNewUser(userEntity, 1);
+=======
+            userDAO.addNewUser(userEntity, userId);
+>>>>>>> 93caf9f3015b0474344ee53ab3cad7a7b3634dfa
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -78,18 +82,17 @@ public class UserServiceImpl implements UserService {
 
     public List<UserView> getAllUsers() throws ServiceException {
         List<UserView> userViews = new LinkedList<UserView>();
-//        try {
-////            List<User> userEntities = userDAO.getUsers();
-//
-////            for (User userEntity : userEntities) {
-////                UserView userView = Exchanger.exchangeEntityToView(userEntity);
-////                userViews.add(userView);
-////            }
-//
-//            return userViews;
-//        } catch (DAOException e) {
-//            throw new ServiceException(e);
-//        }
-        return userViews;
+        try {
+            List<User> userEntities = userDAO.getUsers();
+
+            for (User userEntity : userEntities) {
+                UserView userView = Exchanger.exchangeEntityToView(userEntity);
+                userViews.add(userView);
+            }
+
+            return userViews;
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 }
