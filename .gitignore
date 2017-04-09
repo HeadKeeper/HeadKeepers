@@ -2,3 +2,7 @@
 /out
 /target
 *.iml
+/src/main/resources/node_modules/**
+/src/main/resources/src/**/*.js
+/src/main/resources/src/**/*.js.map
+npm-debug.log

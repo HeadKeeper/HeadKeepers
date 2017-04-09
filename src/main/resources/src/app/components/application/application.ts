@@ -17,8 +17,8 @@ export class Item{
 
 @Component({
     selector: 'application',
-    templateUrl: 'app/components/application/application.html',
-    styleUrls: ['app/components/application/application.css'] 
+    templateUrl: 'src/app/components/application/application.html',
+    styleUrls: ['src/app/components/application/application.css']
 })
 
 export class ApplicationComponent {
