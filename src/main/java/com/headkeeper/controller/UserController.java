@@ -1,6 +1,9 @@
 package com.headkeeper.controller;
 
+import com.headkeeper.bean.view.TokenView;
+import com.headkeeper.bean.view.UserLoginView;
 import com.headkeeper.bean.view.UserView;
+import com.headkeeper.security.service.exception.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 
 public interface UserController {
@@ -23,4 +26,8 @@ public interface UserController {
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     @ResponseBody
     UserView getUserById(@PathVariable int id);
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    TokenView login(UserLoginView userLogin) throws AuthenticationException;
 }

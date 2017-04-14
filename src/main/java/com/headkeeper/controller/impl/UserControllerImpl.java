@@ -1,9 +1,13 @@
 package com.headkeeper.controller.impl;
 
 import com.headkeeper.bean.entity.User;
+import com.headkeeper.bean.view.TokenView;
+import com.headkeeper.bean.view.UserLoginView;
 import com.headkeeper.bean.view.UserView;
 import com.headkeeper.controller.UserController;
 import com.headkeeper.exception.ResourceNotFoundException;
+import com.headkeeper.security.service.GetTokenService;
+import com.headkeeper.security.service.exception.AuthenticationException;
 import com.headkeeper.service.UserService;
 import com.headkeeper.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +18,16 @@ import org.springframework.web.bind.annotation.*;
 public class UserControllerImpl implements UserController {
 
     private final UserService userService;
+    private GetTokenService getTokenService;
 
     @Autowired
     public UserControllerImpl(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setGetTokenService(GetTokenService getTokenService) {
+        this.getTokenService = getTokenService;
     }
 
     public void deleteUser(@PathVariable int id) {
@@ -52,6 +62,11 @@ public class UserControllerImpl implements UserController {
         }
     }
 
+    @Override
+    public TokenView login(UserLoginView userLogin) throws AuthenticationException {
+
+    }
+
     public void addNewUser(@RequestBody UserView user) {
         try {
             userService.registration(user);
@@ -59,5 +74,4 @@ public class UserControllerImpl implements UserController {
             throw new ResourceNotFoundException(e);
         }
     }
-
 }
