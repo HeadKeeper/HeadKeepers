@@ -1,0 +1,135 @@
+/*------ Navigation settings -----*/
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(40, 96, 144, 0.99);
+    box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.6);
+}
+
+/*------ Buttons align ------*/
+.navigation li, .navigation a {
+    height: 50px;
+    line-height: 50px;
+}
+
+.navigation__inner__logo__icon {
+    margin-top: 10px;
+}
+
+.navigation__inner__menu__buttons {
+    margin-left: 70px;
+    margin-top: -50px;
+    padding-left: 0;
+}
+
+.navigation__inner__logo {
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+/* -------------------------- */
+
+
+/*------- Menu position ------*/
+.navigation__inner {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+/* -------------------------- */
+
+
+/*------ Buttons color -------*/
+.navigation__inner a, .navigation__inner a:visited {
+    color: #ffffff;
+}
+
+.navigation__inner a:hover, .navigation__inner a:target {
+    color: #ebebeb;
+}
+/* -------------------------- */
+
+a.navigation__inner__logo, a:visited.navigation__inner__logo {
+    color: #e0e0e0;
+}
+
+/*- Distance between buttons -*/
+.navigation__inner__menu__buttons li {
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navigation__inner__menu--show, .navigation__inner__menu--hide {
+    display: none;
+    padding-left: 15px;
+    background: transparent no-repeat center left;
+    color: #dde1e2;
+}
+
+.navigation__inner__menu__buttons a {
+    text-decoration: none;
+}
+/* -------------------------- */
+
+/* ------ Mobile devices ---- */
+@media only screen and (max-width: 800px) {
+    .navigation__inner {
+        position: relative;
+        width: 100%;
+    }
+
+    .navigation__inner__logo {
+        position: absolute;
+        top: 0;
+        left: 15px;
+        margin-left: 0px;
+    }
+
+    .navigation__inner__menu__buttons {
+        display: none;
+        width: 100%;
+        margin-top: 50px;
+        margin-left: 0px;
+        background-color: rgba(40, 96, 145, 0.95);
+    }
+
+    .navigation__inner__menu__buttons li {
+        display: block;
+        text-align: center;
+    }
+
+    .navigation__inner__menu--show, .navigation__inner__menu--hide {
+        position: absolute;
+        top: 0;
+        right: 15px;
+    }
+
+    .navigation__inner__menu--show {
+        display: inline-block;
+    }
+
+    .navigation__inner__menu--hide {
+        display: none;
+    }
+
+    #menu:target .navigation__inner__menu--show {
+        display: none;
+    }
+
+    #menu:target .navigation__inner__menu--hide, #menu:target .navigation__inner__menu__buttons {
+        display: inline-block;
+    }
+}
+
+@media only screen and (max-width: 220px) {
+    .navigation__inner__logo, .navigation__inner__menu--show, .navigation__inner__menu--hide {
+        font-size: 14px;
+    }
+}
+/* -------------------------- */

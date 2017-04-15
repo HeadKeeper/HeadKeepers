@@ -6,18 +6,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { ApplicationComponent } from './components/application/application';
+import { NavigationComponent } from './components/navigation/navigation';
+import { FooterComponent } from './components/page-footer/page-footer';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    ReactiveFormsModule
-  ],
-  declarations: [
-    ApplicationComponent
-  ],
-  bootstrap: [ ApplicationComponent ]
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        ReactiveFormsModule
+    ],
+    declarations: [
+        ApplicationComponent,
+        NavigationComponent,
+        FooterComponent
+    ],
+    bootstrap: [ ApplicationComponent ]
 })
 
 export class AppModule {}
