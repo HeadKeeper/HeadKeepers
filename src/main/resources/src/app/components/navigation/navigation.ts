@@ -9,4 +9,7 @@ import 'rxjs/Rx';
 })
 
 export class NavigationComponent {
+    //This will work fine with WebPack: private logo = require("./assets/brand.png");
+
+    constructor() {};
 }
