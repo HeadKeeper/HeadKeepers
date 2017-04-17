@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'resume',
-    templateUrl: 'src/app/components/entity/resume/resume.html',
-    styleUrls: ['src/app/components/entity/resume/resume.css']
+    templateUrl: 'src/app/components/entity/resume/component/resume.html',
+    styleUrls: ['src/app/components/entity/resume/component/resume.css']
 })
 
 export class ResumeComponent {
