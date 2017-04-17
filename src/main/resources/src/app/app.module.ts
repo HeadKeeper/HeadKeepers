@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { ApplicationComponent } from './components/application/application';
+import { AccountModule } from "./components/account/account.module";
+import { ResumeModule } from "./components/entity/resume/resume.module";
+import { VacancyModule } from "./components/entity/vacancy/vacancy.module";
+
+import { ApplicationComponent } from "./components/application/application";
 import { NavigationComponent } from './components/navigation/navigation';
 import { FooterComponent } from './components/page-footer/page-footer';
+
 import { routing } from "./app.routing";
 
 @NgModule({
@@ -15,10 +19,14 @@ import { routing } from "./app.routing";
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
+
+        AccountModule,
+        ResumeModule,
+        VacancyModule,
+
         routing
     ],
     declarations: [
-        ApplicationComponent,
         NavigationComponent,
         FooterComponent
     ],

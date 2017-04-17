@@ -3,7 +3,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { SignUpModule } from "./sign-up/sign-up.module";
+import { AccountInformationModule } from "./information/information.module";
+
 import { accountRouting } from "./account.routing";
+
+import { SignInComponent } from "./sign-in/sign-in";
 
 @NgModule({
     imports: [
@@ -11,12 +16,18 @@ import { accountRouting } from "./account.routing";
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
-        //accountRouting
+
+        SignUpModule,
+        AccountInformationModule,
+
+        accountRouting
     ],
     declarations: [
-        //TODO: Create
+        SignInComponent
     ],
-    bootstrap: [ /*TODO: Write*/ ]
+    exports: [
+        SignInComponent
+    ]
 })
 
 export class AccountModule {}
