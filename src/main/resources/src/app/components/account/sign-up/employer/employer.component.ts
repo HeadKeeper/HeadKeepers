@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'sing-up-employer',
-    templateUrl: 'src/app/components/account/sign-up/employer/employer.html',
-    styleUrls: ['src/app/components/account/sign-up/employer/employer.css']
+    templateUrl: require('./employer.html'),
+    styleUrls: [require('./employer.css')]
 })
 
 export class SignUpEmployerComponent {

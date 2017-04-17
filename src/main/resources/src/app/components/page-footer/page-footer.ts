@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'page-footer',
-    templateUrl: 'src/app/components/page-footer/page-footer.html',
-    styleUrls: ['src/app/components/page-footer/page-footer.css']
+    templateUrl: require('./page-footer.html'),
+    styleUrls: [require('./page-footer.css')]
 })
 
 export class FooterComponent {

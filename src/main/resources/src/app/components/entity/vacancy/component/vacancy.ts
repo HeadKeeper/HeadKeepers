@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'vacancy',
-    templateUrl: 'src/app/components/entity/vacancy/component/vacancy.html',
-    styleUrls: ['src/app/components/entity/vacancy/component/vacancy.css']
+    templateUrl: './vacancy.html',
+    styleUrls: ['./vacancy.css']
 })
 
 export class VacancyComponent {

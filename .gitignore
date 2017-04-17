@@ -5,4 +5,5 @@
 /src/main/resources/node_modules/**
 /src/main/resources/src/**/*.js
 /src/main/resources/src/**/*.js.map
+/src/main/resources/out/**/*.js
 npm-debug.log

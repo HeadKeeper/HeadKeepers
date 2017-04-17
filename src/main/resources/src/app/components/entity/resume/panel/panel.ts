@@ -4,7 +4,7 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'resume-panel',
-    templateUrl: 'src/app/components/entity/resume/panel/panel.html' //,
+    templateUrl: './panel.html'
     // styleUrls: ['src/app/components/entity/resume/create/create.css']
 })
 

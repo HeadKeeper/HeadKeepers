@@ -4,7 +4,7 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'resume-create',
-    templateUrl: 'src/app/components/entity/resume/create/create.html' //,
+    templateUrl: './create.html'
     // styleUrls: ['src/app/components/entity/resume/create/create.css']
 })
 

@@ -27,6 +27,7 @@ import { routing } from "./app.routing";
         routing
     ],
     declarations: [
+        ApplicationComponent,
         NavigationComponent,
         FooterComponent
     ],

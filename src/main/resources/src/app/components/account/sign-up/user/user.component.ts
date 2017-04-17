@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'sing-up-user',
-    templateUrl: 'src/app/components/account/sign-up/user/user.html',
-    styleUrls: ['src/app/components/account/sign-up/user/user.css']
+    templateUrl: require('./user.html'),
+    styleUrls: [require('./user.css')]
 })
 
 export class SignUpUserComponent {

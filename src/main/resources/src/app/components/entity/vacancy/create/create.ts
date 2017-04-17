@@ -4,7 +4,7 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'vacancy-create',
-    templateUrl: 'src/app/components/entity/vacancy/create/create.html'//,
+    templateUrl: './create.html'
     //styleUrls: ['src/app/components/entity/vacancy/component/vacancy.css']
 })
 

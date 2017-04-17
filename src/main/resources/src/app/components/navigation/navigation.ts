@@ -4,12 +4,12 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'navigation',
-    templateUrl: 'src/app/components/navigation/navigation.html',
-    styleUrls: ['src/app/components/navigation/navigation.css']
+    templateUrl: require('./navigation.html'),
+    styleUrls: [require('./navigation.css')]
 })
 
 export class NavigationComponent {
-    //This will work fine with WebPack: private logo = require("./assets/brand.png");
+    private logo = require("./assets/brand.png");
 
     constructor() {};
 }
