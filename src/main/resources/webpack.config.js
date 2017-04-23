@@ -1,8 +1,8 @@
 module.exports = {
     entry: {
         app: "./src/main.ts",
-        polyfill: "./src/polyfill.ts",
-        vendor: "./src/vendor.ts"
+        polyfill: "./src/config/polyfill.ts",
+        vendor: "./src/config/vendor.ts"
     },
     output: {
         filename: "./out/[name].js"
@@ -11,25 +11,10 @@ module.exports = {
         loaders: [
             {
                 test: /\.ts$/,
-                loaders: ['ts-loader', 'angular2-template-loader?keepUrl=true'],
+                loader: 'ts-loader',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.(html|css)$/,
-                loader: 'raw',
             }
-            /*{
-                test: /\.html$/,
-                loader: "html-loader"
-            },
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-            }*//*,
-            {
-                test: /\.html$/,
-                loaders: 'html-loader'
-            }*/
+
         ]
     },
     resolve: {
