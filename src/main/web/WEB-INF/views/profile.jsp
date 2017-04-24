@@ -17,6 +17,6 @@
         <input type="text" name="userBase-password">
         <input type="text" name="userBase-nickname">
     </form>
-    <button name="send-info" onclick="sendDataToServer('profile/1')">Send</button>
+    <button name="send-info" onclick="sendDataToServer('profile/2')">Send</button>
 </body>
 </html>

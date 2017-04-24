@@ -1,5 +1,7 @@
 package com.headkeeper.bean.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -13,7 +15,7 @@ public class EmployerToResume implements Serializable {
     private int userResumeId;
 
     private Timestamp requestTime;
-    private byte isClosed;
+    private boolean isClosed;
     private String message;
     private User user;
     private UserResume userResume;
@@ -50,11 +52,12 @@ public class EmployerToResume implements Serializable {
 
     @Basic
     @Column(name = "is_closed", nullable = false)
-    public byte getIsClosed() {
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean getIsClosed() {
         return isClosed;
     }
 
-    public void setIsClosed(byte isClosed) {
+    public void setIsClosed(boolean isClosed) {
         this.isClosed = isClosed;
     }
 
@@ -85,7 +88,6 @@ public class EmployerToResume implements Serializable {
     @Override
     public int hashCode() {
         int result = requestTime != null ? requestTime.hashCode() : 0;
-        result = 31 * result + (int) isClosed;
         result = 31 * result + (message != null ? message.hashCode() : 0);
         return result;
     }

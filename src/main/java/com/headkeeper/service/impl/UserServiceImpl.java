@@ -11,12 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    private static final byte USER_ROLE_ID = 1;
 
     private final UserDAO userDAO;
 
@@ -48,8 +49,7 @@ public class UserServiceImpl implements UserService {
         int userId = user.getId();
         User userEntity = Exchanger.exchangeViewToEntity(user);
         try {
-            userDAO.addNewUser(userEntity, 1);
-            //userDAO.addNewUser(userEntity, userId);
+            userDAO.addNewUser(userEntity, USER_ROLE_ID);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
 
     public void updateUserInfo(int id, UserView user) throws ServiceException {
         try {
+            user.setId(id);
             User userEntity = Exchanger.exchangeViewToEntity(user);
-
             userDAO.updateUser(id, userEntity);
         } catch (DAOException e) {
             throw new ServiceException(e);

@@ -58,6 +58,7 @@
             <artifactId>spring-security-web</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
+
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
@@ -102,6 +103,7 @@
             <version>${hibernate.version}</version>
         </dependency>
 
+
         <!-- CONNECTIONS POOL -->
         <!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->
         <dependency>
@@ -129,6 +131,11 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${logger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>RELEASE</version>
         </dependency>
 
     </dependencies>

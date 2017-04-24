@@ -3,6 +3,9 @@ package com.headkeeper.dao.impl;
 import com.headkeeper.bean.entity.*;
 import com.headkeeper.dao.ResumeDAO;
 import com.headkeeper.dao.exception.DAOException;
+import com.headkeeper.dao.util.DataExchanger;
+import com.headkeeper.dao.util.EntityPreprocessor;
+import com.sun.javafx.binding.StringFormatter;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
@@ -11,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.crypto.Data;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Set;
 
@@ -19,35 +25,22 @@ import java.util.Set;
 @Repository
 public class ResumeDAOImpl implements ResumeDAO {
 
+    private static final String USER_RESUME_ENTITY_NAME = "UserResume";
+    private static final String LANGUAGE_ENTITY_NAME = "ResumeLanguage";
+    private static final String EDUCATION_ENTITY_NAME = "ResumeEducation";
+    private static final String CONTACT_INFO_ENTITY_NAME = "ResumeContactInfo";
+    private static final String WORK_EXPERIENCE_ENTITY_NAME = "ResumeWorkExperience";
+    private static final String ADDITIONAL_EDUCATION_ENTITY_NAME = "ResumeAdditionalEducation";
+    private static final String PHOTO_ENTITY_NAME = "ResumePhoto";
+    private static final String ACHIEVEMENT_ENTITY_NAME = "ResumeAchievement";
+
+
+
     private final SessionFactory sessionFactory;
 
     @Autowired
     public ResumeDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-    }
-
-    private void replaceResumeData(UserResume oldResume, UserResume newResume) throws DAOException {
-        oldResume.setAdditionalInformation(newResume.getAdditionalInformation());
-        oldResume.setAddress(newResume.getAddress());
-        oldResume.setBirthdayDate(newResume.getBirthdayDate());
-        oldResume.setFirstName(newResume.getFirstName());
-        oldResume.setLastName(newResume.getLastName());
-        oldResume.setMiddleName(newResume.getMiddleName());
-        oldResume.setReferences(newResume.getReferences());
-        oldResume.setMartialStatus(newResume.getMartialStatus());
-    }
-
-    private void checkUserResumeOnExist(UserResume userResume, Session session) throws HibernateException {
-        /*
-            Here we make a request to database through proxy, which we get from session.load
-            If UserResume doesn't exist, hibernate throw exception
-            If UserResume exist - hibernate execute query
-        */
-        String query = "from UserResume where id = " + userResume.getId();
-        List resultList = session.createQuery(query).list();
-        if (resultList.size() == 0) {
-            throw new HibernateException("Can't find user with id = " + userResume.getId());
-        }
     }
 
     /* CRUD OPERATIONS */
@@ -72,7 +65,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
-            checkUserResumeOnExist(userResume, session);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             userResume.getResumeAchievements().add(achievement);
             session.update(userResume);
         }
@@ -88,7 +81,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
-            checkUserResumeOnExist(userResume, session);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             userResume.getResumeAdditionalEducations().add(additionalEducation);
             session.update(userResume);
         }
@@ -104,7 +97,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
-            checkUserResumeOnExist(userResume, session);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             userResume.getResumeContactInfos().add(contactInfo);
             session.update(userResume);
         }
@@ -120,7 +113,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
-            checkUserResumeOnExist(userResume, session);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             userResume.getResumeEducations().add(education);
             session.update(userResume);
         }
@@ -136,7 +129,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
-            checkUserResumeOnExist(userResume, session);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             userResume.getResumeLanguages().add(language);
             session.update(userResume);
         }
@@ -152,7 +145,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
-            checkUserResumeOnExist(userResume, session);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             userResume.getResumePhotos().add(photo);
             session.update(userResume);
         }
@@ -164,11 +157,11 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public void addWorkExpirience(ResumeWorkExperience workExperience, int resumeId) throws DAOException {
+    public void addWorkExperience(ResumeWorkExperience workExperience, int resumeId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume userResume = session.load(UserResume.class, resumeId);
-            checkUserResumeOnExist(userResume, session);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             userResume.getResumeWorkExperiences().add(workExperience);
             session.update(userResume);
         }
@@ -292,7 +285,40 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public List<ResumeWorkExperience> getResumeWorkExpirience(int id) throws DAOException {
+    public List<ResumeWorkExperience> getResumeWorkExperience(int id) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            List<ResumeWorkExperience> workExperiences = session.createQuery(
+                    "from ResumeWorkExperience where ResumeWorkExperience.userResumeByUserResumeId.id = " + id
+            ).list();
+            return workExperiences;
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session.");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find user with id = " + id);
+        }
+    }
+
+    @Override
+    public List<UserResume> getResumeForUser(int userId) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            List<UserResume> userResumes = session.createQuery(
+                    "from UserResume where UserResume.user.id = " + userId
+            ).list();
+            return userResumes;
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find user with id = " + userId);
+        }
+    }
+
+    public List<ResumeWorkExperience> getResumeWorkExperiences(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume resume = session.get(UserResume.class, id);
@@ -310,34 +336,153 @@ public class ResumeDAOImpl implements ResumeDAO {
 
     // -------------------------------- UPDATE -------------------------------------------
 
-    public void updateResumeStatus(int id, boolean status) throws DAOException {
+    public void updateResumeStatus(int resumeId, boolean status) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume resume = session.load(UserResume.class, id);
-            checkUserResumeOnExist(resume, session);
+            UserResume resume = session.load(UserResume.class, resumeId);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             resume.setIsActive(status);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
+            throw new DAOException("Can't find resume with id = " + resumeId);
         }
     }
 
-    public void updateResume(int id, UserResume resume) throws DAOException {
+    public void updateResume(int resumeId, UserResume resume) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume oldResume = session.load(UserResume.class, id);
-            checkUserResumeOnExist(oldResume, session);
-            replaceResumeData(oldResume, resume);
-            session.update(oldResume);
+            UserResume oldResume = session.load(UserResume.class, resumeId);
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);;
+            DataExchanger.replaceResumeData(oldResume, resume);
+            session.merge(oldResume);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
-            throw new DAOException("Can't find resume with id = " + id);
+            throw new DAOException("Can't find resume with id = " + resumeId);
+        }
+    }
+
+    public void updateLanguage(int languageId, ResumeLanguage language) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            ResumeLanguage oldLanguage = session.load(ResumeLanguage.class, languageId);
+            EntityPreprocessor.checkEntityOnExist(LANGUAGE_ENTITY_NAME, languageId, session);
+            oldLanguage.setLanguage(language.getLanguage());
+            oldLanguage.setLevel(language.getLevel());
+            session.merge(oldLanguage);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session.");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find language with id = " + languageId);
+        }
+    }
+
+    public void updateWorkExperience(int workExperienceId, ResumeWorkExperience workExperience) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            ResumeWorkExperience oldWorkExperience = session.load(ResumeWorkExperience.class, workExperienceId);
+            EntityPreprocessor.checkEntityOnExist(WORK_EXPERIENCE_ENTITY_NAME, workExperienceId, session);
+            DataExchanger.replaceWorkExperienceData(oldWorkExperience, workExperience);
+            session.merge(oldWorkExperience);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find work experience with id = " + workExperienceId);
+        }
+    }
+
+    public void updateResumeAchievement(int achievementId, ResumeAchievement resumeAchievement) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            ResumeAchievement oldResumeAchievement = session.load(ResumeAchievement.class, achievementId);
+            EntityPreprocessor.checkEntityOnExist(WORK_EXPERIENCE_ENTITY_NAME, achievementId, session);
+            DataExchanger.replaceResumeAchievementData(oldResumeAchievement, resumeAchievement);
+            session.merge(oldResumeAchievement);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find achievement with id = " + achievementId);
+        }
+    }
+
+    public void updateAdditionalEducation(int additionalEducationId, ResumeAdditionalEducation additionalEducation) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            ResumeAdditionalEducation oldAdditionalEducation = session.load(
+                    ResumeAdditionalEducation.class,
+                    additionalEducationId
+            );
+            EntityPreprocessor.checkEntityOnExist(ADDITIONAL_EDUCATION_ENTITY_NAME, additionalEducationId, session);
+            DataExchanger.replaceAdditionalEducation(oldAdditionalEducation, additionalEducation);
+            session.merge(oldAdditionalEducation);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find additional education with id = " + additionalEducationId);
+        }
+    }
+
+
+    public void updateContactInfo(int contactInfoId, ResumeContactInfo contactInfo) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            ResumeContactInfo oldContactInfo = session.load(ResumeContactInfo.class, contactInfoId);
+            EntityPreprocessor.checkEntityOnExist(CONTACT_INFO_ENTITY_NAME, contactInfoId, session);
+            DataExchanger.replaceContactInfo(oldContactInfo, contactInfo);
+            session.merge(oldContactInfo);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find contact info with id = " + contactInfoId);
+        }
+    }
+
+
+    public void updateEducation(int educationId, ResumeEducation education) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            ResumeEducation oldEducation = session.load(ResumeEducation.class, educationId);
+            EntityPreprocessor.checkEntityOnExist(EDUCATION_ENTITY_NAME, educationId, session);
+            DataExchanger.replaceEducation(oldEducation, education);
+            session.merge(oldEducation);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find education with id = " + educationId);
+        }
+    }
+
+
+    public void updatePhoto(int photoId, ResumePhoto photo) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            ResumePhoto oldPhoto = session.load(ResumePhoto.class, photoId);
+            EntityPreprocessor.checkEntityOnExist(PHOTO_ENTITY_NAME, photoId, session);
+            DataExchanger.replacePhoto(oldPhoto, photo);
+            session.merge(oldPhoto);
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find photo with id = " + photoId);
         }
     }
 
@@ -346,8 +491,8 @@ public class ResumeDAOImpl implements ResumeDAO {
     public void deleteResume(int id) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, id, session);
             UserResume resume = session.load(UserResume.class, id);
-            checkUserResumeOnExist(resume, session);
             session.delete(resume);
         }
         catch (SessionException exception) {
@@ -358,20 +503,12 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public void deleteResumeAchievement(int achievementId, UserResume resume) throws DAOException {
+    public void deleteResumeAchievement(int achievementId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume userResume = session.load(UserResume.class, resume.getId());
-            checkUserResumeOnExist(userResume, session);
-            Set<ResumeAchievement> resumeAchievements = userResume.getResumeAchievements();
-            ResumeAchievement deletingAchievement = null;
-            for (ResumeAchievement achievement : resumeAchievements) {
-                if (achievement.getId() == achievementId) {
-                    deletingAchievement = achievement;
-                    break;
-                }
-            }
-            resumeAchievements.remove(deletingAchievement);
+            EntityPreprocessor.checkEntityOnExist(ACHIEVEMENT_ENTITY_NAME, achievementId, session);
+            ResumeAchievement resumeAchievement = session.load(ResumeAchievement.class, achievementId);
+            session.delete(resumeAchievement);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -381,20 +518,15 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public void deleteAdditionalEducation(int additionalEducationId, UserResume resume) throws DAOException {
+    public void deleteAdditionalEducation(int additionalEducationId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume userResume = session.load(UserResume.class, resume.getId());
-            checkUserResumeOnExist(userResume, session);
-            Set<ResumeAdditionalEducation> additionalEducations = userResume.getResumeAdditionalEducations();
-            ResumeAdditionalEducation deleteingAdditionalEducation = null;
-            for (ResumeAdditionalEducation additionalEducation : additionalEducations) {
-                if (additionalEducation.getId() == additionalEducationId) {
-                    deleteingAdditionalEducation = additionalEducation;
-                    break;
-                }
-            }
-            additionalEducations.remove(deleteingAdditionalEducation);
+            EntityPreprocessor.checkEntityOnExist(ADDITIONAL_EDUCATION_ENTITY_NAME, additionalEducationId, session);
+            ResumeAdditionalEducation additionalEducation = session.load(
+                    ResumeAdditionalEducation.class,
+                    additionalEducationId
+            );
+            session.delete(additionalEducation);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -404,20 +536,12 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public void deleteContactInfo(int contactInfoId, UserResume resume) throws DAOException {
+    public void deleteContactInfo(int contactInfoId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume userResume = session.load(UserResume.class, resume.getId());
-            checkUserResumeOnExist(userResume, session);
-            Set<ResumeContactInfo> contactInfos = userResume.getResumeContactInfos();
-            ResumeContactInfo deletingContactInfo = null;
-            for (ResumeContactInfo contactInfo : contactInfos) {
-                if (contactInfo.getId() == contactInfoId) {
-                    deletingContactInfo = contactInfo;
-                    break;
-                }
-            }
-            contactInfos.remove(deletingContactInfo);
+            EntityPreprocessor.checkEntityOnExist(CONTACT_INFO_ENTITY_NAME, contactInfoId, session);
+            ResumeContactInfo contactInfo = session.load(ResumeContactInfo.class, contactInfoId);
+            session.delete(contactInfo);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -427,20 +551,12 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
      }
 
-    public void deleteEducation(int educationId, UserResume resume) throws DAOException {
+    public void deleteEducation(int educationId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume userResume = session.load(UserResume.class, resume.getId());
-            checkUserResumeOnExist(userResume, session);
-            Set<ResumeEducation> educations = userResume.getResumeEducations();
-            ResumeEducation deletingEducation = null;
-            for (ResumeEducation education : educations) {
-                if (education.getId() == educationId) {
-                    deletingEducation = education;
-                    break;
-                }
-            }
-            educations.remove(deletingEducation);
+            EntityPreprocessor.checkEntityOnExist(EDUCATION_ENTITY_NAME, educationId, session);
+            ResumeEducation education = session.load(ResumeEducation.class, educationId);
+            session.delete(education);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -450,20 +566,12 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public void deleteLangugage(int languageId, UserResume resume) throws DAOException {
+    public void deleteLanguage(int languageId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume userResume = session.load(UserResume.class, resume.getId());
-            checkUserResumeOnExist(userResume, session);
-            Set<ResumeLanguage> languages = userResume.getResumeLanguages();
-            ResumeLanguage deletingLanguage = null;
-            for (ResumeLanguage language : languages) {
-                if (language.getId() == languageId) {
-                    deletingLanguage = language;
-                    break;
-                }
-            }
-            languages.remove(deletingLanguage);
+            EntityPreprocessor.checkEntityOnExist(LANGUAGE_ENTITY_NAME, languageId, session);
+            ResumeLanguage language = session.load(ResumeLanguage.class, languageId);
+            session.delete(language);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -473,20 +581,12 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public void deletePhoto(int photoId, UserResume resume) throws DAOException {
+    public void deletePhoto(int photoId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume userResume = session.load(UserResume.class, resume.getId());
-            checkUserResumeOnExist(userResume, session);
-            Set<ResumePhoto> photos = userResume.getResumePhotos();
-            ResumePhoto deletingPhoto = null;
-            for (ResumePhoto photo : photos) {
-                if (photo.getId() == photoId) {
-                    deletingPhoto = photo;
-                    break;
-                }
-            }
-            photos.remove(deletingPhoto);
+            EntityPreprocessor.checkEntityOnExist(PHOTO_ENTITY_NAME, photoId, session);
+            ResumePhoto photo = session.load(ResumePhoto.class, photoId);
+            session.delete(photo);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -496,26 +596,18 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public void deleteWorkExpirience(int workExpirienceId, UserResume resume) throws DAOException {
+    public void deleteWorkExperience(int workExperienceId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            UserResume userResume = session.load(UserResume.class, resume.getId());
-            checkUserResumeOnExist(userResume, session);
-            Set<ResumeWorkExperience> workExperiences = userResume.getResumeWorkExperiences();
-            ResumeWorkExperience deletingExpirience = null;
-            for (ResumeWorkExperience workExperience : workExperiences) {
-                if (workExperience.getId() == workExpirienceId) {
-                    deletingExpirience = workExperience;
-                    break;
-                }
-            }
-            workExperiences.remove(deletingExpirience);
+            EntityPreprocessor.checkEntityOnExist(WORK_EXPERIENCE_ENTITY_NAME, workExperienceId, session);
+            ResumeWorkExperience workExperience = session.load(ResumeWorkExperience.class, workExperienceId);
+            session.delete(workExperience);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
-            throw new DAOException("Can't find work expirience with id = " + workExpirienceId);
+            throw new DAOException("Can't find work expirience with id = " + workExperienceId);
         }
     }
 

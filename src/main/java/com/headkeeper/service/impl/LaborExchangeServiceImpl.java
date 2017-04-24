@@ -2,7 +2,9 @@ package com.headkeeper.service.impl;
 
 import com.headkeeper.bean.entity.*;
 import com.headkeeper.bean.view.*;
+import com.headkeeper.dao.CertificateDAO;
 import com.headkeeper.dao.ResumeDAO;
+import com.headkeeper.dao.SkillDAO;
 import com.headkeeper.dao.VacancyDAO;
 import com.headkeeper.dao.exception.DAOException;
 import com.headkeeper.service.LaborExchangeService;
@@ -165,7 +167,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     public void setResumeStatus(int resumeId, boolean status) throws ServiceException {
         try {
-            resumeDAO.setStatus(resumeId, status);
+            resumeDAO.updateResumeStatus(resumeId, status);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -308,7 +310,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
     public void updateAchievement(int achievementId, ResumeAchievementView achievement) throws ServiceException {
         try {
             ResumeAchievement achievementEntity = Exchanger.exchangeViewToEntity(achievement);
-            resumeDAO.updateAchievement(achievementId, achievementEntity);
+            resumeDAO.updateResumeAchievement(achievementId, achievementEntity);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -524,7 +526,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     public void deleteLanguage(int languageId) throws ServiceException {
         try {
-            resumeDAO.deleteLangugage(languageId);
+            resumeDAO.deleteLanguage(languageId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -561,7 +563,12 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
         }
     }
 
+    @Override
     public void deletePhoto(int photoId) throws ServiceException {
+
+    }
+
+    public void deletePhoto(int photoId, UserResumeView userResumeView) throws ServiceException {
         try {
             resumeDAO.deletePhoto(photoId);
         } catch (DAOException e) {
@@ -595,7 +602,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     public List<ResumeWorkExperienceView> getWorkExperiencesForResume(int resumeId) throws ServiceException {
         try {
-            List<ResumeWorkExperience> entities = resumeDAO.getWorkExperience(resumeId);
+            List<ResumeWorkExperience> entities = resumeDAO.getResumeWorkExperience(resumeId);
             List<ResumeWorkExperienceView> views = new ArrayList<ResumeWorkExperienceView>();
 
             for (ResumeWorkExperience workExperienceEntity : entities) {
@@ -611,7 +618,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     public void deleteWorkExperience(int workExperienceId) throws ServiceException {
         try {
-            resumeDAO.deleteWorkExpirience(workExperienceId);
+            resumeDAO.deleteWorkExperience(workExperienceId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

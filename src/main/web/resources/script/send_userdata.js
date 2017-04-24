@@ -4,9 +4,9 @@ function sendDataToServer(page) {
     var FIRST_ELEMENT = 0;
     var request = new XMLHttpRequest();
     var userData = {
-        email : document.getElementsByName("user-email")[FIRST_ELEMENT].value,
-        nickname : document.getElementsByName("user-nickname")[FIRST_ELEMENT].value,
-        password : document.getElementsByName("user-password")[FIRST_ELEMENT].value
+        email : document.getElementsByName("userBase-email")[FIRST_ELEMENT].value,
+        nickname : document.getElementsByName("userBase-nickname")[FIRST_ELEMENT].value,
+        password : document.getElementsByName("userBase-password")[FIRST_ELEMENT].value
     };
     var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
     xmlhttp.open("POST", "/".concat(page));

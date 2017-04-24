@@ -12,6 +12,7 @@ import java.util.Set;
 public class UserResume {
 
     private int id;
+    private User user;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -170,7 +171,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResume")
-    @JsonIgnore
     public Set<EmployerToResume> getEmployerToResumes() {
         return employerToResumes;
     }
@@ -180,7 +180,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResume")
-    @JsonIgnore
     public Set<ResumeAchievement> getResumeAchievements() {
         return resumeAchievements;
     }
@@ -190,7 +189,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResume")
-    @JsonIgnore
     public Set<ResumeAdditionalEducation> getResumeAdditionalEducations() {
         return resumeAdditionalEducations;
     }
@@ -200,7 +198,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResumeByUserResumeId")
-    @JsonIgnore
     public Set<ResumeContactInfo> getResumeContactInfos() {
         return resumeContactInfos;
     }
@@ -210,7 +207,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResume")
-    @JsonIgnore
     public Set<ResumeEducation> getResumeEducations() {
         return resumeEducations;
     }
@@ -220,7 +216,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResume")
-    @JsonIgnore
     public Set<ResumeLanguage> getResumeLanguages() {
         return resumeLanguages;
     }
@@ -230,7 +225,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResume")
-    @JsonIgnore
     public Set<ResumePhoto> getResumePhotos() {
         return resumePhotos;
     }
@@ -240,7 +234,6 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResume")
-    @JsonIgnore
     public Set<ResumeToVacancy> getResumeToVacancies() {
         return resumeToVacancies;
     }
@@ -250,12 +243,21 @@ public class UserResume {
     }
 
     @OneToMany(mappedBy = "userResumeByUserResumeId")
-    @JsonIgnore
     public Set<ResumeWorkExperience> getResumeWorkExperiences() {
         return resumeWorkExperiences;
     }
 
     public void setResumeWorkExperiences(Set<ResumeWorkExperience> resumeWorkExperiences) {
         this.resumeWorkExperiences = resumeWorkExperiences;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

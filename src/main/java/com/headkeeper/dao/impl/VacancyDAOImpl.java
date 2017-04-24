@@ -17,8 +17,7 @@ import java.util.List;
 @Repository
 public class VacancyDAOImpl implements VacancyDAO {
 
-    final
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Autowired
     public VacancyDAOImpl(SessionFactory sessionFactory) {

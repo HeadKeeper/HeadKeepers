@@ -1,5 +1,7 @@
 package com.headkeeper.bean.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -9,7 +11,7 @@ import java.sql.Timestamp;
 public class ResumeToVacancy {
 
     private Timestamp requestTime;
-    private byte isClosed;
+    private boolean isClosed;
     private String message;
     private int vacancyId;
     private int userResumeId;
@@ -48,11 +50,12 @@ public class ResumeToVacancy {
 
     @Basic
     @Column(name = "is_closed", nullable = false)
-    public byte getIsClosed() {
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    public boolean getIsClosed() {
         return isClosed;
     }
 
-    public void setIsClosed(byte isClosed) {
+    public void setIsClosed(boolean isClosed) {
         this.isClosed = isClosed;
     }
 
@@ -83,7 +86,6 @@ public class ResumeToVacancy {
     @Override
     public int hashCode() {
         int result = requestTime != null ? requestTime.hashCode() : 0;
-        result = 31 * result + (int) isClosed;
         result = 31 * result + (message != null ? message.hashCode() : 0);
         return result;
     }

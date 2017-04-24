@@ -6,6 +6,8 @@ import com.headkeeper.bean.entity.Role;
 import com.headkeeper.bean.entity.User;
 import com.headkeeper.dao.UserDAO;
 import com.headkeeper.dao.exception.DAOException;
+import com.headkeeper.dao.util.DataExchanger;
+import com.headkeeper.dao.util.EntityPreprocessor;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -28,6 +31,10 @@ public class UserDAOImpl implements UserDAO {
     public UserDAOImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
+    private static final String USER_ENTITY_NAME = "UserEntity";
+    private static final String COMPANY_INFO_ENTITY_NAME = "CompanyInfo";
+    private static final String EMPLOYER_INFO_ENTITY_NAME = "EmployerInfo";
 
     private void checkUserOnExist(User user, Session session) throws HibernateException {
         /*
@@ -86,7 +93,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User user = session.load(User.class, ownerId);
-            checkUserOnExist(user, session);
+            EntityPreprocessor.checkEntityOnExist(USER_ENTITY_NAME, ownerId, session);
             companyInfo.setUser(user);
             session.save(companyInfo);
         }
@@ -102,7 +109,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User user = session.load(User.class, userId);
-            checkUserOnExist(user, session);
+            EntityPreprocessor.checkEntityOnExist(USER_ENTITY_NAME, userId, session);
             employerInfo.setUser(user);
             session.save(employerInfo);
         }
@@ -197,11 +204,8 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User oldUser = (User) session.load(User.class, id);
-            checkUserOnExist(user, session);
-            oldUser.setEmail(user.getEmail());
-            oldUser.setNickname(user.getNickname());
-            oldUser.setPassword(user.getPassword());
-            session.update(oldUser);
+            DataExchanger.replaceUserData(user, oldUser);
+            session.merge(oldUser);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -216,10 +220,8 @@ public class UserDAOImpl implements UserDAO {
             Session session = sessionFactory.getCurrentSession();
             CompanyInfo oldCompanyInfo = session.load(CompanyInfo.class, id);
             checkCompanyInfoOnExist(companyInfo, session);
-            oldCompanyInfo.setName(companyInfo.getName());
-            oldCompanyInfo.setAddress(companyInfo.getAddress());
-            oldCompanyInfo.setDescription(companyInfo.getDescription());
-            session.update(oldCompanyInfo);
+            DataExchanger.replaceCompanyInfo(companyInfo, oldCompanyInfo);
+            session.merge(oldCompanyInfo);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -234,9 +236,8 @@ public class UserDAOImpl implements UserDAO {
             Session session = sessionFactory.getCurrentSession();
             EmployerInfo oldEmployerInfo = session.load(EmployerInfo.class, id);
             checkEmployerInfoOnExist(oldEmployerInfo, session);
-            oldEmployerInfo.setName(employerInfo.getName());
-            oldEmployerInfo.setPhoneNumber(employerInfo.getPhoneNumber());
-            session.update(oldEmployerInfo);
+            DataExchanger.replaceEmployerInfo(employerInfo, oldEmployerInfo);
+            session.merge(oldEmployerInfo);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
