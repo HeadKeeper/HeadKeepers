@@ -17,6 +17,7 @@
         <mapping class="com.headkeeper.bean.entity.User" />
         <mapping class="com.headkeeper.bean.entity.Skill" />
         <mapping class="com.headkeeper.bean.entity.UserResume" />
+        <mapping class="com.headkeeper.bean.entity.UserCertificate" />
         <mapping class="com.headkeeper.bean.entity.CompanyInfo" />
         <mapping class="com.headkeeper.bean.entity.EmployerInfo" />
         <mapping class="com.headkeeper.bean.entity.ResumeAchievement" />
