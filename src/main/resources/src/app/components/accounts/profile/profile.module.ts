@@ -12,6 +12,7 @@ import { profileRoutes, profileRouting } from './profile.routing';
         BrowserModule,
         FormsModule,
         HttpModule,
+        
         profileRouting
     ],
     declarations: [
