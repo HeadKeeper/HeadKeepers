@@ -5,6 +5,11 @@ import org.hibernate.HibernateException;
 
 public class DataExchanger {
 
+    public static void replaceSkillData(Skill oldSkill, Skill skill) throws HibernateException {
+        oldSkill.setName(skill.getName());
+        oldSkill.setLevel(skill.getLevel());
+    }
+
     public static void replaceEmployerInfo(EmployerInfo employerInfo, EmployerInfo oldEmployerInfo) throws HibernateException {
         oldEmployerInfo.setName(employerInfo.getName());
         oldEmployerInfo.setPhoneNumber(employerInfo.getPhoneNumber());

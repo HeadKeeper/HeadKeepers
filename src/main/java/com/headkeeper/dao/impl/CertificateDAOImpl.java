@@ -55,7 +55,9 @@ public class CertificateDAOImpl implements CertificateDAO {
         catch (SessionException exception) {
             throw new DAOException("Can't open new session");
         }
-
+        catch (HibernateException exception) {
+            throw new DAOException("Can't find user id = " + userId);
+        }
     }
 
     public void deleteCertificate(int certificateId) throws DAOException {
