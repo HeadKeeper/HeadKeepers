@@ -1,3 +1,4 @@
+import { ModuleWithProviders } from '@angular/core/core';
 import { Routes, RouterModule } from '@angular/router'
 
 import { ProfileComponent } from "./profile.component";
@@ -5,15 +6,19 @@ import { ProfileInfoComponent } from "./inner/information/profile-information.co
 
 export const profileRoutes : Routes = [
     {
-        path: 'profile:id',
+        path: 'profile',
         component: ProfileComponent,
         children: [
             {
-                path: 'information',
+                path: ':id',
+                component: ProfileInfoComponent
+            },
+            {
+                path: ':id/edit',
                 component: ProfileInfoComponent
             }
         ]
     }
 ];
 
-export const profileRouting = RouterModule.forRoot(profileRoutes);
+export const profileRouting: ModuleWithProviders = RouterModule.forRoot(profileRoutes);

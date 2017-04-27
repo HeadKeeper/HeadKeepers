@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { SignUpComponent } from './sign-up.component';
@@ -10,8 +11,9 @@ import { SignUpEmployerComponent } from "./inner/employer/employer.component";
 @NgModule({
     imports: [
         BrowserModule,
+        RouterModule,
         FormsModule,
-        HttpModule,
+        HttpModule
     ],
     declarations: [
         SignUpComponent,

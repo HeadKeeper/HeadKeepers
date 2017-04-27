@@ -1,3 +1,4 @@
+import { ModuleWithProviders } from '@angular/core/core';
 import { Routes, RouterModule } from '@angular/router'
 
 import { SignUpComponent } from './sign-up.component'
@@ -20,3 +21,5 @@ export const signUpRoutes : Routes = [
         ]
     }
 ];
+
+export const SignUpRouting: ModuleWithProviders = RouterModule.forRoot(signUpRoutes);

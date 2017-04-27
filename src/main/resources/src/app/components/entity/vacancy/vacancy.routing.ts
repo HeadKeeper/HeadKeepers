@@ -1,3 +1,4 @@
+import { ModuleWithProviders } from '@angular/core/core';
 import { Routes, RouterModule } from '@angular/router'
 
 import { VacancyComponent } from "./vacancy.component";
@@ -8,31 +9,29 @@ import { VacanciesEmployerComponent } from "./inner/employer/vacancy-employer.co
 
 export const vacancyRoutes : Routes = [
     {
-        path: '',
-        redirectTo: 'panel',
-        pathMatch: 'full'
-    },
-    {
-        path: 'panel',
-        component: VacancyPanelComponent
-    },
-    {
-        path: ':id',
-        component: VacancyComponent
-    },
-    {
-        path: 'employer/:id',
-        component: VacanciesEmployerComponent
-    },
-    {
-        path: 'create',
-        component: VacancyCreateComponent
-    },
-    {
-        path: 'edit',
-        component: VacancyEditComponent
+        path: 'vacancy',
+        component: VacancyComponent,
+        children: [
+            {
+                path: ':id',
+                pathMatch: 'full',
+                component: VacancyPanelComponent
+            },
+            {
+                path: 'employer/:id',
+                component: VacanciesEmployerComponent
+            },
+            {
+                path: 'create',
+                component: VacancyCreateComponent
+            },
+            {
+                path: ':id/edit',
+                pathMatch: 'full',
+                component: VacancyEditComponent
+            }
+        ]
     }
-
 ];
 
-export const vacancyRouting = RouterModule.forRoot(vacancyRoutes);
+export const vacancyRouting: ModuleWithProviders = RouterModule.forRoot(vacancyRoutes);

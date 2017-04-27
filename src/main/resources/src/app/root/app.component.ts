@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'application',
-    template: 'src/app/root/app.component.html',
-    styles: [ 'src/app/root/app.component.css' ]
+    templateUrl: 'src/app/root/app.component.html',
+    styleUrls: [ 'src/app/root/app.component.css' ]
 })
 
 export class ApplicationComponent {

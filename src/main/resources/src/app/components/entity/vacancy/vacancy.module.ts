@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { VacancyComponent } from "./vacancy.component";
@@ -9,7 +9,7 @@ import { VacancyPanelComponent } from "./inner/panel/panel-vacancy.component";
 import { VacancyCreateComponent } from "./inner/create/create-vacancy.component";
 import { VacanciesEmployerComponent } from "./inner/employer/vacancy-employer.component";
 
-import { vacancyRoutes, vacancyRouting } from './vacancy.routing';
+import { vacancyRouting } from './vacancy.routing';
 
 @NgModule({
     imports: [

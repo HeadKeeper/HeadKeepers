@@ -5,18 +5,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { SignUpModule } from "./inner/sign-up/sign-up.module";
 
+import { SignInComponent } from './inner/sign-in/sign-in.component';
 import { AuthenticationComponent } from './authentication.component';
+
+import { authenticationRouting } from "./authentication.routing";
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+
+        SignUpModule,
+
+        authenticationRouting
     ],
     exports: [
+        SignInComponent,
         AuthenticationComponent
     ],
     declarations: [
+        SignInComponent,
         AuthenticationComponent
     ],
     providers: [],

@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'sing-in',
-    templateUrl: 'src/app/components/authentication/inner/sign-in/sign-in.html',
-    styleUrls: ['src/app/components/authentication/inner/sign-in/sign-in.css']
+    templateUrl: 'src/app/components/authentication/inner/sign-in/sign-in.component.html',
+    styleUrls: ['src/app/components/authentication/inner/sign-in/sign-in.component.css']
 })
 
 export class SignInComponent {

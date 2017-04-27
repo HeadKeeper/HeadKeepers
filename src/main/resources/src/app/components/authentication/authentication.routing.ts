@@ -1,11 +1,12 @@
-import { signUpRoutes } from './inner/sign-up/sign-up.routing';
-import { SignUpComponent } from './inner/sign-up/sign-up.component';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 
 import { SignInComponent } from "./inner/sign-in/sign-in.component";
 import { AuthenticationComponent } from "./authentication.component";
 
-export const accountRoutes : Routes = [
+import { signUpRoutes } from './inner/sign-up/sign-up.routing';
+
+export const authenticationRoutes : Routes = [
     {
         path: 'account',
         component: AuthenticationComponent,
@@ -22,4 +23,4 @@ export const accountRoutes : Routes = [
     }
 ];
 
-export const accountRouting = RouterModule.forRoot(accountRoutes);
+export const authenticationRouting: ModuleWithProviders = RouterModule.forRoot(authenticationRoutes);
