@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { SignUpModule } from "./inner/sign-up/sign-up.module";
+import { SignInModule } from "./inner/sign-in/sign-in.module";
 
-import { SignInComponent } from './inner/sign-in/sign-in.component';
 import { AuthenticationComponent } from './authentication.component';
 
 import { authenticationRouting } from "./authentication.routing";
@@ -16,16 +16,15 @@ import { authenticationRouting } from "./authentication.routing";
         FormsModule,
         HttpModule,
 
+        SignInModule,
         SignUpModule,
 
         authenticationRouting
     ],
     exports: [
-        SignInComponent,
         AuthenticationComponent
     ],
     declarations: [
-        SignInComponent,
         AuthenticationComponent
     ],
     providers: [],

@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { SignUpComponent } from './sign-up.component';
-import { SignUpUserComponent } from "./inner/user/user.component";
-import { SignUpCompanyComponent } from "./inner/employer/employer.component";
+import { SignInComponent } from './sign-in.component';
+import { SignInUserComponent } from "./inner/user/user-login.component";
+import { SignInCompanyComponent } from "./inner/employer/employer-login.component";
 
 @NgModule({
     imports: [
@@ -16,15 +16,15 @@ import { SignUpCompanyComponent } from "./inner/employer/employer.component";
         HttpModule
     ],
     declarations: [
-        SignUpComponent,
-        SignUpUserComponent,
-        SignUpCompanyComponent,
+        SignInComponent,
+        SignInUserComponent,
+        SignInCompanyComponent
     ],
     exports: [
-        SignUpComponent,
-        SignUpUserComponent,
-        SignUpCompanyComponent
+        SignInComponent,
+        SignInUserComponent,
+        SignInCompanyComponent
     ]
 })
 
-export class SignUpModule {}
+export class SignInModule {}

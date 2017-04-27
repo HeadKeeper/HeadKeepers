@@ -9,5 +9,7 @@ import 'rxjs/Rx';
 })
 
 export class SignInComponent {
-
+    public signIn() {
+        
+    }
 }

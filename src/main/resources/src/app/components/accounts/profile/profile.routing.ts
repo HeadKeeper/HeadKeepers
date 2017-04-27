@@ -3,19 +3,26 @@ import { Routes, RouterModule } from '@angular/router'
 
 import { ProfileComponent } from "./profile.component";
 import { ProfileInfoComponent } from "./inner/information/profile-information.component";
+import { ProfileEditComponent } from "./inner/edit/edit-profile.component";
+
+import { resumeRoutes } from "./inner/resume/resume.routing";
 
 export const profileRoutes : Routes = [
     {
-        path: 'profile',
+        path: 'profiles',
         component: ProfileComponent,
         children: [
             {
-                path: ':id',
+                path: ':profileId',
                 component: ProfileInfoComponent
             },
             {
-                path: ':id/edit',
-                component: ProfileInfoComponent
+                path: ':profileId/edit',
+                component: ProfileEditComponent
+            },
+            {
+                path: ':profileId/resumes',
+                children: [...resumeRoutes]
             }
         ]
     }

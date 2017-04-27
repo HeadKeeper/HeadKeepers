@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 
 import { SignUpComponent } from './sign-up.component'
 import { SignUpUserComponent } from './inner/user/user.component'
-import { SignUpEmployerComponent } from './inner/employer/employer.component'
+import { SignUpCompanyComponent } from './inner/employer/employer.component'
 
 export const signUpRoutes : Routes = [
     {
@@ -15,8 +15,8 @@ export const signUpRoutes : Routes = [
                 component: SignUpUserComponent
             },
             {
-                path: 'employer',
-                component: SignUpEmployerComponent
+                path: 'company',
+                component: SignUpCompanyComponent
             }
         ]
     }

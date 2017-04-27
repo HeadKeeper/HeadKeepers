@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { ResumeModule } from "../components/entity/resume/resume.module";
 import { ProfileModule } from "../components/accounts/profile/profile.module";
 import { CompanyModule } from "../components/accounts/company/company.module";
-import { VacancyModule } from "../components/entity/vacancy/vacancy.module";
 import { AuthenticationModule } from '../components/authentication/authentication.module';
 
 import { HelpComponent } from "../components/main/help/help.component";
@@ -20,10 +18,8 @@ import { rootRouting } from "./app.routing";
     imports: [
         BrowserModule,
         
-        ResumeModule,
         ProfileModule,
         CompanyModule,
-        VacancyModule,
         AuthenticationModule,
         
         rootRouting
