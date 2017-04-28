@@ -11,6 +11,6 @@
     <title>index</title>
 </head>
 <body>
-    index
+    <% response.sendRedirect("/home"); %>
 </body>
 </html>

@@ -1,27 +1,25 @@
 package com.headkeeper.dao;
 
-import com.headkeeper.bean.Vacancy;
+import com.headkeeper.bean.entity.Vacancy;
+import com.headkeeper.dao.exception.DAOException;
 
 import java.util.Collection;
-
-/**
- * Created by User on 22.03.2017.
- */
 
 public interface VacancyDAO {
     /* CRUD operations */
     // CREATE
-    void addVacancy(Vacancy vacancy, int id); // id - is employer's id, who added vacancy
+    void addVacancy(Vacancy vacancy, int id) throws DAOException; // id - is employer's id, who added vacancy
 
     // UPDATE
-    void updateVacancy(Vacancy vacancy);
-    void updateVacancy(Vacancy vacancy, boolean status);
+    void updateVacancy(int id, Vacancy vacancy) throws DAOException;
+    void updateVacancy(int id, boolean status) throws DAOException;
 
     // READ
-    Vacancy getVacancyById(int id);
-    Collection<Vacancy> getAllVacancies();
-    Collection<Vacancy> getVacanciesByActivity();
+    Vacancy getVacancyById(int id) throws DAOException;
+    Collection<Vacancy> getAllVacancies() throws DAOException;
+    Collection<Vacancy> getVacanciesByStatus(boolean status) throws DAOException;
+    Collection<Vacancy> getVacanciesById(int id) throws DAOException;
 
     // DELETE
-    void deleteVacancy(int id);
+    void deleteVacancy(int id) throws DAOException;
 }

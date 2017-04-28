@@ -1,48 +1,95 @@
 package com.headkeeper.service.impl;
 
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.entity.User;
+import com.headkeeper.bean.view.UserView;
 import com.headkeeper.dao.UserDAO;
+import com.headkeeper.dao.exception.DAOException;
 import com.headkeeper.service.UserService;
+import com.headkeeper.service.exception.ServiceException;
+import com.headkeeper.service.util.Exchanger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Collection;
-
-/**
- * Created by User on 21.03.2017.
- */
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final byte USER_ROLE_ID = 1;
+
+    private final UserDAO userDAO;
+
     @Autowired
-    private UserDAO userDAO;
-
-    public void removeUser(int id) {
-        userDAO.deleteUser(id);
+    public UserServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
-    public void setUserActiveStatus(int id, boolean status) {
-        userDAO.updateUser(id, status);
+    public void removeUser(int id) throws ServiceException {
+        try {
+            userDAO.deleteUser(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
+    public void setUserActiveStatus(int id, boolean status) throws ServiceException {
+        try {
+            userDAO.updateUser(id, status);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
 
-    public void registration(User user) {
-        user.setIsActive(true);
+    public void registration(UserView user) throws ServiceException {
+        user.setActive(true);
+        //TODO: Set in the table
         user.setCreationDate(new Timestamp(System.currentTimeMillis()));
-        userDAO.addNewUser(user);
+        int userId = user.getId();
+        User userEntity = Exchanger.exchangeViewToEntity(user);
+        try {
+            userDAO.addNewUser(userEntity, USER_ROLE_ID);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public void updateUserInfo(int id, User user) {
-        userDAO.updateUser(id, user);
+    public void updateUserInfo(int id, UserView user) throws ServiceException {
+        try {
+            user.setId(id);
+            User userEntity = Exchanger.exchangeViewToEntity(user);
+            userDAO.updateUser(id, userEntity);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
-    public User getUser(int id) {
-        return (User) userDAO.getUserById(id);
+    public UserView getUser(int id) throws ServiceException {
+        User userEntity;
+
+        try {
+            userEntity = (User) userDAO.getUserById(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        return Exchanger.exchangeEntityToView(userEntity);
     }
 
-    public Collection<User> getAllUsers() {
-        return null;
+    public List<UserView> getAllUsers() throws ServiceException {
+        List<UserView> userViews = new LinkedList<UserView>();
+        try {
+            List<User> userEntities = userDAO.getUsers();
+
+            for (User userEntity : userEntities) {
+                UserView userView = Exchanger.exchangeEntityToView(userEntity);
+                userViews.add(userView);
+            }
+
+            return userViews;
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 }

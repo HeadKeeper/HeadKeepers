@@ -1,17 +1,15 @@
 package com.headkeeper.service;
 
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.view.UserView;
+import com.headkeeper.service.exception.ServiceException;
 
-import java.util.Collection;
+import java.util.List;
 
-/**
- * Created by User on 21.03.2017.
- */
 public interface UserService {
-    void removeUser(int id);
-    void setUserActiveStatus(int id, boolean status);
-    void registration(User user);
-    void updateUserInfo(int id, User user);
-    User getUser(int id);
-    Collection<User> getAllUsers();
+    void removeUser(int id) throws ServiceException;
+    void setUserActiveStatus(int id, boolean status) throws ServiceException;
+    void registration(UserView user) throws ServiceException;
+    void updateUserInfo(int id, UserView user) throws ServiceException;
+    UserView getUser(int id) throws ServiceException;
+    List<UserView> getAllUsers() throws ServiceException;
 }

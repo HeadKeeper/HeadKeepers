@@ -1,25 +1,36 @@
 package com.headkeeper.dao;
 
-import com.headkeeper.bean.User;
+import com.headkeeper.bean.entity.CompanyInfo;
+import com.headkeeper.bean.entity.EmployerInfo;
+import com.headkeeper.bean.entity.User;
+import com.headkeeper.dao.exception.DAOException;
 
-/**
- * Created by User on 06.03.2017.
- */
+import java.util.List;
+
 public interface UserDAO {
-    static final int USER_ROLE_ID = 1;
     /* CRUD operations */
 
+
     // CREATE
-    void addNewUser(User user);
+    void addNewUser(User user, int roleId) throws DAOException;
+    void addCompanyInfo(CompanyInfo companyInfo, int ownerId) throws DAOException;
+    void addEmployerInfo(EmployerInfo employerInfo, int userId) throws DAOException;
 
     // READ
-    Object getUserById(int id);
+    Object getUserById(int id) throws DAOException;
+    CompanyInfo getCompanyInfoById(int id) throws DAOException;
+    EmployerInfo getEmployerInfoById(int id) throws DAOException;
+    List<User> getUsers() throws DAOException;
 
     // UPDATE
-    void updateUser(int id, User user);
-    void updateUser(int id, boolean status);
+    void updateUser(int id, User user) throws DAOException;
+    void updateUser(int id, boolean status) throws DAOException;
+    void updateCompanyInfo(int id, CompanyInfo companyInfo) throws DAOException;
+    void updateEmployerInfo(int id, EmployerInfo employerInfo) throws DAOException;
 
     // DELETE
-    void deleteUser(int id);
+    void deleteUser(int id) throws DAOException;
+    void deleteCompanyInfo(int id) throws DAOException;
+    void deleteEmployerInfo(int id) throws DAOException;
 
 }
