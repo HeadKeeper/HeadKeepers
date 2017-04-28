@@ -1,16 +1,27 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 25.02.2017
-  Time: 21:05
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>index</title>
+    <base href="/">
+    <title>Welcome</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <%--<script src="/node_modules/core-js/client/shim.min.js"></script>
+    <script src="/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/node_modules/systemjs/dist/system.src.js"></script>
+    <script src="/systemjs.config.js"></script>
+    <script>
+        System.import('app')
+            .catch(console.error.bind(console));
+    </script>--%>
+    <script src="/out/polyfill.js" ></script>
+    <script src="/out/vendor.js" ></script>
+    <script src="/out/app.js" ></script>
 </head>
+
 <body>
-    <% response.sendRedirect("/home"); %>
+<application>
+    Loading...
+</application>
 </body>
 </html>
