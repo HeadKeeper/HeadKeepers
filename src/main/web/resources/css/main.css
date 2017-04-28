@@ -1,0 +1,39 @@
+@import url(http://fonts.googleapis.com/css?family=Signika:600|Varela+Round);
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font: normal 18px/22px "Varela Round", sans-serif;
+    background-color: #f1ffff;
+    color: #2e2e2e;
+}
+
+h1, h2 {
+    font-family: "Signika", sans-serif;
+    font-weight: 600;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    line-height: 46px;
+    color: #e0e0e0;
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 33px;
+    margin-bottom: -20px;
+}
+
+p {
+    margin: 20px 0;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}

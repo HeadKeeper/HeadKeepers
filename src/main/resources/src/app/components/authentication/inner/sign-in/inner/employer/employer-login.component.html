@@ -1,0 +1,26 @@
+<form class="authorisation-form" method="post">
+    <div class="authorisation-form__header">
+        <label>Sign in as company</label>
+    </div>
+
+    <div class="authorisation-form__inner">
+        <div class="authorisation-form__inner__field">
+            <label>Email</label>
+            <input type="text" placeholder="Enter email" name="email" required>
+        </div>
+        <div class="authorisation-form__inner__field">
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" name="pass" required>
+        </div>
+        <div class="authorisation-form__inner__field">
+            <label>Repeat password</label>
+            <input type="password" placeholder="Repeat Password" name="repPass" required>
+        </div>
+
+        <div class="authorisation-form__inner__buttons">
+            <button (click)="signIn()">Sign in</button>
+            <button type="button">Cancel</button>
+        </div>
+    </div>
+  
+</form>

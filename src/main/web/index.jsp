@@ -20,8 +20,8 @@
 </head>
 
 <body>
-<application>
-    Loading...
-</application>
+    <application>
+        Loading...
+    </application>
 </body>
 </html>
