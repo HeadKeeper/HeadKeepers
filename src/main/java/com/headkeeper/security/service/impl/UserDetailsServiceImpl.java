@@ -2,13 +2,16 @@ package com.headkeeper.security.service.impl;
 
 import com.headkeeper.bean.entity.Role;
 import com.headkeeper.bean.entity.User;
-import com.headkeeper.security.util.SecurityUser;
+import com.headkeeper.security.util.SecurityUser;/*
 import com.headkeeper.service.exception.ErrorInputException;
 import com.headkeeper.service.user.UserService;
-import com.headkeeper.service.user.exception.UserNotFoundException;
+import com.headkeeper.service.user.exception.UserNotFoundException;*/
+import com.headkeeper.service.UserService;
+import com.headkeeper.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -38,8 +41,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = null;
 
         try {
-            user = userService.getUser(userEmail);
-        } catch (UserNotFoundException | ErrorInputException e) {
+            user = userService.getUserByEmail(userEmail);
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
 
@@ -50,17 +53,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorities = getUserRoles(user);
 
         return new SecurityUser(user.getEmail(), user.getPassword(), user.getId(),
-                !user.isBlocked(), true, true, true, authorities);
+                !user.getIsActive(), true, true, true, authorities);
 
     }
 
     private List<GrantedAuthority> getUserRoles(User user) {
         List<GrantedAuthority> result = new ArrayList<>(0);
-        Set<Role> roleSet = user.getRoles();
-        roleSet.forEach(role ->  {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRoleName());
-            result.add(grantedAuthority);
-        });
+        Role role = user.getRole();
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getValue());
+        result.add(grantedAuthority);
         return result;
     }
 }

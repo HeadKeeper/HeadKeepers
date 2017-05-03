@@ -92,4 +92,14 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public User getUserByEmail(String userEmail) throws ServiceException {
+        try {
+            return userDAO.getUserByEmail(userEmail);
+        }
+        catch (DAOException exception) {
+            throw new ServiceException(exception);
+        }
+    }
 }

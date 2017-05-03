@@ -1,5 +1,6 @@
 package com.headkeeper.service;
 
+import com.headkeeper.bean.entity.User;
 import com.headkeeper.bean.view.UserView;
 import com.headkeeper.service.exception.ServiceException;
 
@@ -12,4 +13,6 @@ public interface UserService {
     void updateUserInfo(int id, UserView user) throws ServiceException;
     UserView getUser(int id) throws ServiceException;
     List<UserView> getAllUsers() throws ServiceException;
+
+    User getUserByEmail(String userEmail) throws ServiceException;
 }

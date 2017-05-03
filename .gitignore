@@ -9,4 +9,5 @@
 /src/main/resources/src/**/*.js.map
 /src/main/resources/out/**/*.js
 /src/main/resources/index.html
+/src/main/resources/hibernate.cfg.xml
 npm-debug.log

@@ -8,6 +8,7 @@
     <context:component-scan base-package="com.headkeeper.controller" />
     <context:component-scan base-package="com.headkeeper.dao" />
     <context:component-scan base-package="com.headkeeper.service" />
+    <context:component-scan base-package="com.headkeeper.security" />
     <!-- Mapping to script files -->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:resources mapping="/**" location="classpath:/"/>

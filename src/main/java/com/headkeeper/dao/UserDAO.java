@@ -21,6 +21,7 @@ public interface UserDAO {
     CompanyInfo getCompanyInfoById(int id) throws DAOException;
     EmployerInfo getEmployerInfoById(int id) throws DAOException;
     List<User> getUsers() throws DAOException;
+    User getUserByEmail(String email) throws DAOException;
 
     // UPDATE
     void updateUser(int id, User user) throws DAOException;

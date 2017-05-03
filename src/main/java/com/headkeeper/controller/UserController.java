@@ -4,6 +4,7 @@ import com.headkeeper.bean.view.TokenView;
 import com.headkeeper.bean.view.UserLoginView;
 import com.headkeeper.bean.view.UserView;
 import com.headkeeper.security.service.exception.AuthenticationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 public interface UserController {

@@ -64,7 +64,7 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public TokenView login(UserLoginView userLogin) throws AuthenticationException {
-
+        return null;
     }
 
     public void addNewUser(@RequestBody UserView user) {

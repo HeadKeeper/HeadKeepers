@@ -181,6 +181,21 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
+    @Override
+    public User getUserByEmail(String email) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            User user = (User) session.createQuery("from User where User.email = " + email).getSingleResult();
+            return user;
+        }
+        catch (SessionException exception) {
+            throw new DAOException("Can't get current session");
+        }
+        catch (HibernateException exception) {
+            throw new DAOException("Error in HQL query execution.");
+        }
+    }
+
 
     // ------------------------------- UPDATE -------------------------------
 
