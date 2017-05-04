@@ -1,32 +1,46 @@
 package com.headkeeper.dao.impl;
 
 import com.headkeeper.bean.entity.*;
+import com.headkeeper.dao.util.EntityPreprocessor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ResumeDAOImplTest {
 
     @InjectMocks
     private ResumeDAOImpl resumeDAO;
 
-    @Autowired
+    @Mock
     private SessionFactory sessionFactory;
 
     private Session session;
     private Query query;
+    private User user;
+    private UserResume resume;
+    private List list;
 
     @Before
     public void setUp() throws Exception {
         session = mock(Session.class);
         query = mock(Query.class);
+        user = mock(User.class);
+        resume = mock(UserResume.class);
+        list = mock(List.class);
     }
 
     @Test
@@ -39,13 +53,15 @@ public class ResumeDAOImplTest {
         verifyThatGetCurrentSessionWasCalled();
     }
 
+    //WORKING
     @Test
     public void addResumeAchievement() throws Exception {
         givenSessionFactoryReturnsCurrentSession();
 
-        resumeDAO.addResumeAchievement(new ResumeAchievement(), anyInt());
-
-        verifyThatSessionSaveWasCalled();
+        when(session.load(eq(UserResume.class), anyInt())).thenReturn(resume);
+        when(session.createQuery(anyString())).thenReturn(query);
+        resumeDAO.addResumeAchievement(new ResumeAchievement(), 1);
+        verifyThatSessionUpdateWasCalled();
         verifyThatGetCurrentSessionWasCalled();
     }
 
@@ -114,6 +130,9 @@ public class ResumeDAOImplTest {
     @Test
     public void getResumeById() throws Exception {
         givenSessionFactoryReturnsCurrentSession();
+
+
+
         verifyThatGetCurrentSessionWasCalled();
     }
 
@@ -273,8 +292,20 @@ public class ResumeDAOImplTest {
         verifyThatGetCurrentSessionWasCalled();
     }
 
+    private void givenSessionReturnsUser() {
+        when(session.get(eq(User.class), anyInt())).thenReturn(user);
+    }
+
+    private void givenSessionReturnsUserResume() {
+        when(session.get(eq(UserResume.class), anyInt())).thenReturn(resume);
+    }
+
     private void verifyThatSessionSaveWasCalled() {
         verify(session, times(1)).save(any());
+    }
+
+    private void verifyThatSessionUpdateWasCalled() {
+        verify(session, times(1)).update(any());
     }
 
     private void verifyThatGetCurrentSessionWasCalled() {
