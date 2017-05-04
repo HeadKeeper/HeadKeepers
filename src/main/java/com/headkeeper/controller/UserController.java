@@ -24,6 +24,7 @@ public interface UserController {
     @RequestMapping(value = "/profile/{id}/delete")
     void deleteUser(@PathVariable int id);
 
+    @PreAuthorize("hasAuthority('admin')")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     @ResponseBody
     UserView getUserById(@PathVariable int id);
