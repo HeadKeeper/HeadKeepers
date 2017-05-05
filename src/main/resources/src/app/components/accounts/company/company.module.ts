@@ -9,6 +9,8 @@ import { CompanyComponent } from './company.component';
 import { CompanyInfoComponent } from './inner/information/company-information.component';
 import { CompanyEditComponent } from "./inner/edit/edit-company.component";
 
+import { HTTPService } from '../../../services/HTTPService';
+
 import { companyRouting } from './company.routing';
 
 @NgModule({
@@ -31,7 +33,9 @@ import { companyRouting } from './company.routing';
         CompanyInfoComponent,
         CompanyEditComponent
     ],
-    providers: [],
+    providers: [
+        HTTPService
+    ],
 })
 
 export class CompanyModule { }

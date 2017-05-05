@@ -1,1 +1,23 @@
-<h2>Profile info</h2>
+<form class="entity-form" method="post">
+    <div class="entity-form__header">
+        <label>Profile info</label>
+    </div>
+    <div class="entity-form__inner">
+        <div class="entity-form__inner__field">
+            <label>Email</label>
+            <input type="text" maxlength="90" placeholder="Enter email" name="email" required [(ngModel)]="account.email">
+        </div>
+        <div class="entity-form__inner__field">
+            <label>Nickname</label>
+            <input type="text" maxlength="45" placeholder="Enter nickname" name="nickName" required [(ngModel)]="account.nickname">
+        </div>
+        <div class="entity-form__inner__field">
+            <label>Name</label>
+            <input type="text" maxlength="90" placeholder="Enter name" name="name" required [(ngModel)]="account.name">
+        </div>
+        <div class="entity-form__inner__field">
+            <label>Phone</label>
+            <input type="text" maxlength="20" placeholder="Enter phone number" name="phoneNumber" required [(ngModel)]="account.phoneNumber">
+        </div>
+    </div>
+</form>

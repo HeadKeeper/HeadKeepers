@@ -5,43 +5,43 @@ export class WorkExperience {
     private _startDate: Date;
     private _finishDate: Date;
 
-    public getCompanyName(): string {
+    get companyName(): string {
         return this._companyName;
     }
 
-    public setCompanyName(value: string) {
+    set companyName(value: string) {
         this._companyName = value;
     }
 
-    public getPosition(): string {
+    get position(): string {
         return this._position;
     }
 
-    public setPosition(value: string) {
+    set position(value: string) {
         this._position = value;
     }
 
-    public getDuties(): string {
+    get duties(): string {
         return this._duties;
     }
 
-    public setDuties(value: string) {
+    set duties(value: string) {
         this._duties = value;
     }
 
-    public getStartDate(): Date {
+    get startDate(): Date {
         return this._startDate;
     }
 
-    public setStartDate(value: Date) {
+    set startDate(value: Date) {
         this._startDate = value;
     }
 
-    public getFinishDate(): Date {
+    get finishDate(): Date {
         return this._finishDate;
     }
 
-    public setFinishDate(value: Date) {
+    set finishDate(value: Date) {
         this._finishDate = value;
     }
 }

@@ -2,19 +2,19 @@ export class Language {
     private _name: string;
     private _level: string;
 
-    public getName(): string {
+    get name(): string {
         return this._name;
     }
 
-    public setName(value: string) {
+    set name(value: string) {
         this._name = value;
     }
 
-    public getLevel(): string {
+    get level(): string {
         return this._level;
     }
 
-    public setLevel(value: string) {
+    set level(value: string) {
         this._level = value;
     }
 }

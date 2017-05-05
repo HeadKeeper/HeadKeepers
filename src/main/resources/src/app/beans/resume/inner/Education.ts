@@ -6,51 +6,51 @@ export class Education {
     private _finishDate: Date;
     private _additionalInformation: string;
 
-    public getInstitutionName(): string {
+    get institutionName(): string {
         return this._institutionName;
     }
 
-    public setInstitutionName(value: string) {
+    set institutionName(value: string) {
         this._institutionName = value;
     }
 
-    public getType(): string {
-        return this._type;
-    }
-
-    public setType(value: string) {
-        this._type = value;
-    }
-
-    public getFacultyName(): string {
+    get facultyName(): string {
         return this._facultyName;
     }
 
-    public setFacultyName(value: string) {
+    set facultyName(value: string) {
         this._facultyName = value;
     }
 
-    public getStartDate(): Date {
+    get type(): string {
+        return this._type;
+    }
+
+    set type(value: string) {
+        this._type = value;
+    }
+
+    get startDate(): Date {
         return this._startDate;
     }
 
-    public setStartDate(value: Date) {
+    set startDate(value: Date) {
         this._startDate = value;
     }
 
-    public getFinishDate(): Date {
+    get finishDate(): Date {
         return this._finishDate;
     }
 
-    public setFinishDate(value: Date) {
+    set finishDate(value: Date) {
         this._finishDate = value;
     }
 
-    public getAdditionalInformation(): string {
+    get additionalInformation(): string {
         return this._additionalInformation;
     }
 
-    public setAdditionalInformation(value: string) {
+    set additionalInformation(value: string) {
         this._additionalInformation = value;
     }
 }

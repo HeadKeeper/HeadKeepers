@@ -5,43 +5,43 @@ export class AdditionalEducation {
     private _startDate: Date;
     private _finishDate: Date;
 
-    public getName(): string {
+    get name(): string {
         return this._name;
     }
 
-    public setName(value: string) {
+    set name(value: string) {
         this._name = value;
     }
 
-    public getType(): string {
+    get type(): string {
         return this._type;
     }
 
-    public setType(value: string) {
+    set type(value: string) {
         this._type = value;
     }
 
-    public getInstitutionName(): string {
+    get institutionName(): string {
         return this._institutionName;
     }
 
-    public setInstitutionName(value: string) {
+    set institutionName(value: string) {
         this._institutionName = value;
     }
 
-    public getStartDate(): Date {
+    get startDate(): Date {
         return this._startDate;
     }
 
-    public setStartDate(value: Date) {
+    set startDate(value: Date) {
         this._startDate = value;
     }
 
-    public getFinishDate(): Date {
+    get finishDate(): Date {
         return this._finishDate;
     }
 
-    public setFinishDate(value: Date) {
+    set finishDate(value: Date) {
         this._finishDate = value;
     }
 }

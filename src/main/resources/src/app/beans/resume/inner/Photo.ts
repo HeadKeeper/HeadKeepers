@@ -1,11 +1,11 @@
 export class Photo {
     private _href: string;
 
-    public getName(): string {
+    get href(): string {
         return this._href;
     }
 
-    public setName(value: string) {
+    set href(value: string) {
         this._href = value;
     }
 }

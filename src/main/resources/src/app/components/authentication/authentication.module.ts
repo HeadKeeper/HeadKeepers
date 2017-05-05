@@ -8,7 +8,10 @@ import { SignInModule } from "./inner/sign-in/sign-in.module";
 
 import { AuthenticationComponent } from './authentication.component';
 
+import { HTTPService } from '../../services/HTTPService';
+
 import { authenticationRouting } from "./authentication.routing";
+import { UserService } from "../../services/UserService";
 
 @NgModule({
     imports: [
@@ -27,7 +30,9 @@ import { authenticationRouting } from "./authentication.routing";
     declarations: [
         AuthenticationComponent
     ],
-    providers: [],
+    providers: [
+        HTTPService
+    ],
 })
 
 export class AuthenticationModule { }

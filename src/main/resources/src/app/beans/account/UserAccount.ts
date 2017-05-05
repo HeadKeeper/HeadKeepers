@@ -4,19 +4,19 @@ export class UserAccount extends Account {
     private _name :string;
     private _phoneNumber :string;
 
-    public getName(): string {
+    get name(): string {
         return this._name;
     }
 
-    public setName(value: string) {
+    set name(value: string) {
         this._name = value;
     }
 
-    public getPhoneNumber(): string {
+    get phoneNumber(): string {
         return this._phoneNumber;
     }
 
-    public setPhoneNumber(value: string) {
+    set phoneNumber(value: string) {
         this._phoneNumber = value;
     }
 }

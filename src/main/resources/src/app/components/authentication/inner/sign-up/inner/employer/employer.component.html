@@ -2,25 +2,42 @@
     <div class="authorisation-form__header">
         <label>Sign up as company</label>
     </div>
-
     <div class="authorisation-form__inner">
+
         <div class="authorisation-form__inner__field">
             <label>Email</label>
-            <input type="text" placeholder="Enter email" name="email" required>
+            <input type="text" maxlength="90" placeholder="Enter email" name="email" required [(ngModel)]="account.email">
+        </div>
+        <div class="authorisation-form__inner__field">
+            <label>Nickname</label>
+            <input type="text" maxlength="45" placeholder="Enter nickname" name="nickName" required [(ngModel)]="account.nickname">
         </div>
         <div class="authorisation-form__inner__field">
             <label>Password</label>
-            <input type="password" placeholder="Enter Password" name="pass" required>
+            <input type="password" maxlength="90" placeholder="Enter Password" name="pass" required [(ngModel)]="account.password">
         </div>
         <div class="authorisation-form__inner__field">
             <label>Repeat password</label>
-            <input type="password" placeholder="Repeat Password" name="repPass" required>
+            <input type="password" maxlength="90" placeholder="Repeat Password" name="repPass" required [(ngModel)]="rePass">
+        </div>
+        <div class="authorisation-form__inner__field">
+            <label>Name</label>
+            <input type="text" maxlength="90" placeholder="Enter name" name="name" required [(ngModel)]="account.name">
+        </div>
+        <div class="authorisation-form__inner__field">
+            <label>Description</label>
+            <textarea type="text" maxlength="45" name="description" required [(ngModel)]="account.description"></textarea>
+        </div>
+        <div class="authorisation-form__inner__field">
+            <label>Address</label>
+            <input type="text" maxlength="225" placeholder="Enter address" name="address" required [(ngModel)]="account.address">
         </div>
 
         <div class="authorisation-form__inner__buttons">
-            <button (click)="registrationCompany()">Sign up</button>
-            <button type="button">Cancel</button>
+            <button (click)="signUp()">Sign up</button>
+            <a routerLink='/accounts/registration'>
+                <button type="button">Cancel</button>
+            </a>
         </div>
     </div>
-  
 </form>

@@ -5,43 +5,45 @@ export class Account {
     private _nickname: string;
     private _creationDate: Date;
 
-    public getId(): number {
+    get id(): number {
         return this._id;
     }
 
-    public setId(value: number) {
+    set id(value: number) {
         this._id = value;
     }
 
-    public getEmail(): string {
+    get email(): string {
         return this._email;
     }
 
-    public setEmail(value: string) {
+    set email(value: string) {
         this._email = value;
     }
 
-    public getPassword(): string {
+    get password(): string {
         return this._password;
     }
 
-    public setPassword(value: string) {
+    set password(value: string) {
         this._password = value;
     }
 
-    public getNickname(): string {
+    get nickname(): string {
         return this._nickname;
     }
 
-    public setNickname(value: string) {
+    set nickname(value: string) {
         this._nickname = value;
     }
 
-    public getCreationDate(): Date {
+    get creationDate(): Date {
         return this._creationDate;
     }
 
-    public setCreationDate(value: Date) {
+    set creationDate(value: Date) {
         this._creationDate = value;
     }
+
+    
 }

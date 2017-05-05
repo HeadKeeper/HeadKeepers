@@ -6,20 +6,22 @@
     <div class="authorisation-form__inner">
         <div class="authorisation-form__inner__field">
             <label>Email</label>
-            <input type="text" placeholder="Enter email" name="email" required>
+            <input type="text" maxlength="90" placeholder="Enter email" name="email" ([ngModel])="account.email" required>
         </div>
         <div class="authorisation-form__inner__field">
             <label>Password</label>
-            <input type="password" placeholder="Enter Password" name="pass" required>
+            <input type="password" maxlength="90" placeholder="Enter Password" name="pass" [(ngModel)]="account.password" required>
         </div>
         <div class="authorisation-form__inner__field">
             <label>Repeat password</label>
-            <input type="password" placeholder="Repeat Password" name="repPass" required>
+            <input type="password" maxlength="90" placeholder="Repeat Password" name="repPass" [(ngModel)]="rePass" required>
         </div>
 
         <div class="authorisation-form__inner__buttons">
             <button (click)="signIn()">Sign in</button>
-            <button type="button">Cancel</button>
+            <a routerLink='/accounts/login'>
+                <button type="button">Cancel</button>
+            </a>
         </div>
     </div>
   
