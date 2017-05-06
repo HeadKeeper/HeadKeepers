@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class SignInUserComponent implements OnInit {
 
-   private rePass: string;
+    private rePass: string;
 
     private account = new Account();
 
@@ -23,7 +23,7 @@ export class SignInUserComponent implements OnInit {
         private router: Router    
     ) { }
 
-    public signUp() {
+    public signIn() {
         if (this.account.password == this.rePass) {
         
             if (this.account.email != null) {
@@ -37,7 +37,7 @@ export class SignInUserComponent implements OnInit {
     }
 
     private sendData() {
-        this.httpService.sendData("/login", this.account)
+        this.httpService.sendData("/login", Account.serialaizeForLogin(this.account))
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;

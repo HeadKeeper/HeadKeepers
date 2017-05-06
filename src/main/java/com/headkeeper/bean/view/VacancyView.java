@@ -9,7 +9,6 @@ public class VacancyView {
     private String description;
     private String essentialSkills;
     private String preferableSkills;
-    private byte jobType;
     private String phoneNumber;
     private String email;
     private BigDecimal minSalary;
@@ -58,14 +57,6 @@ public class VacancyView {
 
     public void setPreferableSkills(String preferableSkills) {
         this.preferableSkills = preferableSkills;
-    }
-
-    public byte getJobType() {
-        return jobType;
-    }
-
-    public void setJobType(byte jobType) {
-        this.jobType = jobType;
     }
 
     public String getPhoneNumber() {

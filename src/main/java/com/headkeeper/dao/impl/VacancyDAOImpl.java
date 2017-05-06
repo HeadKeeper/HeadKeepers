@@ -29,7 +29,6 @@ public class VacancyDAOImpl implements VacancyDAO {
         oldVacancy.setAdditionalInfoAboutSalary(newVacancy.getAdditionalInfoAboutSalary());
         oldVacancy.setDescription(newVacancy.getDescription());
         oldVacancy.setEssentialSkills(newVacancy.getEssentialSkills());
-        oldVacancy.setJobType(newVacancy.getJobType());
         oldVacancy.setMinSalary(newVacancy.getMinSalary());
         oldVacancy.setMaxSalary(newVacancy.getMaxSalary());
         oldVacancy.setPhoneNumber(newVacancy.getPhoneNumber());

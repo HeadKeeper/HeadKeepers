@@ -26,7 +26,7 @@ export class SignUpCompanyComponent {
     public signUp() {
         if (this.account.email != "" && this.account.email.includes("@")) {
             if (this.account.password == this.rePass) {
-                
+                alert(this.account.email)
                 this.sendRequest();
             } else {
                 alert("Password and re: doesn't match");

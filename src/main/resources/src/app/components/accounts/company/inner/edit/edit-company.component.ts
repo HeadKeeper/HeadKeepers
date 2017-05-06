@@ -12,7 +12,7 @@ import { UserService } from "../../../../../services/UserService";
 
 export class CompanyEditComponent implements OnInit {
 
-     private pass: string;
+    private pass: string;
 
     private account = new EmployerAccount();
 

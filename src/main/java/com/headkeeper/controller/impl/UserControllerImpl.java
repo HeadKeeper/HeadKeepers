@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @Controller
 public class UserControllerImpl implements UserController {
 
@@ -64,7 +68,22 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public TokenView login(UserLoginView userLogin) throws AuthenticationException {
-        return null;
+        String token;
+        String generatedPassword = userLogin.getPassword();
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update("salad".getBytes("UTF-8"));
+            byte[] bytes = md.digest(userLogin.getPassword().getBytes("UTF-8"));
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                stringBuilder.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = stringBuilder.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        token = getTokenService.getToken(userLogin.getEmail(), generatedPassword);
+        return new TokenView(token);
     }
 
     public void addNewUser(@RequestBody UserView user) {
