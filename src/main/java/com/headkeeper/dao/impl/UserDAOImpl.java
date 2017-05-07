@@ -36,40 +36,6 @@ public class UserDAOImpl implements UserDAO {
     private static final String COMPANY_INFO_ENTITY_NAME = "CompanyInfo";
     private static final String EMPLOYER_INFO_ENTITY_NAME = "EmployerInfo";
 
-    private void checkUserOnExist(User user, Session session) throws HibernateException {
-        /*
-            Here we make a request to database through proxy, which we get from session.load
-            If User doesn't exist, hibernate throw exception
-            If User exist - hibernate execute query
-        */
-        String query = "from User where id = " + user.getId();
-        List resultList = session.createQuery(query).list();
-        if (resultList.size() == 0) {
-            throw new HibernateException("Can't find user with id = " + user.getId());
-        }
-    }
-
-    private void checkCompanyInfoOnExist(CompanyInfo companyInfo, Session session) throws HibernateException {
-        /*
-            Here we make a request to database through proxy, which we get from session.load
-            If Company Info doesn't exist, hibernate throw exception
-            If Company Info exist - hibernate execute query
-        */
-        String query = "from CompanyInfo where id = " + companyInfo.getId();
-        List resultList = session.createQuery(query).list();
-        if (resultList.size() == 0) {
-            throw new HibernateException("Can't find company with id = " + companyInfo.getId());
-        }
-    }
-
-    private void checkEmployerInfoOnExist(EmployerInfo employerInfo, Session session) {
-        String query = "from EmployerInfo where id = " + employerInfo.getId();
-        List resultList = session.createQuery(query).list();
-        if (resultList.size() == 0) {
-            throw new HibernateException("Can't find employer info with id = " + employerInfo.getId());
-        }
-    }
-
     /* CRUD OPERATIONS */
 
     // ------------------------------- CREATE -------------------------------
@@ -203,7 +169,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User oldUser = (User) session.load(User.class, id);
-            checkUserOnExist(oldUser, session);
+            EntityPreprocessor.checkEntityOnExist(USER_ENTITY_NAME, id, session);
             oldUser.setIsActive(status);
             session.update(oldUser);
         }
@@ -234,7 +200,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             CompanyInfo oldCompanyInfo = session.load(CompanyInfo.class, id);
-            checkCompanyInfoOnExist(companyInfo, session);
+            EntityPreprocessor.checkEntityOnExist(COMPANY_INFO_ENTITY_NAME, id, session);
             DataExchanger.replaceCompanyInfo(companyInfo, oldCompanyInfo);
             session.merge(oldCompanyInfo);
         }
@@ -250,7 +216,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             EmployerInfo oldEmployerInfo = session.load(EmployerInfo.class, id);
-            checkEmployerInfoOnExist(oldEmployerInfo, session);
+            EntityPreprocessor.checkEntityOnExist(EMPLOYER_INFO_ENTITY_NAME, id, session);
             DataExchanger.replaceEmployerInfo(employerInfo, oldEmployerInfo);
             session.merge(oldEmployerInfo);
         }
@@ -269,7 +235,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             User user = session.load(User.class, id);
-            checkUserOnExist(user, session);
+            EntityPreprocessor.checkEntityOnExist(USER_ENTITY_NAME, 1, session);
             session.delete(user);
         }
         catch (SessionException exception) {
@@ -284,7 +250,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             CompanyInfo companyInfo = session.load(CompanyInfo.class, id);
-            checkCompanyInfoOnExist(companyInfo, session);
+            EntityPreprocessor.checkEntityOnExist(COMPANY_INFO_ENTITY_NAME, id, session);
             session.delete(companyInfo);
         }
         catch (SessionException exception) {
@@ -299,7 +265,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             EmployerInfo employerInfo = session.load(EmployerInfo.class, id);
-            checkEmployerInfoOnExist(employerInfo, session);
+            EntityPreprocessor.checkEntityOnExist(EMPLOYER_INFO_ENTITY_NAME, id, session);
             session.delete(employerInfo);
         }
         catch (SessionException exception) {

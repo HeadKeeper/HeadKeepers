@@ -2,6 +2,8 @@ package com.headkeeper.security.service.impl;
 
 import com.headkeeper.bean.entity.Role;
 import com.headkeeper.bean.entity.User;
+import com.headkeeper.bean.view.RoleView;
+import com.headkeeper.bean.view.UserView;
 import com.headkeeper.security.util.SecurityUser;/*
 import com.headkeeper.service.exception.ErrorInputException;
 import com.headkeeper.service.user.UserService;
@@ -38,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-        User user = null;
+        UserView user = null;
 
         try {
             user = userService.getUserByEmail(userEmail);
@@ -53,13 +55,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorities = getUserRoles(user);
 
         return new SecurityUser(user.getEmail(), user.getPassword(), user.getId(),
-                !user.getIsActive(), true, true, true, authorities);
+                !user.isActive(), true, true, true, authorities);
 
     }
 
-    private List<GrantedAuthority> getUserRoles(User user) {
+    private List<GrantedAuthority> getUserRoles(UserView user) {
         List<GrantedAuthority> result = new ArrayList<>(0);
-        Role role = user.getRole();
+        RoleView role = user.getRole();
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getValue());
         result.add(grantedAuthority);
         return result;

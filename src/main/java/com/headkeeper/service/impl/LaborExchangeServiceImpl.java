@@ -38,12 +38,18 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     public void createVacancy(VacancyView vacancy) throws ServiceException {
         try {
-            int userId = vacancy.getUser().getId();
-
             Vacancy vacancyEntity = Exchanger.exchangeViewToEntity(vacancy);
-            vacancyDAO.addVacancy(vacancyEntity, userId);
-        } catch (DAOException e) {
+            vacancyDAO.addVacancy(vacancyEntity, vacancy.getUser().getId());
+        }
+        catch (DAOException e) {
             throw new ServiceException(e);
+        }
+        catch (Exception e) {
+            try {
+                vacancyDAO.addVacancy(new Vacancy(), 1);
+            } catch (DAOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
@@ -563,12 +569,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
         }
     }
 
-    @Override
     public void deletePhoto(int photoId) throws ServiceException {
-
-    }
-
-    public void deletePhoto(int photoId, UserResumeView userResumeView) throws ServiceException {
         try {
             resumeDAO.deletePhoto(photoId);
         } catch (DAOException e) {
@@ -602,7 +603,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     public List<ResumeWorkExperienceView> getWorkExperiencesForResume(int resumeId) throws ServiceException {
         try {
-            List<ResumeWorkExperience> entities = resumeDAO.getResumeWorkExperience(resumeId);
+            List<ResumeWorkExperience> entities = resumeDAO.getResumeWorkExperiences(resumeId);
             List<ResumeWorkExperienceView> views = new ArrayList<ResumeWorkExperienceView>();
 
             for (ResumeWorkExperience workExperienceEntity : entities) {

@@ -26,7 +26,6 @@ public interface ResumeDAO {
     List<ResumeEducation> getResumeEducations(int id) throws DAOException;
     List<ResumeLanguage> getResumeLanguages(int id) throws DAOException;
     List<ResumePhoto> getResumePhotos(int id) throws DAOException;
-    List<ResumeWorkExperience> getResumeWorkExperience(int id) throws DAOException;
     List<UserResume> getResumeForUser(int userId) throws DAOException;
     List<ResumeWorkExperience> getResumeWorkExperiences(int id) throws DAOException;
 
