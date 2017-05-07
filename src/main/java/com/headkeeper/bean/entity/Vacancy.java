@@ -15,7 +15,6 @@ public class Vacancy {
     private String description;
     private String essentialSkills;
     private String preferableSkills;
-    private byte jobType;
     private String phoneNumber;
     private String email;
     private BigDecimal minSalary;
@@ -73,16 +72,6 @@ public class Vacancy {
 
     public void setPreferableSkills(String preferableSkills) {
         this.preferableSkills = preferableSkills;
-    }
-
-    @Basic
-    @Column(name = "job_type", nullable = false)
-    public byte getJobType() {
-        return jobType;
-    }
-
-    public void setJobType(byte jobType) {
-        this.jobType = jobType;
     }
 
     @Basic
@@ -155,7 +144,6 @@ public class Vacancy {
 
         if (id != vacancy.id) return false;
         if (essentialSkills != vacancy.essentialSkills) return false;
-        if (jobType != vacancy.jobType) return false;
         if (isActive != vacancy.isActive) return false;
         if (title != null ? !title.equals(vacancy.title) : vacancy.title != null) return false;
         if (description != null ? !description.equals(vacancy.description) : vacancy.description != null) return false;
@@ -177,7 +165,6 @@ public class Vacancy {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (preferableSkills != null ? preferableSkills.hashCode() : 0);
-        result = 31 * result + (int) jobType;
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (minSalary != null ? minSalary.hashCode() : 0);

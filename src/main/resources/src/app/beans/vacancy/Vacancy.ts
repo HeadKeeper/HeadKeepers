@@ -12,19 +12,19 @@ export class Vacancy {
     private _maxSalary: number;
     private _additionalInfoAboutSalary: string;
 
-    public getTitle(): string {
+    get title(): string {
         return this._title;
     }
 
-    public setTitle(value: string) {
+    set title(value: string) {
         this._title = value;
     }
 
-    public getDescription(): string {
+    get description(): string {
         return this._description;
     }
 
-    public setDescription(value: string) {
+    set description(value: string) {
         this._description = value;
     }
 
@@ -44,51 +44,51 @@ export class Vacancy {
         this._preferableSkills.concat(value);
     }
 
-    public getJobType(): number {
+    get jobType(): number {
         return this._jobType;
     }
 
-    public setJobType(value: number) {
+    set jobType(value: number) {
         this._jobType = value;
     }
 
-    public getPhoneNumber(): string {
+    get phoneNumber(): string {
         return this._phoneNumber;
     }
 
-    public setPhoneNumber(value: string) {
+    set phoneNumber(value: string) {
         this._phoneNumber = value;
     }
 
-    public getEmail(): string {
+    get email(): string {
         return this._email;
     }
 
-    public setEmail(value: string) {
+    set email(value: string) {
         this._email = value;
     }
 
-    public getMinSalary(): number {
+    get minSalary(): number {
         return this._minSalary;
     }
 
-    public setMinSalary(value: number) {
+    set minSalary(value: number) {
         this._minSalary = value;
     }
 
-    public getMaxSalary(): number {
+    get maxSalary(): number {
         return this._maxSalary;
     }
 
-    public setMaxSalary(value: number) {
+    set maxSalary(value: number) {
         this._maxSalary = value;
     }
 
-    public getAdditionalInfoAboutSalary(): string {
+    get additionalInfoAboutSalary(): string {
         return this._additionalInfoAboutSalary;
     }
 
-    public setAdditionalInfoAboutSalary(value: string) {
+    set additionalInfoAboutSalary(value: string) {
         this._additionalInfoAboutSalary = value;
     }
 }

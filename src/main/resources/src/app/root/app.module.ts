@@ -13,6 +13,7 @@ import { ApplicationComponent } from "./app.component";
 import { PathNotFoundComponent } from "../components/errors/not-found/not-found.component";
 
 import { rootRouting } from "./app.routing";
+import { UserService } from "../services/UserService";
 
 @NgModule({
     imports: [
@@ -31,6 +32,9 @@ import { rootRouting } from "./app.routing";
         NavigationComponent,        
         ApplicationComponent,
         PathNotFoundComponent
+    ],
+    providers: [
+        UserService
     ],
     bootstrap: [ 
         ApplicationComponent 

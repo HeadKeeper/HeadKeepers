@@ -2,19 +2,19 @@ export class Skill {
     private _name: string;
     private _value: number;
 
-    public getName(): string {
+    get name(): string {
         return this._name;
     }
 
-    public setName(value: string) {
+    set name(value: string) {
         this._name = value;
     }
 
-    public getValue(): number {
+    get value(): number {
         return this._value;
     }
 
-    public setValue(value: number) {
+    set value(value: number) {
         this._value = value;
     }
 }

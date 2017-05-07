@@ -5,43 +5,74 @@ export class Account {
     private _nickname: string;
     private _creationDate: Date;
 
-    public getId(): number {
+    public static serialaize(account: Account): Object {
+        return {
+            id : account._id,
+            email : account._email,
+            password : account._password,
+            nickname : account._nickname,
+            creationDate : account._creationDate
+        };
+    }
+
+    public static serialaizeForLogin(account: Account): Object {
+        return {
+            email : account._email,
+            password : account._password
+        };
+    }
+
+    public static deserialize(obj: any): Account {
+        var account = new Account();
+
+        account.id = obj.id;
+        account.email = obj.email;
+        account.password = obj.password;
+        account.nickname = obj.nickname;
+        account.creationDate = obj.creationDate;
+
+        return account;
+    }
+
+    get id(): number {
         return this._id;
     }
 
-    public setId(value: number) {
+    set id(value: number) {
         this._id = value;
     }
 
-    public getEmail(): string {
+    get email(): string {
         return this._email;
     }
 
-    public setEmail(value: string) {
+    set email(value: string) {
         this._email = value;
     }
 
-    public getPassword(): string {
+    get password(): string {
         return this._password;
     }
 
-    public setPassword(value: string) {
+    set password(value: string) {
         this._password = value;
     }
 
-    public getNickname(): string {
+    get nickname(): string {
         return this._nickname;
     }
 
-    public setNickname(value: string) {
+    set nickname(value: string) {
         this._nickname = value;
     }
 
-    public getCreationDate(): Date {
+    get creationDate(): Date {
         return this._creationDate;
     }
 
-    public setCreationDate(value: Date) {
+    set creationDate(value: Date) {
         this._creationDate = value;
     }
+
+    
 }
