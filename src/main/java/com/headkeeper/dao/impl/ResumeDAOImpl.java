@@ -285,22 +285,6 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
-    public List<ResumeWorkExperience> getResumeWorkExperience(int id) throws DAOException {
-        try {
-            Session session = sessionFactory.getCurrentSession();
-            List<ResumeWorkExperience> workExperiences = session.createQuery(
-                    "from ResumeWorkExperience where ResumeWorkExperience.userResumeByUserResumeId.id = " + id
-            ).list();
-            return workExperiences;
-        }
-        catch (SessionException exception) {
-            throw new DAOException("Can't get current session.");
-        }
-        catch (HibernateException exception) {
-            throw new DAOException("Can't find user with id = " + id);
-        }
-    }
-
     @Override
     public List<UserResume> getResumeForUser(int userId) throws DAOException {
         try {
@@ -342,6 +326,7 @@ public class ResumeDAOImpl implements ResumeDAO {
             UserResume resume = session.load(UserResume.class, resumeId);
             EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             resume.setIsActive(status);
+            session.update(resume);
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session.");
@@ -355,7 +340,7 @@ public class ResumeDAOImpl implements ResumeDAO {
         try {
             Session session = sessionFactory.getCurrentSession();
             UserResume oldResume = session.load(UserResume.class, resumeId);
-            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);;
+            EntityPreprocessor.checkEntityOnExist(USER_RESUME_ENTITY_NAME, resumeId, session);
             DataExchanger.replaceResumeData(oldResume, resume);
             session.merge(oldResume);
         }
@@ -532,7 +517,7 @@ public class ResumeDAOImpl implements ResumeDAO {
             throw new DAOException("Can't get current session.");
         }
         catch (HibernateException exception) {
-            throw new DAOException("Can't find additioncal education with id = " + additionalEducationId);
+            throw new DAOException("Can't find additional education with id = " + additionalEducationId);
         }
     }
 

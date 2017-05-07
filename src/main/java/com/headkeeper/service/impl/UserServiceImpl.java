@@ -93,10 +93,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public User getUserByEmail(String userEmail) throws ServiceException {
+    public UserView getUserByEmail(String userEmail) throws ServiceException {
         try {
-            return userDAO.getUserByEmail(userEmail);
+            return Exchanger.exchangeEntityToView(userDAO.getUserByEmail(userEmail));
         }
         catch (DAOException exception) {
             throw new ServiceException(exception);
