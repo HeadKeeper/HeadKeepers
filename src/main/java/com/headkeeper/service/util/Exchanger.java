@@ -9,29 +9,39 @@ import java.util.List;
 public class Exchanger {
 
     public static UserView exchangeEntityToView(User userEntity) {
-        UserView userView = new UserView();
+        try {
+            UserView userView = new UserView();
 
-        userView.setId(userEntity.getId());
-        userView.setEmail(userEntity.getEmail());
-        userView.setPassword(userEntity.getPassword());
-        userView.setNickname(userEntity.getNickname());
-        userView.setCreationDate(userEntity.getCreationDate());
-        userView.setActive(userEntity.getIsActive());
+            userView.setId(userEntity.getId());
+            userView.setEmail(userEntity.getEmail());
+            userView.setPassword(userEntity.getPassword());
+            userView.setNickname(userEntity.getNickname());
+            userView.setCreationDate(userEntity.getCreationDate());
+            userView.setActive(userEntity.getIsActive());
 
-        return userView;
+            return userView;
+        }
+        catch (Exception exception) {
+            return new UserView();
+        }
     }
 
     public static User exchangeViewToEntity(UserView userView) {
-        User userEntity = new User();
+        try {
+            User userEntity = new User();
 
-        userEntity.setId(userView.getId());
-        userEntity.setEmail(userView.getEmail());
-        userEntity.setPassword(userView.getPassword());
-        userEntity.setNickname(userView.getNickname());
-        userEntity.setCreationDate(userView.getCreationDate());
-        userEntity.setIsActive(userView.isActive());
+            userEntity.setId(userView.getId());
+            userEntity.setEmail(userView.getEmail());
+            userEntity.setPassword(userView.getPassword());
+            userEntity.setNickname(userView.getNickname());
+            userEntity.setCreationDate(userView.getCreationDate());
+            userEntity.setIsActive(userView.isActive());
 
-        return userEntity;
+            return userEntity;
+        }
+        catch (Exception exception) {
+            return new User();
+        }
     }
 
     public static Vacancy exchangeViewToEntity(VacancyView vacancyView) {
