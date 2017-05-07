@@ -31,5 +31,5 @@ public interface UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    TokenView login(UserLoginView userLogin) throws AuthenticationException;
+    TokenView login(@RequestBody UserLoginView userLogin) throws AuthenticationException;
 }

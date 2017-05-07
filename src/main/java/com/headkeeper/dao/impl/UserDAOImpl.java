@@ -12,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -185,8 +186,13 @@ public class UserDAOImpl implements UserDAO {
     public User getUserByEmail(String email) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            User user = (User) session.createQuery("from User where User.email = " + email).getSingleResult();
-            return user;
+            Query query = session.createQuery("from User where email = :inputEmail");
+            query.setParameter("inputEmail", email);
+            User user = (User) query.getSingleResult();
+            if (user.getIsActive()) {
+                return user;
+            }
+            return null;
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session");

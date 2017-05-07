@@ -67,7 +67,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public TokenView login(UserLoginView userLogin) throws AuthenticationException {
+    public TokenView login(@RequestBody UserLoginView userLogin) throws AuthenticationException {
         String token;
         String generatedPassword = userLogin.getPassword();
         try {

@@ -6,9 +6,9 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Collection;
 
 public class SecurityUser extends User {
-    private long id;
+    private int id;
 
-    public SecurityUser(String username, String password, long id,boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public SecurityUser(String username, String password, int id, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.id = id;
     }
@@ -17,7 +17,7 @@ public class SecurityUser extends User {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }
