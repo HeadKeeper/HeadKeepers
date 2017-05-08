@@ -50,6 +50,18 @@ public class Exchanger {
         return userEntity;
     }
 
+    public static CompanyInfo exchangeViewToEntity(CompanyInfoView companyInfoView) {
+        CompanyInfo companyInfo = new CompanyInfo();
+
+        companyInfo.setName(companyInfoView.getName());
+        companyInfo.setAddress(companyInfoView.getAddress());
+        companyInfo.setDescription(companyInfoView.getDescription());
+        companyInfo.setUser(exchangeViewToEntity(companyInfoView.getUser()));
+        companyInfo.setId(companyInfoView.getId());
+
+        return companyInfo;
+    }
+
     public static Vacancy exchangeViewToEntity(VacancyView vacancyView) {
         Vacancy vacancyEntity = new Vacancy();
 

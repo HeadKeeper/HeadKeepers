@@ -5,7 +5,7 @@ export class Account {
     private _nickname: string;
     private _creationDate: Date;
 
-    public static serialaize(account: Account): Object {
+    public static serialize(account: Account): Object {
         return {
             id : account._id,
             email : account._email,
@@ -15,7 +15,7 @@ export class Account {
         };
     }
 
-    public static serialaizeForLogin(account: Account): Object {
+    public static serializeForLogin(account: Account): Object {
         return {
             email : account._email,
             password : account._password

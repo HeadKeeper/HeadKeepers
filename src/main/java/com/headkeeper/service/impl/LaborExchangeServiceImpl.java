@@ -328,7 +328,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             List<ResumeAchievementView> views = new ArrayList<ResumeAchievementView>();
 
             for (ResumeAchievement achievementEntity : entities) {
-                ResumeAchievementView achievementView = Exchanger.exchangeViewToEntity(achievementEntity);
+                ResumeAchievementView achievementView = Exchanger.exchangeEntityToView(achievementEntity);
                 views.add(achievementView);
             }
 
@@ -376,7 +376,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             List<ResumeEducationView> views = new ArrayList<ResumeEducationView>();
 
             for (ResumeEducation educationEntity : entities) {
-                ResumeEducationView educationView = Exchanger.exchangeViewToEntity(educationEntity);
+                ResumeEducationView educationView = Exchanger.exchangeEntityToView(educationEntity);
                 views.add(educationView);
             }
 
@@ -424,7 +424,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             List<ResumeAdditionalEducationView> views = new ArrayList<ResumeAdditionalEducationView>();
 
             for (ResumeAdditionalEducation educationEntity : entities) {
-                ResumeAdditionalEducationView educationView = Exchanger.exchangeViewToEntity(educationEntity);
+                ResumeAdditionalEducationView educationView = Exchanger.exchangeEntityToView(educationEntity);
                 views.add(educationView);
             }
 
@@ -472,7 +472,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             List<ResumeContactInfoView> views = new ArrayList<ResumeContactInfoView>();
 
             for (ResumeContactInfo contactInfoEntity : entities) {
-                ResumeContactInfoView contactInfoView = Exchanger.exchangeViewToEntity(contactInfoEntity);
+                ResumeContactInfoView contactInfoView = Exchanger.exchangeEntityToView(contactInfoEntity);
                 views.add(contactInfoView);
             }
 
@@ -520,7 +520,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             List<ResumeLanguageView> views = new ArrayList<ResumeLanguageView>();
 
             for (ResumeLanguage resumeLanguageEntity : entities) {
-                ResumeLanguageView languageView = Exchanger.exchangeViewToEntity(resumeLanguageEntity);
+                ResumeLanguageView languageView = Exchanger.exchangeEntityToView(resumeLanguageEntity);
                 views.add(languageView);
             }
 
@@ -559,7 +559,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             List<ResumePhotoView> views = new ArrayList<ResumePhotoView>();
 
             for (ResumePhoto photoEntity : entities) {
-                ResumePhotoView photoView = Exchanger.exchangeViewToEntity(photoEntity);
+                ResumePhotoView photoView = Exchanger.exchangeEntityToView(photoEntity);
                 views.add(photoView);
             }
 
@@ -607,7 +607,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             List<ResumeWorkExperienceView> views = new ArrayList<ResumeWorkExperienceView>();
 
             for (ResumeWorkExperience workExperienceEntity : entities) {
-                ResumeWorkExperienceView workExperienceView = Exchanger.exchangeViewToEntity(workExperienceEntity);
+                ResumeWorkExperienceView workExperienceView = Exchanger.exchangeEntityToView(workExperienceEntity);
                 views.add(workExperienceView);
             }
 

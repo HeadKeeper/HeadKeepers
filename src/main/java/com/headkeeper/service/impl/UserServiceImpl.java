@@ -1,6 +1,7 @@
 package com.headkeeper.service.impl;
 
 import com.headkeeper.bean.entity.User;
+import com.headkeeper.bean.view.CompanyInfoView;
 import com.headkeeper.bean.view.UserView;
 import com.headkeeper.dao.UserDAO;
 import com.headkeeper.dao.exception.DAOException;
@@ -25,6 +26,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserServiceImpl(UserDAO userDAO) {
         this.userDAO = userDAO;
+    }
+
+    public void addCompany(CompanyInfoView companyInfo, int userId) throws ServiceException {
+        try {
+            userDAO.addCompanyInfo(Exchanger.exchangeViewToEntity(companyInfo), userId);
+        } catch (DAOException exception) {
+            throw new ServiceException(exception);
+        }
     }
 
     public void removeUser(int id) throws ServiceException {

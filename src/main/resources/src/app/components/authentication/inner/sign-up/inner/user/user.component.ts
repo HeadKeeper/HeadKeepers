@@ -3,6 +3,7 @@ import { UserAccount } from '../../../../../../beans/account/UserAccount';
 import { HTTPService } from '../../../../../../services/HTTPService';
 import { Component } from '@angular/core';
 import 'rxjs/Rx';
+import {Account} from "../../../../../../beans/account/Account";
 
 @Component({
     selector: 'sing-up-user',
@@ -26,7 +27,6 @@ export class SignUpUserComponent {
     public signUp() {
         if (this.account.email != "" && this.account.email.includes("@")) {
             if (this.account.password == this.rePass) {
-                
                 this.sendRequest();
             } else {
                 alert("Password and re: doesn't match");
@@ -37,16 +37,15 @@ export class SignUpUserComponent {
     }
 
     private sendRequest() {
-        this.httpService.sendData("/registration", this.account)
+        this.httpService.sendData("/registration/user", Account.serialize(this.account))
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe((response) => {
-                alert("Response: " + response);
                 this.servResponse = response;
                 this.httpService.setToken(this.servResponse.token);
-                this.router.navigate(['/accounts/login']);
+                this.router.navigate(['/welcome']);
                 return null;
             });
     }

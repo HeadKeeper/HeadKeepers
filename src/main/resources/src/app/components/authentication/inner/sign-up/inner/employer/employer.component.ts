@@ -26,7 +26,6 @@ export class SignUpCompanyComponent {
     public signUp() {
         if (this.account.email != "" && this.account.email.includes("@")) {
             if (this.account.password == this.rePass) {
-                alert(this.account.email)
                 this.sendRequest();
             } else {
                 alert("Password and re: doesn't match");
@@ -37,7 +36,7 @@ export class SignUpCompanyComponent {
     }
 
     private sendRequest() {
-        this.httpService.sendData("/registration", this.account)
+        this.httpService.sendData("/registration/company", EmployerAccount.serialize(this.account))
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;

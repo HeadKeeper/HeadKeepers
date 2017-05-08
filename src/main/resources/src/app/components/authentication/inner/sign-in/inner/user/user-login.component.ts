@@ -37,7 +37,7 @@ export class SignInUserComponent implements OnInit {
     }
 
     private sendData() {
-        this.httpService.sendData("/login", Account.serialaizeForLogin(this.account))
+        this.httpService.sendData("/login", Account.serializeForLogin(this.account))
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;

@@ -59,8 +59,7 @@ public class UserDAOImpl implements UserDAO {
     public void addCompanyInfo(CompanyInfo companyInfo, int ownerId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            User user = session.load(User.class, ownerId);
-            EntityPreprocessor.checkEntityOnExist(USER_ENTITY_NAME, ownerId, session);
+            User user = session.get(User.class, ownerId);
             companyInfo.setUser(user);
             session.save(companyInfo);
         }

@@ -5,6 +5,21 @@ export class EmployerAccount extends Account {
     private _description :string;
     private _address :string;
 
+    public static serialize(account: EmployerAccount): Object {
+        return {
+            user : {
+                id: account.id,
+                email: account.email,
+                password: account.password,
+                nickname: account.nickname,
+                creationDate: account.creationDate
+            },
+            name : account._name,
+            description : account._description,
+            address : account._address
+        };
+    }
+
     get name(): string {
         return this._name;
     }
