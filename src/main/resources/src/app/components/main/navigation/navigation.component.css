@@ -1,7 +1,7 @@
 /*------ Navigation settings -----*/
 .navigation {
     height: 50px;
-    background-color: rgba(40, 96, 144, 0.99);
+    background-color: #0C555C;
     box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.6);
 }
 
@@ -44,8 +44,10 @@
 }
 
 .navigation__inner a:hover, .navigation__inner a:target {
-    color: #ebebeb;
-}
+    transition: all 0.2s ease;
+    color: #e54c26;
+}  
+
 /* -------------------------- */
 
 a.navigation__inner__logo, a:visited.navigation__inner__logo {
@@ -90,7 +92,7 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
         width: 100%;
         margin-top: 50px;
         margin-left: 0px;
-        background-color: rgba(40, 96, 145, 0.95);
+        background-color: #0C555C;
     }
 
     .navigation__inner__menu__buttons li {

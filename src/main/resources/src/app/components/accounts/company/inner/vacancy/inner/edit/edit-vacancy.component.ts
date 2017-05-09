@@ -8,7 +8,7 @@ import { Http } from '@angular/http';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'vacancy-edit',
+    selector: 'company__vacancies__edit',
     templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/edit/edit-vacancy.component.html'
 })
 

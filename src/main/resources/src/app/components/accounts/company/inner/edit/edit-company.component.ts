@@ -6,7 +6,7 @@ import { HTTPService } from '../../../../../services/HTTPService';
 import { UserService } from "../../../../../services/UserService";
 
 @Component({
-    selector: 'edit-company',
+    selector: 'company__edit',
     templateUrl: 'src/app/components/accounts/company/inner/edit/edit-company.component.html'
 })
 

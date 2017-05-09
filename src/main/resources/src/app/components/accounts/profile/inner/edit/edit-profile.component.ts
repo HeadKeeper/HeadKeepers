@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../../../../services/UserService";
 
 @Component({
-    selector: 'edit-profile',
+    selector: 'profile__edit',
     templateUrl: 'src/app/components/accounts/profile/inner/edit/edit-profile.component.html'
 })
 

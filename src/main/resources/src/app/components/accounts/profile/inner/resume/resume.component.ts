@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'resume',
+    selector: 'profile__resumes',
     templateUrl: 'src/app/components/accounts/profile/inner/resume/resume.component.html',
     styleUrls: ['src/app/components/accounts/profile/inner/resume/resume.component.css']
 })

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'vacancies-employer',
+    selector: 'company__vacancies__by-employer',
     templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/employer/vacancy-employer.component.html'
 })
 

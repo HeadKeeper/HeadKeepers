@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 import { UserService } from "../../../../../services/UserService";
 
 @Component({
-    selector: 'profile-information',
+    selector: 'profile__information',
     templateUrl: 'src/app/components/accounts/profile/inner/information/profile-information.component.html'
 })
 

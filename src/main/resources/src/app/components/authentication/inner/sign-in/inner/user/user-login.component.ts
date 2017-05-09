@@ -5,7 +5,7 @@ import { UserService } from "../../../../../../services/UserService";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'user-login',
+    selector: 'login__user',
     templateUrl: 'src/app/components/authentication/inner/sign-in/inner/user/user-login.component.html'
 })
 
@@ -22,6 +22,10 @@ export class SignInUserComponent implements OnInit {
         private userService: UserService,
         private router: Router    
     ) { }
+
+    checkAuth() {
+        alert("Token: " + this.httpService.getToken());    
+    }
 
     public signIn() {
         if (this.account.password == this.rePass) {

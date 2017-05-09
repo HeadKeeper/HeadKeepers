@@ -5,7 +5,7 @@ import { UserService } from "../../../../../../services/UserService";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'company-login',
+    selector: 'login__company',
     templateUrl: 'src/app/components/authentication/inner/sign-in/inner/employer/employer-login.component.html'
 })
 

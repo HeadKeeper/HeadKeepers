@@ -1,4 +1,15 @@
-<h2>Authentication</h2>
-<a routerLink='/accounts/login' routerLinkActive="disabled">Sign in</a>
-<a routerLink='/accounts/registration' routerLinkActive="disabled">Sign up</a>
+<div class="container --no-margin">
+    <div class="container__element col-1-12 --no-grow --no-padding"></div>
+    <div class="container__element --no-margin">
+        <div class="container panel --no-margin --no-height-padding --color-white text-center">
+            <a class="container__element col-1-3 panel__button --no-height-padding" routerLink='../' routerLinkActive="disabled">< Back</a>
+            <div class="container__element col-1-3"></div>
+            <a class="container__element col-1-3 panel__button --no-height-padding" routerLink='/accounts/main' routerLinkActive="disabled">Accounts</a>
+        </div>
+    </div>
+    <div class="container__element col-1-12 --no-grow --no-padding"></div>    
+</div>
+
+<br>
+
 <router-outlet></router-outlet>

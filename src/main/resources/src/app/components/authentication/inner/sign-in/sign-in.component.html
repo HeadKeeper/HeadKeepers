@@ -1,4 +1,12 @@
-<h2>Sign in</h2>
-<a routerLink='/accounts/login/user' routerLinkActive="disabled">User</a>
-<a routerLink='/accounts/login/company' routerLinkActive="disabled">Company</a>
-<router-outlet></router-outlet>
+<div class="authentication__login__user grid">
+    <div class="col-12 text-center"><h2>Sign in as</h2></div>
+
+    <div class="col-offset-1-4"></div>
+    <div class="col-1-2">
+        <a routerLink='./user' routerLinkActive="disabled">User</a>
+        <a routerLink='./company' routerLinkActive="disabled">Company</a>
+    </div>
+    <div class="col-offset-1-4"></div>
+
+    <router-outlet></router-outlet>
+</div>

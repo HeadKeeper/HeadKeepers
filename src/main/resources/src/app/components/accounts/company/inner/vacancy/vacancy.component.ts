@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'vacancy',
+    selector: 'company__vacancies',
     templateUrl: 'src/app/components/accounts/company/inner/vacancy/vacancy.component.html',
     styleUrls: ['src/app/components/accounts/company/inner/vacancy/vacancy.component.css']
 })

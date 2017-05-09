@@ -3,7 +3,8 @@
 body {
     margin: 0;
     font: normal 18px/22px "Varela Round", sans-serif;
-    color: #2e2e2e;
+    background-color: #CCDFCC;
+    color: #2C3E50;
 }
 
 h1, h2 {
@@ -29,5 +30,6 @@ p {
 }
 
 a:link, a:visited, a:hover, a:active {
+    color: #0C555C;
     text-decoration: none;
 }
