@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'login__company',
-    templateUrl: 'src/app/components/authentication/inner/sign-in/inner/employer/employer-login.component.html'
+    templateUrl: 'src/app/components/authentication/inner/sign-in/inner/employer/employer-login.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class SignInCompanyComponent implements OnInit {

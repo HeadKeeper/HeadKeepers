@@ -1,11 +1,15 @@
 .panel {
     background-color: #16A085;
-    border-radius: 3px;
+    border-radius: 7px;
     text-transform: capitalize;
+    margin: 5px;
     margin-bottom: 20px;
     padding: 10px;
-
     font-size: 16px;
+}
+
+.panel:first-of-type {
+    margin-left: auto;
 }
 
 .--color-white {
@@ -13,14 +17,8 @@
 }
 
 .panel img {
-    width:  100%;
-    height: auto;
-} 
-
-.inner-panel {
-    width: 100%;
-    
-    padding: 10px;
+    max-height: 192px;
+    max-width: 192px;
 }
 
 .panel__button {
@@ -31,7 +29,16 @@
     margin: 5px;
     padding: 5px;
 
-    max-width: 100px;
+    max-width: 80px;
+}
+
+.--big-font {
+    font-size: 25px;
+}
+
+.--square {
+    max-width: 250px;
+    max-height: 250px;
 }
 
 .panel_button:hover + div {

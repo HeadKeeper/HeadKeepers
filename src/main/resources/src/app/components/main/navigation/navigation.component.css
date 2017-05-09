@@ -61,7 +61,7 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
     margin-left: 10px;
 }
 
-.navigation__inner__menu--show, .navigation__inner__menu--hide {
+.--show, .--hide {
     display: none;
     padding-left: 15px;
     background: transparent no-repeat center left;
@@ -74,7 +74,7 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
 /* -------------------------- */
 
 /* ------ Mobile devices ---- */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 640px) {
     .navigation__inner {
         position: relative;
         width: 100%;
@@ -100,31 +100,31 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
         text-align: center;
     }
 
-    .navigation__inner__menu--show, .navigation__inner__menu--hide {
+    .--show, .--hide {
         position: absolute;
         top: 0;
         right: 15px;
     }
 
-    .navigation__inner__menu--show {
+    .--show {
         display: inline-block;
     }
 
-    .navigation__inner__menu--hide {
+    .--hide {
         display: none;
     }
 
-    #menu:target .navigation__inner__menu--show {
+    #menu:target .--show {
         display: none;
     }
 
-    #menu:target .navigation__inner__menu--hide, #menu:target .navigation__inner__menu__buttons {
+    #menu:target .--hide, #menu:target .navigation__inner__menu__buttons {
         display: inline-block;
     }
 }
 
 @media only screen and (max-width: 220px) {
-    .navigation__inner__logo, .navigation__inner__menu--show, .navigation__inner__menu--hide {
+    .navigation__inner__logo {
         font-size: 14px;
     }
 }

@@ -8,7 +8,12 @@ import {Account} from "../../../../../../beans/account/Account";
 @Component({
     selector: 'sing-up-user',
     templateUrl: 'src/app/components/authentication/inner/sign-up/inner/user/user.component.html',
-    styleUrls: ['src/app/components/authentication/inner/sign-up/inner/user/user.component.css']
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/panel.css',
+        'src/app/assets/form.css',
+        'src/app/components/authentication/inner/sign-up/inner/user/user.component.css'
+    ]
 })
 
 export class SignUpUserComponent {
