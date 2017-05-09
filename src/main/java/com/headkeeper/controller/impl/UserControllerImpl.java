@@ -1,19 +1,19 @@
 package com.headkeeper.controller.impl;
 
-import com.headkeeper.bean.entity.User;
 import com.headkeeper.bean.view.CompanyInfoView;
 import com.headkeeper.bean.view.TokenView;
 import com.headkeeper.bean.view.UserLoginView;
 import com.headkeeper.bean.view.UserView;
 import com.headkeeper.controller.UserController;
+import com.headkeeper.controller.util.Validator;
 import com.headkeeper.exception.ResourceNotFoundException;
+import com.headkeeper.exception.ValidationException;
 import com.headkeeper.security.service.GetTokenService;
 import com.headkeeper.security.service.exception.AuthenticationException;
 import com.headkeeper.service.UserService;
 import com.headkeeper.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -51,6 +51,10 @@ public class UserControllerImpl implements UserController {
     public TokenView addNewCompany(@RequestBody CompanyInfoView companyInfo) throws AuthenticationException {
         String token;
         String generatedPassword = companyInfo.getUser().getPassword();
+        if (!Validator.validateEmail(companyInfo.getUser().getEmail())) {
+            throw new ValidationException("Invalid email!");
+        }
+
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update("salad".getBytes("UTF-8"));
@@ -69,12 +73,9 @@ public class UserControllerImpl implements UserController {
             throw new ResourceNotFoundException(e);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
-        } finally {
-
-            token = getTokenService.getToken(companyInfo.getUser().getEmail(), generatedPassword);
-            return new TokenView(token);
         }
-
+        token = getTokenService.getToken(companyInfo.getUser().getEmail(), generatedPassword);
+        return new TokenView(token);
     }
 
     public String getProfile() {
@@ -97,7 +98,6 @@ public class UserControllerImpl implements UserController {
         }
     }
 
-    @Override
     public TokenView login(@RequestBody UserLoginView userLogin) throws AuthenticationException {
         String token;
         String generatedPassword = userLogin.getPassword();
@@ -119,6 +119,9 @@ public class UserControllerImpl implements UserController {
 
     public TokenView addNewUser(@RequestBody UserView user) throws AuthenticationException {
         String token;
+        if (!Validator.validateUser(user)) {
+            throw new AuthenticationException("Invalid user info!");
+        }
         String generatedPassword = user.getPassword();
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

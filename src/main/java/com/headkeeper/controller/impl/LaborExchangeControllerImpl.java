@@ -1,12 +1,12 @@
 package com.headkeeper.controller.impl;
 
 
-import com.headkeeper.bean.entity.UserResume;
 import com.headkeeper.bean.view.UserResumeView;
+import com.headkeeper.bean.view.VacancyView;
 import com.headkeeper.controller.LaborExchangeController;
-import com.headkeeper.dao.ResumeDAO;
-import com.headkeeper.dao.VacancyDAO;
+import com.headkeeper.controller.util.Validator;
 import com.headkeeper.exception.ResourceNotFoundException;
+import com.headkeeper.exception.ValidationException;
 import com.headkeeper.service.LaborExchangeService;
 import com.headkeeper.service.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
     }
 
     public UserResumeView getResumeById(@PathVariable int id) {
-        UserResumeView resume = null;
+        UserResumeView resume;
         try {
             resume = service.getResume(id);
         } catch (ServiceException e) {
@@ -40,11 +40,28 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
         return null;
     }
 
-    public String getResumePage() {
-        return "resume";
+    public void addNewResume(@RequestBody UserResumeView resume) {
+        try {
+            if (!Validator.validateResume(resume)) {
+                throw new ValidationException("Invalid resume");
+            }
+            service.createResume(resume);
+        } catch (ServiceException exception) {
+
+        }
     }
 
-    public void addNewResume(@RequestBody UserResumeView resume) {
+    public void addNewVacancy(@RequestBody VacancyView vacancy) {
+        try {
+            if (!Validator.validatePhoneNumber(vacancy.getPhoneNumber())) {
+                throw new ValidationException("Phone number is not valid!");
+            }
+            if (!Validator.validateVacancy(vacancy)) {
+                throw new ValidationException("Invalid vacancy!");
+            }
+            service.createVacancy(vacancy);
+        } catch (ServiceException exception) {
 
+        }
     }
 }
