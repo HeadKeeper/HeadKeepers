@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
+import {Resume} from "../../../../../../../beans/resume/Resume";
+import {HTTPService} from "../../../../../../../services/HTTPService";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'profile__resumes__edit',
@@ -8,4 +11,12 @@ import 'rxjs/Rx';
 })
 
 export class ResumeEditComponent {
+
+    private resume = new Resume();
+
+    constructor(
+        private httpService: HTTPService,
+        private router: Router
+    ) { }
+
 }

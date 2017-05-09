@@ -43,7 +43,7 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
     public void addNewResume(@RequestBody UserResumeView resume) {
         try {
             if (!Validator.validateResume(resume)) {
-                throw new ValidationException("Invalid resume");
+                throw new ValidationException("Invalid resume data!");
             }
             service.createResume(resume);
         } catch (ServiceException exception) {
@@ -57,9 +57,47 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
                 throw new ValidationException("Phone number is not valid!");
             }
             if (!Validator.validateVacancy(vacancy)) {
-                throw new ValidationException("Invalid vacancy!");
+                throw new ValidationException("Invalid vacancy data!");
             }
             service.createVacancy(vacancy);
+        } catch (ServiceException exception) {
+
+        }
+    }
+
+    public void editResume(@RequestBody UserResumeView resume) {
+        try {
+            if (!Validator.validateResume(resume)) {
+                throw new ValidationException("Invalid resume data!");
+            }
+            service.updateResume(resume.getId(), resume);
+        } catch (ServiceException exception) {
+
+        }
+    }
+
+    public void editVacancy(@RequestBody VacancyView vacancy) {
+        try {
+            if (!Validator.validateVacancy(vacancy)) {
+                throw new ValidationException("Invalid vacancy data!");
+            }
+            service.updateVacancy(vacancy.getId(), vacancy);
+        } catch (ServiceException exception) {
+
+        }
+    }
+
+    public void deleteResume(@PathVariable int id) {
+        try {
+            service.deleteResume(id);
+        } catch (ServiceException exception) {
+
+        }
+    }
+
+    public void deleteVacancy(@PathVariable int id) {
+        try {
+            service.deleteVacancy(id);
         } catch (ServiceException exception) {
 
         }

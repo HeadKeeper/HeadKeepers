@@ -1,6 +1,7 @@
 import { Skill } from "../skill/Skill";
 
 export class Vacancy {
+
     private _title: string;
     private _description: string;
     private _essentialSkills: Array<Skill>;
@@ -11,6 +12,32 @@ export class Vacancy {
     private _minSalary: number;
     private _maxSalary: number;
     private _additionalInfoAboutSalary: string;
+    private _userId : number;
+
+    public static serialize(vacancy : Vacancy) {
+        return {
+            title : vacancy._title,
+            description : vacancy._description,
+            jobType : vacancy._jobType,
+            phoneNumber : vacancy._phoneNumber,
+            email : vacancy._email,
+            minSalary : vacancy._minSalary,
+            maxSalary : vacancy._maxSalary,
+            additionalInfoAboutSalary : vacancy._additionalInfoAboutSalary,
+            user : {
+                // we sent only user id, because it's need for parsing
+                id : vacancy._userId
+            }
+        }
+    }
+
+    get userId(): number {
+        return this._userId;
+    }
+
+    set userId(value: number) {
+        this._userId = value;
+    }
 
     get title(): string {
         return this._title;
