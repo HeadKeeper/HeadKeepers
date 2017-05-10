@@ -13,7 +13,11 @@ import { ApplicationComponent } from "./app.component";
 import { PathNotFoundComponent } from "../components/errors/not-found/not-found.component";
 
 import { rootRouting } from "./app.routing";
+
 import { UserService } from "../services/UserService";
+import { HTTPService } from '../services/HTTPService';
+import { TokenService } from '../services/TokenService';
+import { CookiesService } from '../services/CookiesService';
 
 @NgModule({
     imports: [
@@ -34,7 +38,10 @@ import { UserService } from "../services/UserService";
         PathNotFoundComponent
     ],
     providers: [
-        UserService
+        UserService,
+        HTTPService,
+        TokenService,
+        CookiesService
     ],
     bootstrap: [ 
         ApplicationComponent 

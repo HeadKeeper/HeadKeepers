@@ -1,29 +1,72 @@
+import { Injectable } from '@angular/core';
+
+import { HTTPService } from "./HTTPService";
+
+@Injectable()
 export class UserService {
-    private _id: number;
-    private _type: number;
 
-    public getId(): number {
-        return this._id;
+    constructor(
+        private httpService: HTTPService
+    ) { }
+
+    public getUserNick(): string {
+        var token = this.httpService.getToken();
+        if(token != "") {
+            return this.decodeToken(token)["NICKNAME"];
+        }
+
+        return "";
     }
 
-    public setId(value: number) {
-        this._id = value;
+    public getUserId(): number {
+        var token = this.httpService.getToken();
+        if(token != "") {
+            return this.decodeToken(token)["USER_ID"];
+        }
+
+        return 0;
     }
 
-    public setUser() {
-        this._type = 1;
-    }
-
-    public setCompany() {
-        this._type = 2;
-    }
-
-    public isCompany(): boolean {
-        return this._type == 2;
+    public isAdmin(): boolean {
+        var token = this.httpService.getToken();
+        if(token != "") {
+            return this.decodeToken(token)["IS_ADMIN"];
+        }
+        return false;
     }
 
     public isUser(): boolean {
-        return this._type == 1;
+        var token = this.httpService.getToken();
+        if(token != "") {
+            return this.decodeToken(token)["IS_USER"];
+        }
+        return false;
+    }
+
+    public isCompany(): boolean {
+        var token = this.httpService.getToken();
+        if(token != "") {
+            return this.decodeToken(token)["IS_COMPANY"];
+        }
+        return false;
+    }
+
+    public isAuth(): boolean {
+        var token = this.httpService.getToken();
+        if(token === "")
+            return false;
+        else
+            return true;
+    }
+
+    private decodeToken(token: String): any {
+        if (typeof token != "undefined") {
+            var encodeString = token.split(".")[1];
+            var decodeObject = JSON.parse(atob(encodeString));
+            return decodeObject;
+        } else {
+            return "";
+        }
     }
 
 }

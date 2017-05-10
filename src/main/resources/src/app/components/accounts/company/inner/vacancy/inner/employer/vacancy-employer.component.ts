@@ -7,7 +7,12 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'company__vacancies__by-employer',
-    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/employer/vacancy-employer.component.html'
+    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/employer/vacancy-employer.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class VacanciesEmployerComponent implements OnInit {
@@ -25,8 +30,8 @@ export class VacanciesEmployerComponent implements OnInit {
     }
 
     private loadVacancies() {
-        if (this.userService.getId() != null && this.userService.isCompany()) {
-            this.httpService.getData("/companies/" + this.userService.getId() + "/vacancies")
+        if (this.userService.getUserId() != null && this.userService.isCompany()) {
+            this.httpService.getData("/companies/" + this.userService.getUserId() + "/vacancies")
                 .catch((error) => {
                     alert("Something went wrong");
                     return null;

@@ -26,8 +26,8 @@ export class ResumesUserComponent {
     }
 
     private loadResumes() {
-        if (this.userService.getId() != null && this.userService.isCompany()) {
-            this.httpService.getData("/companies/" + this.userService.getId() + "/vacancies")
+        if (this.userService.getUserId() != null && this.userService.isCompany()) {
+            this.httpService.getData("/companies/" + this.userService.getUserId() + "/vacancies")
                 .catch((error) => {
                     alert("Something went wrong");
                     return null;

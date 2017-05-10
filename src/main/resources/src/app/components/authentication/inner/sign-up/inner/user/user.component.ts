@@ -11,8 +11,7 @@ import {Account} from "../../../../../../beans/account/Account";
     styleUrls: [
         'src/app/assets/grid.css',
         'src/app/assets/panel.css',
-        'src/app/assets/form.css',
-        'src/app/components/authentication/inner/sign-up/inner/user/user.component.css'
+        'src/app/assets/form.css'
     ]
 })
 

@@ -1,8 +1,9 @@
-import { ModuleWithProviders } from '@angular/core/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'
 
 import { CompanyComponent } from "./company.component";
 import { CompanyInfoComponent } from "./inner/information/company-information.component";
+import { CompanyEditComponent } from "./inner/edit/edit-company.component";
 
 import { vacancyRoutes } from "./inner/vacancy/vacancy.routing";
 
@@ -13,7 +14,7 @@ export const companyRoutes : Routes = [
         children: [
             {
                 path: ':companyId/edit',
-                component: CompanyInfoComponent
+                component: CompanyEditComponent
             },
             {
                 path: ':companyId',

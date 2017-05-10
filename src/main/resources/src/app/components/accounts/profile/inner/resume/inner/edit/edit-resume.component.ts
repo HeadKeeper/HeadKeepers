@@ -7,7 +7,12 @@ import {Router} from "@angular/router";
 
 @Component({
     selector: 'profile__resumes__edit',
-    templateUrl: 'src/app/components/accounts/profile/inner/resume/inner/edit/edit-resume.component.html'
+    templateUrl: 'src/app/components/accounts/profile/inner/resume/inner/edit/edit-resume.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class ResumeEditComponent {

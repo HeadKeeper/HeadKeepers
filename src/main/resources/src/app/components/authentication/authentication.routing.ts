@@ -13,6 +13,11 @@ export const authenticationRoutes : Routes = [
         component: AuthenticationComponent,
         children: [
             {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'main'
+            },
+            {
                 path: 'main',
                 component: AuthenticationMainComponent
             },

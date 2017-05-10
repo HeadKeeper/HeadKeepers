@@ -1,14 +1,15 @@
+import { Vacancy } from '../../../../../../../beans/vacancy/Vacancy';
+import { UserService } from '../../../../../../../services/UserService';
 import { Router } from '@angular/router';
-import { HTTPService } from '../../../../../services/HTTPService';
-import { EmployerAccount } from '../../../../../beans/account/EmployerAccount';
+import { HTTPService } from '../../../../../../../services/HTTPService';
+import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
-import { UserService } from "../../../../../services/UserService";
 
 @Component({
-    selector: 'company__information',
-    templateUrl: 'src/app/components/accounts/company/inner/information/company-information.component.html',
+    selector: 'company__vacancies__vacancy__info',
+    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/information/vacancy.information.component.html',
     styleUrls: [
         'src/app/assets/grid.css',
         'src/app/assets/form.css',
@@ -16,8 +17,9 @@ import { UserService } from "../../../../../services/UserService";
     ]
 })
 
-export class CompanyInfoComponent {
-    private account = new EmployerAccount();
+export class VacancyInfoComponent implements OnInit {
+
+    private vacancy = new Vacancy();
 
     constructor(
         private httpService: HTTPService,
@@ -25,7 +27,11 @@ export class CompanyInfoComponent {
         private router: Router    
     ) { }
 
-    private loadAccount() {
+    public ngOnInit() {
+        this.loadVacancy();
+    }
+
+    private loadVacancy() {
         if (this.userService.getUserId() != null) { 
             this.httpService.getData("/company/" + this.userService.getUserId())
                 .catch((error) => {
@@ -33,16 +39,12 @@ export class CompanyInfoComponent {
                     return null;
                 })
                 .subscribe((response) => {
-                    this.account = response;
+                    this.vacancy = response;
                     return null;
                 });
         } else {
             alert("You are not logged in.");
             this.router.navigate(["/accounts/login/company"]);
         }
-    }
-
-    ngOnInit() { 
-        this.loadAccount();
     }
 }

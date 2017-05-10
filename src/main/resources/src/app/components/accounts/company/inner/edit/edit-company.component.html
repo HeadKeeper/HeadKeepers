@@ -1,43 +1,95 @@
-<form class="entity-form" method="post">
-    <div class="entity-form__header">
-        <label>Sign up as company</label>
-    </div>
-    <div class="entity-form__inner">
+<h2>Edit company</h2>
+<div class="container">
+    
+    <div class="container__element col-2-3">
+        <form class="container --column --wrap form" method="post" #form="ngForm">
 
-        <div class="entity-form__inner__field">
-            <label>Email</label>
-            <input type="text" placeholder="Enter email" name="email" required [(ngModel)]="email">
-        </div>
-        <div class="entity-form__inner__field">
-            <label>Nickname</label>
-            <input type="text" placeholder="Enter nickname" name="nickName" required [(ngModel)]="nickname">
-        </div>
-        <div class="entity-form__inner__field">
-            <label>Password</label>
-            <input type="password" placeholder="Enter Password" name="pass" required [(ngModel)]="pass">
-        </div>
-        <div class="entity-form__inner__field">
-            <label>Repeat password</label>
-            <input type="password" placeholder="Repeat Password" name="repPass" required [(ngModel)]="rePass">
-        </div>
-        <div class="entity-form__inner__field">
-            <label>Name</label>
-            <input type="text" placeholder="Enter name" name="name" required [(ngModel)]="name">
-        </div>
-        <div class="entity-form__inner__field">
-            <label>Description</label>
-            <textarea type="text" name="description" required [(ngModel)]="description"></textarea>
-        </div>
-        <div class="entity-form__inner__field">
-            <label>Address</label>
-            <input type="text" placeholder="Enter address" name="address" required [(ngModel)]="address">
-        </div>
+            <div class="form__inner">
 
-        <div class="entity-form__inner__buttons">
-            <button (click)="changeAccount()">Change</button>
-            <a routerLink='/welcome'>
-                <button type="button">Cancel</button>
-            </a>
-        </div>
+                <div class="form__inner__field">
+                    <h4>Email</h4>
+                    <input 
+                        required 
+                        type="text" 
+                        maxlength="90" 
+                        placeholder="Enter email" 
+                        name="email" 
+                        [(ngModel)]="account.email"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Nickname</h4>
+                    <input 
+                        required 
+                        type="text" 
+                        maxlength="45" 
+                        placeholder="Enter nickname" 
+                        name="nickName" 
+                        [(ngModel)]="account.nickname"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Name</h4>
+                    <input 
+                        required 
+                        type="text" 
+                        maxlength="90" 
+                        placeholder="Enter name" 
+                        name="name" 
+                        [(ngModel)]="account.name"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Description</h4>
+                    <textarea 
+                        required
+                        type="text" 
+                        maxlength="45" 
+                        name="description" 
+                        [(ngModel)]="account.description"
+                    >
+                    </textarea>
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Address</h4>
+                    <input 
+                        required 
+                        type="text" 
+                        maxlength="225" 
+                        placeholder="Enter address" 
+                        name="address" 
+                        [(ngModel)]="account.address"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Password</h4>
+                    <input 
+                        required 
+                        type="password" 
+                        maxlength="90" 
+                        placeholder="Enter password to complete edit" 
+                        name="pass" 
+                        [(ngModel)]="rePass"
+                    >
+                </div>
+
+                <div class="form__inner__buttons container">
+                    <div class="container__element col-1-2">
+                        <button [disabled]="!form.valid" (click)="editCompany()"><a>Edit</a></button>
+                    </div>
+                    <div class="container__element col-1-2">
+                        <button>
+                            <a routerLink='../'>Cancel</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+
+</div>

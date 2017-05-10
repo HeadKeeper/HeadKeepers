@@ -51,7 +51,6 @@ export class SignInCompanyComponent implements OnInit {
                 alert("Response: " + response);
                 this.servResponse = response;
                 this.httpService.setToken(this.servResponse.token);
-                this.userService.setId(this.servResponse.id);
                 this.router.navigate(['/welcome']);
                 return null;
             });

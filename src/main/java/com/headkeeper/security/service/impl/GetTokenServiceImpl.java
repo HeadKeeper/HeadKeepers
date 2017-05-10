@@ -7,6 +7,7 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,14 @@ import java.util.Map;
 @Service
 public class GetTokenServiceImpl implements GetTokenService {
 
-    private final static String TOKEN_KEY = "petition";
+    private final static String TOKEN_KEY = "headkeepers";
     private final static String EMAIL = "EMAIL";
     private final static String USER_ID = "USER_ID";
     private final static String EXPIRATION_DATE = "TOKEN_EXPIRATION_DATE";
+    private static final String NICKNAME = "NICKNAME";
+    private static final String IS_ADMIN = "IS_ADMIN";
+    private static final String IS_USER = "IS_USER";
+    private static final String IS_COMPANY = "IS_COMPANY";
 
     private UserDetailsService userDetailsService;
 
@@ -54,6 +59,15 @@ public class GetTokenServiceImpl implements GetTokenService {
         if (password.equals(user.getPassword())) {
             tokenData.put(USER_ID, user.getId());
             tokenData.put(EMAIL, user.getUsername());
+            tokenData.put(NICKNAME, user.getNickname());
+
+            boolean checkAdmin = user.getAuthorities().contains(new SimpleGrantedAuthority("admin"));
+            boolean checkUser = user.getAuthorities().contains(new SimpleGrantedAuthority("user"));
+            boolean checkCompany = user.getAuthorities().contains(new SimpleGrantedAuthority("employer"));
+
+            tokenData.put(IS_ADMIN, checkAdmin);
+            tokenData.put(IS_USER, checkUser);
+            tokenData.put(IS_COMPANY, checkCompany);
 
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.YEAR, 100);

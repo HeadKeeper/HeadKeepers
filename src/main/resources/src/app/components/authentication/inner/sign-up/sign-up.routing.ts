@@ -12,6 +12,11 @@ export const signUpRoutes : Routes = [
         component: SignUpComponent,
         children: [
             {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'main'
+            },
+            {
                 path: 'main',
                 component: SignUpMainComponent
             },

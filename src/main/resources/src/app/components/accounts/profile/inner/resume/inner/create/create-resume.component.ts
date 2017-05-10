@@ -7,7 +7,12 @@ import {Resume} from "../../../../../../../beans/resume/Resume";
 
 @Component({
     selector: 'profile__resumes__create',
-    templateUrl: 'src/app/components/accounts/profile/inner/resume/inner/create/create-resume.component.html'
+    templateUrl: 'src/app/components/accounts/profile/inner/resume/inner/create/create-resume.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class ResumeCreateComponent {

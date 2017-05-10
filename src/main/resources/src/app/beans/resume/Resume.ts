@@ -27,7 +27,7 @@ export class Resume {
     private _birthdayDate : Date;
     private _id : number; // set from token
 
-    public static serialize(resume : Resume) {
+    public static serialize(resume : Resume): Object {
         return {
             firstName : resume._firstName,
             lastName : resume._lastName,
@@ -48,6 +48,7 @@ export class Resume {
     set birthdayDate(value: Date) {
         this._birthdayDate = value;
     }
+    
     get id(): number {
         return this._id;
     }

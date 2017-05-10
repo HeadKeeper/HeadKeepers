@@ -7,7 +7,12 @@ import {Router} from "@angular/router";
 
 @Component({
     selector: 'company__vacancies__create',
-    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/create/create-vacancy.component.html'
+    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/create/create-vacancy.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class VacancyCreateComponent {

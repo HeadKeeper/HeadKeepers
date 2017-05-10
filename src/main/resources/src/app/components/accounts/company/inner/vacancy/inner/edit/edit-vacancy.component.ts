@@ -9,7 +9,12 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'company__vacancies__edit',
-    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/edit/edit-vacancy.component.html'
+    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/edit/edit-vacancy.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class VacancyEditComponent implements OnInit {
@@ -27,8 +32,8 @@ export class VacancyEditComponent implements OnInit {
     }
 
     private loadVacancy() {
-        if (this.userService.getId() != null) { 
-            this.httpService.getData("/company/" + this.userService.getId())
+        if (this.userService.getUserId() != null) { 
+            this.httpService.getData("/company/" + this.userService.getUserId())
                 .catch((error) => {
                     alert("Something went wrong");
                     return null;

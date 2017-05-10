@@ -7,7 +7,12 @@ import { UserService } from "../../../../../services/UserService";
 
 @Component({
     selector: 'company__edit',
-    templateUrl: 'src/app/components/accounts/company/inner/edit/edit-company.component.html'
+    templateUrl: 'src/app/components/accounts/company/inner/edit/edit-company.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class CompanyEditComponent implements OnInit {
@@ -38,7 +43,7 @@ export class CompanyEditComponent implements OnInit {
     }
 
     private sendRequest() {
-        this.httpService.sendData("/company/" + this.userService.getId() + "/edit", this.account)
+        this.httpService.sendData("/company/" + this.userService.getUserId() + "/edit", this.account)
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;
@@ -53,8 +58,8 @@ export class CompanyEditComponent implements OnInit {
     }
 
     private loadAccount() {
-        if (this.userService.getId() != null) { 
-            this.httpService.getData("/company/" + this.userService.getId())
+        if (this.userService.getUserId() != null) { 
+            this.httpService.getData("/company/" + this.userService.getUserId())
                 .catch((error) => {
                     alert("Something went wrong");
                     return null;

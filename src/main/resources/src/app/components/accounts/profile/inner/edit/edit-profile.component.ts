@@ -6,7 +6,12 @@ import { UserService } from "../../../../../services/UserService";
 
 @Component({
     selector: 'profile__edit',
-    templateUrl: 'src/app/components/accounts/profile/inner/edit/edit-profile.component.html'
+    templateUrl: 'src/app/components/accounts/profile/inner/edit/edit-profile.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class ProfileEditComponent implements OnInit {
@@ -37,7 +42,7 @@ export class ProfileEditComponent implements OnInit {
     }
 
     private sendRequest() {
-        this.httpService.sendData("/profile/" + this.userService.getId() + "/edit", this.account)
+        this.httpService.sendData("/profile/" + this.userService.getUserId() + "/edit", this.account)
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;
@@ -52,8 +57,8 @@ export class ProfileEditComponent implements OnInit {
     }
 
     private loadAccount() {
-        if (this.userService.getId() != null) { 
-            this.httpService.getData("/profile/" + this.userService.getId())
+        if (this.userService.getUserId() != null) { 
+            this.httpService.getData("/profile/" + this.userService.getUserId())
                 .catch((error) => {
                     alert("Something went wrong");
                     return null;

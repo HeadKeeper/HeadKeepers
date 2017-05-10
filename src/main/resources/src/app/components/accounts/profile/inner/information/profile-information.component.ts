@@ -8,7 +8,12 @@ import { UserService } from "../../../../../services/UserService";
 
 @Component({
     selector: 'profile__information',
-    templateUrl: 'src/app/components/accounts/profile/inner/information/profile-information.component.html'
+    templateUrl: 'src/app/components/accounts/profile/inner/information/profile-information.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class ProfileInfoComponent implements OnInit {
@@ -22,8 +27,8 @@ export class ProfileInfoComponent implements OnInit {
     ) { }
 
     private loadAccount() {
-        if (this.userService.getId() != null) { 
-            this.httpService.getData("/profile/" + this.userService.getId())
+        if (this.userService.getUserId() != null) { 
+            this.httpService.getData("/profile/" + this.userService.getUserId())
                 .catch((error) => {
                     alert("Something went wrong");
                     return null;

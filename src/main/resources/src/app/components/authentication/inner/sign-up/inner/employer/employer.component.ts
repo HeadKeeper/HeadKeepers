@@ -10,8 +10,7 @@ import 'rxjs/Rx';
     styleUrls: [
         'src/app/assets/grid.css',
         'src/app/assets/panel.css',
-        'src/app/assets/form.css',
-        'src/app/components/authentication/inner/sign-up/inner/employer/employer.component.css'
+        'src/app/assets/form.css'
     ]
 })
 
