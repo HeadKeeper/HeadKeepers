@@ -21,12 +21,6 @@
     <security:http pattern="/registration/user" security="none" />
     <security:http pattern="/registration/company" security="none" />
     <security:http pattern="/login" security="none" />
-    <security:http pattern="/add/resume" security="none" />
-    <security:http pattern="/add/vacancy" security="none" />
-    <security:http pattern="/edit/resume" security="none" />
-    <security:http pattern="/edit/vacancy" security="none" />
-    <security:http pattern="/delete/resume" security="none" />
-    <security:http pattern="/delete/vacancy" security="none" />
 
     <security:http auto-config="false" disable-url-rewriting="true"
                    create-session="stateless" entry-point-ref="restAuthenticationEntryPoint">

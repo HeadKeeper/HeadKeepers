@@ -1,5 +1,6 @@
 package com.headkeeper.dao.impl;
 
+import com.headkeeper.bean.entity.CompanyInfo;
 import com.headkeeper.bean.entity.User;
 import com.headkeeper.bean.entity.Vacancy;
 import com.headkeeper.dao.VacancyDAO;
@@ -123,6 +124,30 @@ public class VacancyDAOImpl implements VacancyDAO {
         }
         catch (HibernateException exception) {
             throw new DAOException("Can't find user with id = " + id);
+        }
+    }
+
+    public List<Vacancy> getVacanciesByTitle(String title) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            List<Vacancy> vacancies = (List<Vacancy>) session.createQuery(
+                    "from Vacancy where Vacancy.title = " + title
+            ).list();
+            return vacancies;
+        } catch (HibernateException exception) {
+            throw new DAOException(exception);
+        }
+    }
+
+    public CompanyInfo getCompanyByCompanyName(String companyName) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            CompanyInfo companyInfo = (CompanyInfo) session.createQuery(
+                    "from CompanyInfo where CompanyInfo.name = " + companyName
+            ).getSingleResult();
+            return companyInfo;
+        } catch (HibernateException exception) {
+            throw new DAOException(exception);
         }
     }
 
