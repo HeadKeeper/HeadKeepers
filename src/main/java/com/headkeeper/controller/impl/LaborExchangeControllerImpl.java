@@ -47,9 +47,8 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
         if (resume == null) {
             throw new ResourceNotFoundException();
         }
-        //TODO: Write
         System.out.println(resume.getId() + " " + resume.getAdditionalInformation());
-        return null;
+        return resume;
     }
 
     public List<VacancyView> getVacancyByTitle(@PathVariable String title) {
@@ -75,7 +74,7 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
             }
             TokenAuthentication tokenAuthentication;
             tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
-            resume.setId((int)tokenAuthentication.getDetails());
+            resume.setUserId((int)tokenAuthentication.getDetails());
             service.createResume(resume);
         } catch (ServiceException exception) {
 
