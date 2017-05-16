@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/Rx';
-import {Resume} from "../../../../../../../beans/resume/Resume";
-import {HTTPService} from "../../../../../../../services/HTTPService";
-import {Router} from "@angular/router";
+import { Http } from '@angular/http';
+import { Router } from "@angular/router";
+import { Component } from '@angular/core';
+
+import { Resume } from "../../../../../../../beans/resume/Resume";
+
+import { HTTPService } from "../../../../../../../services/HTTPService";
+import { UserService } from '../../../../../../../services/UserService';
 
 @Component({
     selector: 'profile__resumes__edit',
@@ -21,20 +24,28 @@ export class ResumeEditComponent {
 
     constructor(
         private httpService: HTTPService,
+        private userService: UserService,
         private router: Router
     ) { }
 
     public editResume() {
-        // add data validation if need (but on server side it was)
-        // TODO: ADD USER ID TO this.resume FROM TOKEN!!!!
-        this.sendRequest();
+        if (this.userService.isUser()) {
+            this.sendRequest();
+        } else {
+            console.log("You don't have enought permissions to perform this action");
+            this.router.navigate(['/welcome']);
+        }
     }
 
     private sendRequest() {
         this.httpService.sendData("/edit/resume", Resume.serialize(this.resume))
             .catch((error) => {
-                alert("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong while editing resume: " + error);
+                this.router.navigate(['../']);
                 return null;
+            })
+            .subscribe(() => {
+                this.router.navigate(['../']);
             });
     }
 }

@@ -21,7 +21,6 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Set;
 
-@Transactional
 @Repository
 public class ResumeDAOImpl implements ResumeDAO {
 

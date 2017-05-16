@@ -1,0 +1,16 @@
+<h2>Resumes by {{userService.getUserNick()}}</h2>
+<div class="container">
+    
+    <div class="container__element col-2-3">
+        <div class="container --column --wrap form" *ngFor="let resume of resumes">
+            <div class="form__inner">
+                <div class="form__inner__field"> 
+                    <a 
+                        [routerLink]="['/profiles',userService.getUserId(),'resumes',resume.id]">{{ resume.name }}
+                    </a>
+                </div>
+            </div>
+        </div>         
+    </div>
+
+</div>

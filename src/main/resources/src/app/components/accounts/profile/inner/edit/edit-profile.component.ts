@@ -42,13 +42,12 @@ export class ProfileEditComponent implements OnInit {
     }
 
     private sendRequest() {
-        this.httpService.sendData("/profile/" + this.userService.getUserId() + "/edit", this.account)
+        this.httpService.sendData("/profile/" + this.userService.getUserId() + "/edit", UserAccount.serialize(this.account))
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe((response) => {
-                alert("Response: " + response);
                 this.servResponse = response;
                 this.httpService.setToken(this.servResponse.token);
                 this.router.navigate(['/welcome']);
@@ -64,7 +63,7 @@ export class ProfileEditComponent implements OnInit {
                     return null;
                 })
                 .subscribe((response) => {
-                    this.account = response;
+                    this.account = UserAccount.deserialize(response);
                     return null;
                 });
         } else {

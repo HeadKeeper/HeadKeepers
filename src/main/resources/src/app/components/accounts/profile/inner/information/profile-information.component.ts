@@ -26,10 +26,6 @@ export class ProfileInfoComponent implements OnInit {
         private router: Router    
     ) { }
 
-    public deleteUser() {
-
-    }
-
     private loadAccount() {
         if (this.userService.getUserId() != null) { 
             this.httpService.getData("/profile/" + this.userService.getUserId())
@@ -38,7 +34,7 @@ export class ProfileInfoComponent implements OnInit {
                     return null;
                 })
                 .subscribe((response) => {
-                    this.account = response;
+                    this.account = UserAccount.deserialize(response);
                     return null;
                 });
         } else {

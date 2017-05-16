@@ -30,20 +30,22 @@ export class ResumeCreateComponent {
     ) { }
 
     public createResume() {
-        // add data validation if need (but on server side it was)
-        // TODO: ADD USER ID TO this.resume FROM TOKEN!!!!
         this.sendRequest();
     }
 
     private sendRequest() {
-        // if (this.userService.isUser()){
+        if (this.userService.isUser()){
             this.httpService.sendData("/add/resume", Resume.serialize(this.resume))
                 .catch((error) => {
-                    alert("Something went wrong. Try again later. Error: " + error);
+                    console.log("Something went wrong while adding resume: " + error);
+                    this.router.navigate(['/..']);                    
                     return null;
+                })
+                .subscribe(() => {
+                    this.router.navigate(['/..']);
                 });
-        // } else {
-        //     alert("You are not logged in");
-        // }
+        } else {
+            console.log("You don't have enought permissions to perform this action");
+        }
     }
 }
