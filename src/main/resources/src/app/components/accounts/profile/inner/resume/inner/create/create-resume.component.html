@@ -14,7 +14,7 @@
                         maxlength="90" 
                         placeholder="Enter first name" 
                         name="firstName" 
-                        [(ngModel)]="account.firstName"
+                        [(ngModel)]="resume.firstName"
                     >
                 </div>
 
@@ -26,7 +26,7 @@
                         maxlength="45" 
                         placeholder="Enter last name" 
                         name="lastName" 
-                        [(ngModel)]="account.lastName"
+                        [(ngModel)]="resume.lastName"
                     >
                 </div>
 
@@ -37,7 +37,7 @@
                         maxlength="90" 
                         placeholder="Enter middle name" 
                         name="middleName" 
-                        [(ngModel)]="account.name"
+                        [(ngModel)]="resume.name"
                     >
                 </div>
 
@@ -49,7 +49,7 @@
                         max="2001-01-02"
                         placeholder="Enter birthday date" 
                         name="birthdayDate" 
-                        [(ngModel)]="account.birthdayDate"
+                        [(ngModel)]="resume.birthdayDate"
                     >
                 </div>
 
@@ -59,42 +59,42 @@
                         required 
                         type="text" 
                         maxlength="45" 
-                        placeholder="Enter last name" 
-                        name="lastName" 
-                        [(ngModel)]="account.lastName"
+                        placeholder="Enter address name" 
+                        name="address" 
+                        [(ngModel)]="resume.address"
                     >
                 </div>
 
                 <div class="form__inner__field">
                     <h4>Martial status</h4>
-                    <select required [(ngModel)]="account.martialStatus">
+                    <select required [(ngModel)]="resume.martialStatus">
                         <option>Single</option>
                         <option>Married</option>
                     </select>
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Description</h4>
+                    <h4>Additional information</h4>
                     <textarea 
                         required
                         type="text" 
-                        maxlength="45" 
+                        maxlength="225" 
                         name="description" 
-                        [(ngModel)]="account.description"
+                        [(ngModel)]="resume.additionalInformation"
                     >
                     </textarea>
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Address</h4>
-                    <input 
-                        required 
+                    <h4>References</h4>
+                    <textarea 
+                        required
                         type="text" 
                         maxlength="225" 
-                        placeholder="Enter address" 
-                        name="address" 
-                        [(ngModel)]="account.address"
+                        name="references" 
+                        [(ngModel)]="resume.references"
                     >
+                    </textarea>
                 </div>
 
                 <div class="form__inner__field">
@@ -111,11 +111,11 @@
 
                 <div class="form__inner__buttons container">
                     <div class="container__element col-1-2">
-                        <button [disabled]="!form.valid" (click)="createReusme()"><a>Create</a></button>
+                        <button [disabled]="!form.valid" (click)="createResume()"><a>Create</a></button>
                     </div>
                     <div class="container__element col-1-2">
                         <button>
-                            <a routerLink='/accounts/registration/main'>Cancel</a>
+                            <a routerLink='../'>Cancel</a>
                         </button>
                     </div>
                 </div>

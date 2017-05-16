@@ -26,6 +26,10 @@ export class ProfileInfoComponent implements OnInit {
         private router: Router    
     ) { }
 
+    public deleteUser() {
+
+    }
+
     private loadAccount() {
         if (this.userService.getUserId() != null) { 
             this.httpService.getData("/profile/" + this.userService.getUserId())

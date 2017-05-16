@@ -10,11 +10,11 @@
            
             <li *ngIf="!userService.isAuth()"><a routerLink="/accounts/main" routerLinkActive="disabled">Account</a></li>
 
-            <li routerLink="/profiles/{{userService.getUserId()}}/information" *ngIf="userService.isAuth() && userService.isUser()">
+            <li routerLink="/profiles/{{userService.getUserId()}}" *ngIf="userService.isAuth() && userService.isUser()">
                 <a>{{userService.getUserNick()}}</a>
             </li> 
             
-            <li routerLink="/companies/{{userService.getUserId()}}/information" *ngIf="userService.isAuth() && userService.isCompany() ">
+            <li routerLink="/companies/{{userService.getUserId()}}" *ngIf="userService.isAuth() && userService.isCompany() ">
                 <a>{{userService.getUserNick()}}</a>
             </li>
             

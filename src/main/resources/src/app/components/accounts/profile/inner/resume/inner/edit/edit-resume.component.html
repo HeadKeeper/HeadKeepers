@@ -7,63 +7,70 @@
             <div class="form__inner">
 
                 <div class="form__inner__field">
-                    <h4>Email</h4>
+                    <h4>First name</h4>
                     <input 
                         required 
                         type="text" 
                         maxlength="90" 
-                        placeholder="Enter email" 
-                        name="email" 
-                        [(ngModel)]="account.email"
+                        placeholder="Enter first name" 
+                        name="firstName" 
+                        [(ngModel)]="resume.firstName"
                     >
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Nickname</h4>
+                    <h4>Last name</h4>
                     <input 
                         required 
                         type="text" 
                         maxlength="45" 
-                        placeholder="Enter nickname" 
-                        name="nickName" 
-                        [(ngModel)]="account.nickname"
+                        placeholder="Enter last name" 
+                        name="lastName" 
+                        [(ngModel)]="resume.lastName"
                     >
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Password</h4>
+                    <h4>Middle name (Not required)</h4>
                     <input 
-                        required 
-                        type="password" 
+                        type="text" 
                         maxlength="90" 
-                        placeholder="Enter Password" 
-                        name="pass" 
-                        [(ngModel)]="account.password"
+                        placeholder="Enter middle name" 
+                        name="middleName" 
+                        [(ngModel)]="resume.name"
                     >
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Repeat password</h4>
+                    <h4>Birthday date</h4>
                     <input 
-                        required 
-                        type="password" 
-                        maxlength="90" 
-                        placeholder="Repeat Password" 
-                        name="repPass" 
-                        [(ngModel)]="rePass"
+                        type="date"
+                        min="1960-01-02"
+                        max="2001-01-02"
+                        placeholder="Enter birthday date" 
+                        name="birthdayDate" 
+                        [(ngModel)]="resume.birthdayDate"
                     >
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Name</h4>
+                    <h4>Address</h4>
                     <input 
                         required 
                         type="text" 
-                        maxlength="90" 
-                        placeholder="Enter name" 
-                        name="name" 
-                        [(ngModel)]="account.name"
+                        maxlength="45" 
+                        placeholder="Enter last name" 
+                        name="lastName" 
+                        [(ngModel)]="resume.lastName"
                     >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Martial status</h4>
+                    <select required [(ngModel)]="resume.martialStatus">
+                        <option>Single</option>
+                        <option>Married</option>
+                    </select>
                 </div>
 
                 <div class="form__inner__field">
@@ -73,7 +80,7 @@
                         type="text" 
                         maxlength="45" 
                         name="description" 
-                        [(ngModel)]="account.description"
+                        [(ngModel)]="resume.description"
                     >
                     </textarea>
                 </div>
@@ -86,17 +93,29 @@
                         maxlength="225" 
                         placeholder="Enter address" 
                         name="address" 
-                        [(ngModel)]="account.address"
+                        [(ngModel)]="resume.address"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Password</h4>
+                    <input 
+                        required 
+                        type="password" 
+                        maxlength="90" 
+                        placeholder="Enter password to continue" 
+                        name="repPass" 
+                        [(ngModel)]="rePass"
                     >
                 </div>
 
                 <div class="form__inner__buttons container">
                     <div class="container__element col-1-2">
-                        <button [disabled]="!form.valid" (click)="signUp()"><a>Sign up</a></button>
+                        <button [disabled]="!form.valid" (click)="editResume()"><a>Edit</a></button>
                     </div>
                     <div class="container__element col-1-2">
                         <button>
-                            <a routerLink='/accounts/registration/main'>Cancel</a>
+                            <a routerLink='../'>Cancel</a>
                         </button>
                     </div>
                 </div>

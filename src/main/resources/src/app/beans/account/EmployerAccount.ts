@@ -20,6 +20,21 @@ export class EmployerAccount extends Account {
         };
     }
 
+    public static deserialize(obj: any): EmployerAccount {
+        var account = new EmployerAccount();
+
+        account.id = obj.id;
+        account.email = obj.email;
+        account.password = obj.password;
+        account.nickname = obj.nickname;
+        account.creationDate = obj.creationDate;
+        account.name = obj.name;
+        account.description = obj.description;
+        account.address = obj.address;
+
+        return account;
+    }
+
     get name(): string {
         return this._name;
     }

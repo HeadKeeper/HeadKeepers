@@ -28,7 +28,7 @@ export class ProfileEditComponent implements OnInit {
         private router: Router    
     ) { }
 
-    public changeProfile() {
+    public changeUser() {
         if (this.account.email != "" && this.account.email.includes("@")) {
             if (this.account.password == this.pass) {
                 

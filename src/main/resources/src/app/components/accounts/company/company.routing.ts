@@ -13,12 +13,12 @@ export const companyRoutes : Routes = [
         component: CompanyComponent,
         children: [
             {
-                path: ':companyId/edit',
-                component: CompanyEditComponent
-            },
-            {
                 path: ':companyId',
                 component: CompanyInfoComponent
+            },
+            {
+                path: ':companyId/edit',
+                component: CompanyEditComponent
             },
             {
                 path: ':companyId/vacancies',

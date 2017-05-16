@@ -41,6 +41,24 @@ export class Resume {
         }
     }
 
+    public static deserialize(object : any): Resume {
+        
+        var resume = new Resume();
+
+        resume.firstName = object.firstName;
+        resume.lastName = object.lastName;
+        resume.middleName = object.middleName;
+        resume.address = object.address;
+        resume.martialStatus = object.martialStatus;
+        resume.references = object.references;
+        resume.additionalInformation = object.additionalInformation;
+        resume.birthdayDate = object.birthdayDate;
+        resume.id = object.id;
+
+        return resume;
+        
+    }
+
     get birthdayDate(): Date {
         return this._birthdayDate;
     }

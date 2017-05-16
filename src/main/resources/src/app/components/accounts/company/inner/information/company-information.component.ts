@@ -26,20 +26,15 @@ export class CompanyInfoComponent {
     ) { }
 
     private loadAccount() {
-        if (this.userService.getUserId() != null) { 
-            this.httpService.getData("/company/" + this.userService.getUserId())
-                .catch((error) => {
-                    alert("Something went wrong");
-                    return null;
-                })
-                .subscribe((response) => {
-                    this.account = response;
-                    return null;
-                });
-        } else {
-            alert("You are not logged in.");
-            this.router.navigate(["/accounts/login/company"]);
-        }
+        this.httpService.getData("/company/" + this.userService.getUserId())
+            .catch((error) => {
+                alert("Something went wrong");
+                return null;
+            })
+            .subscribe((response) => {
+                this.account = EmployerAccount.deserialize(response);
+                return null;
+            });
     }
 
     ngOnInit() { 

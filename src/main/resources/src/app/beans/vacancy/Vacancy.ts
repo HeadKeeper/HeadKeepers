@@ -4,8 +4,8 @@ export class Vacancy {
 
     private _title: string;
     private _description: string;
-    private _essentialSkills: Array<Skill>;
-    private _preferableSkills: Array<Skill>;
+    private _essentialSkills: string;
+    private _preferableSkills: string;
     private _jobType: number;
     private _phoneNumber: string;
     private _email: string;
@@ -23,12 +23,28 @@ export class Vacancy {
             email : vacancy._email,
             minSalary : vacancy._minSalary,
             maxSalary : vacancy._maxSalary,
-            additionalInfoAboutSalary : vacancy._additionalInfoAboutSalary,
-            user : {
-                // we sent only user id, because it's need for parsing
-                id : vacancy._userId
-            }
+            essentialSkills: vacancy._essentialSkills,
+            preferableSkills: vacancy._preferableSkills,
+            additionalInfoAboutSalary : vacancy._additionalInfoAboutSalary
         }
+    }
+
+    public static deserialize(object : any): Vacancy {
+        
+        var vacancy = new Vacancy();
+
+        vacancy.title = object.title;
+        vacancy.description = object.description;
+        vacancy.jobType = object.jobType;
+        vacancy.phoneNumber = object.phoneNumber;
+        vacancy.email = object.email;
+        vacancy.minSalary = object.minSalary;
+        vacancy.maxSalary = object.maxSalary;
+        vacancy.essentialSkills = vacancy._essentialSkills;
+        vacancy.preferableSkills = vacancy._preferableSkills;
+        vacancy.additionalInfoAboutSalary = object.additionalInfoAboutSalary;
+
+        return vacancy;
     }
 
     get userId(): number {
@@ -55,20 +71,20 @@ export class Vacancy {
         this._description = value;
     }
 
-    public getEssentailSkills(): Array<Skill> {
-        return this._essentialSkills;
-    }
-
-    public addEssentailSkill(value: Skill) {
-        this._essentialSkills.concat(value);
-    }
-
-    public getPreferableSkills(): Array<Skill> {
+    get preferableSkills(): string {
         return this._preferableSkills;
     }
 
-    public addPreferableSkill(value: Skill) {
-        this._preferableSkills.concat(value);
+    set preferableSkills(value: string) {
+        this._preferableSkills = value;
+    }
+
+    get essentialSkills(): string {
+        return this._essentialSkills;
+    }
+
+    set essentialSkills(value: string) {
+        this._essentialSkills = value;
     }
 
     get jobType(): number {

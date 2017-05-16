@@ -24,7 +24,7 @@ export class VacancyCreateComponent {
         private router: Router
     ) { }
 
-    public sendVacancy() {
+    public createVacancy() {
         // TODO: ADD ID FROM TOKEN TO VACANCY!!!
         this.sendRequest();
     }
@@ -34,6 +34,9 @@ export class VacancyCreateComponent {
             .catch((error) => {
                 alert("Something went wrong. Try again later. Error: " + error);
                 return null;
+            })
+            .subscribe(() => {
+
             });
     }
 

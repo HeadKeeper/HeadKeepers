@@ -55,7 +55,6 @@ public class Validator {
         (resume.getBirthdayDate() == null) ||
         (resume.getFirstName() == null) ||
         (resume.getLastName() == null) ||
-        (resume.getMiddleName() == null) ||
         (resume.getMartialStatus() == null)) {
             return false;
         }
@@ -66,13 +65,11 @@ public class Validator {
         if (vacancy == null) {
             return false;
         }
-        if ((!validateUser(vacancy.getUser())) ||
+        if (
         (vacancy.getDescription() == null) ||
         (vacancy.getEmail() == null) ||
         (vacancy.getMinSalary() == null) ||
-        (vacancy.getTitle() == null) ||
-        (vacancy.getEssentialSkills() == null) ||
-        (vacancy.getPreferableSkills() == null)) {
+        (vacancy.getTitle() == null)) {
             return false;
         }
         return true;

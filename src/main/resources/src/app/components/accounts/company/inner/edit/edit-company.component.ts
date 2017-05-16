@@ -29,7 +29,7 @@ export class CompanyEditComponent implements OnInit {
         private router: Router    
     ) { }
 
-    public signUp() {
+    public editCompany() {
         if (this.account.email != "" && this.account.email.includes("@")) {
             if (this.account.password == this.pass) {
                 
@@ -58,14 +58,14 @@ export class CompanyEditComponent implements OnInit {
     }
 
     private loadAccount() {
-        if (this.userService.getUserId() != null) { 
+        if (this.userService.isCompany && this.userService.getUserId() != null) { 
             this.httpService.getData("/company/" + this.userService.getUserId())
                 .catch((error) => {
                     alert("Something went wrong");
                     return null;
                 })
                 .subscribe((response) => {
-                    this.account = response;
+                    this.account = EmployerAccount.deserialize(response);
                     return null;
                 });
         } else {

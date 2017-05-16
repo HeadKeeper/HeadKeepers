@@ -31,30 +31,6 @@
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Password</h4>
-                    <input 
-                        required 
-                        type="password" 
-                        maxlength="90" 
-                        placeholder="Enter Password" 
-                        name="pass" 
-                        [(ngModel)]="account.password"
-                    >
-                </div>
-                
-                <div class="form__inner__field">
-                    <h4>Repeat password</h4>
-                    <input 
-                        required 
-                        type="password" 
-                        maxlength="90" 
-                        placeholder="Repeat Password" 
-                        name="repPass" 
-                        [(ngModel)]="rePass"
-                    >
-                </div>
-
-                <div class="form__inner__field">
                     <h4>Name</h4>
                     <input 
                         required 
@@ -75,6 +51,18 @@
                         placeholder="Enter phone number" 
                         name="phoneNumber" 
                         [(ngModel)]="account.phoneNumber"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Password</h4>
+                    <input 
+                        required 
+                        type="password" 
+                        maxlength="90" 
+                        placeholder="Password to continue" 
+                        name="repPass" 
+                        [(ngModel)]="rePass"
                     >
                 </div>
 

@@ -13,6 +13,6 @@ import { UserService } from '../../../services/UserService';
 
 export class ProfileComponent {
     constructor (
-        private UserService: UserService
+        private userService: UserService
     ) { }
 }

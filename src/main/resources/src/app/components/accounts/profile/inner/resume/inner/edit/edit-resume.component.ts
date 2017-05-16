@@ -24,4 +24,17 @@ export class ResumeEditComponent {
         private router: Router
     ) { }
 
+    public editResume() {
+        // add data validation if need (but on server side it was)
+        // TODO: ADD USER ID TO this.resume FROM TOKEN!!!!
+        this.sendRequest();
+    }
+
+    private sendRequest() {
+        this.httpService.sendData("/edit/resume", Resume.serialize(this.resume))
+            .catch((error) => {
+                alert("Something went wrong. Try again later. Error: " + error);
+                return null;
+            });
+    }
 }
