@@ -18,6 +18,8 @@ public interface LaborExchangeService {
 
     List<VacancyView> getAllVacancies() throws ServiceException;
     List<VacancyView> getVacanciesForEmployer(int employerId) throws ServiceException;
+    List<VacancyView> getVacanciesByTitle(String title) throws ServiceException;
+    CompanyInfoView getCompanyByCompanyName(String companyName) throws ServiceException;
 
     void setVacancyActiveStatus(int id, boolean status) throws ServiceException;
 
