@@ -10,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,10 +47,11 @@ public class ResumeDAOImpl implements ResumeDAO {
 
     // -------------------------------- CREATE -------------------------------------------
 
-    public void addNewResume(UserResume resume) throws DAOException {
-        /* USER_ID FK (resume.userId) it should be packed on the user side */
+    public void addNewResume(int userId, UserResume resume) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
+            User user = session.load(User.class, userId);
+            resume.setUser(user);
             session.save(resume);
         }
         catch (SessionException exception) {
@@ -288,10 +290,10 @@ public class ResumeDAOImpl implements ResumeDAO {
     public List<UserResume> getResumeForUser(int userId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            List<UserResume> userResumes = session.createQuery(
-                    "from UserResume where UserResume.user.id = " + userId
-            ).list();
-            return userResumes;
+            User user = session.load(User.class, userId);
+            Query query = session.createQuery("from UserResume where user = :inputUser");
+            query.setParameter("inputUser", user);
+            return (List<UserResume>) query.getResultList();
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session");

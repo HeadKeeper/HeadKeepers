@@ -44,7 +44,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* -------------------- Vacancy -------------------- */
 
-    public void createVacancy(VacancyView vacancy) throws ServiceException {
+    public void createVacancy(int companyId, VacancyView vacancy) throws ServiceException {
         try {
             Vacancy vacancyEntity = Exchanger.exchangeViewToEntity(vacancy);
             vacancyDAO.addVacancy(vacancyEntity, vacancy.getUser().getId());
@@ -177,10 +177,10 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* -------------------- Resume --------------------- */
 
-    public void createResume(UserResumeView resume) throws ServiceException {
+    public void createResume(int userId, UserResumeView resume) throws ServiceException {
         try {
             UserResume resumeEntity = Exchanger.exchangeViewToEntity(resume);
-            resumeDAO.addNewResume(resumeEntity);
+            resumeDAO.addNewResume(userId, resumeEntity);
         } catch (ExistsDAOException e) {
             throw new ExistsServiceException("Resume already exists", e);
         } catch (DAOException e) {
@@ -351,7 +351,7 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------ Certificate ------------------ */
 
-    public void uploadCertificate(UserCertificateView certificate) throws ServiceException {
+    public void uploadCertificate(int resumeId, UserCertificateView certificate) throws ServiceException {
         try {
             int userId = certificate.getUser().getId();
             UserCertificate certificateEntity = Exchanger.exchangeViewToEntity(certificate);
@@ -400,9 +400,9 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------ Achievement ------------------ */
 
-    public void addAchievement(ResumeAchievementView achievement) throws ServiceException {
+    public void addAchievement(int resumeId, ResumeAchievementView achievement) throws ServiceException {
         try {
-            int resumeId = achievement.getUserResume().getId();
+//            int resumeId = achievement.getUserResume().getId();
             ResumeAchievement achievementEntity = Exchanger.exchangeViewToEntity(achievement);
             resumeDAO.addResumeAchievement(achievementEntity, resumeId);
         } catch (ExistsDAOException e) {
@@ -462,9 +462,9 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------- Education ------------------- */
 
-    public void addEducation(ResumeEducationView education) throws ServiceException {
+    public void addEducation(int resumeId, ResumeEducationView education) throws ServiceException {
         try {
-            int resumeId = education.getUserResume().getId();
+//            int resumeId = education.getUserResume().getId();
             ResumeEducation educationEntity = Exchanger.exchangeViewToEntity(education);
             resumeDAO.addEducation(educationEntity, resumeId);
         } catch (ExistsDAOException e) {
@@ -524,9 +524,9 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------- Additional education -------------- */
 
-    public void addAdditionalEducation(ResumeAdditionalEducationView education) throws ServiceException {
+    public void addAdditionalEducation(int resumeId, ResumeAdditionalEducationView education) throws ServiceException {
         try {
-            int resumeId = education.getUserResume().getId();
+//            int resumeId = education.getUserResume().getId();
             ResumeAdditionalEducation educationEntity = Exchanger.exchangeViewToEntity(education);
             resumeDAO.addAdditionalEducation(educationEntity, resumeId);
         } catch (ExistsDAOException e) {
@@ -586,9 +586,9 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ----------------- Contact info ------------------ */
 
-    public void addContactInfo(ResumeContactInfoView contactInfo) throws ServiceException {
+    public void addContactInfo(int resumeId, ResumeContactInfoView contactInfo) throws ServiceException {
         try {
-            int resumeId = contactInfo.getUserResume().getId();
+//            int resumeId = contactInfo.getUserResume().getId();
             ResumeContactInfo contactInfoEntity = Exchanger.exchangeViewToEntity(contactInfo);
             resumeDAO.addContactInfo(contactInfoEntity, resumeId);
         } catch (ExistsDAOException e) {
@@ -648,9 +648,9 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ------------------- Language -------------------- */
 
-    public void addLanguage(ResumeLanguageView language) throws ServiceException {
+    public void addLanguage(int resumeId, ResumeLanguageView language) throws ServiceException {
         try {
-            int resumeId = language.getUserResume().getId();
+//            int resumeId = language.getUserResume().getId();
             ResumeLanguage languageEntity = Exchanger.exchangeViewToEntity(language);
             resumeDAO.addLanguage(languageEntity, resumeId);
         } catch (ExistsDAOException e) {
@@ -710,9 +710,9 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* --------------------- Photo --------------------- */
 
-    public void uploadPhoto(ResumePhotoView photo) throws ServiceException {
+    public void uploadPhoto(int resumeId, ResumePhotoView photo) throws ServiceException {
         try {
-            int resumeId = photo.getUserResume().getId();
+//            int resumeId = photo.getUserResume().getId();
             ResumePhoto resumePhotoEntity = Exchanger.exchangeViewToEntity(photo);
             resumeDAO.addPhoto(resumePhotoEntity, resumeId);
         } catch (ExistsDAOException e) {
@@ -759,9 +759,9 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
 
     /* ---------------- Work experience ---------------- */
 
-    public void addWorkExperience(ResumeWorkExperienceView workExperience) throws ServiceException {
+    public void addWorkExperience(int resumeId, ResumeWorkExperienceView workExperience) throws ServiceException {
         try {
-            int resumeId = workExperience.getUserResume().getId();
+//            int resumeId = workExperience.getUserResume().getId();
             ResumeWorkExperience workExperienceEntity = Exchanger.exchangeViewToEntity(workExperience);
             resumeDAO.addWorkExperience(workExperienceEntity, resumeId);
         } catch (ExistsDAOException e) {

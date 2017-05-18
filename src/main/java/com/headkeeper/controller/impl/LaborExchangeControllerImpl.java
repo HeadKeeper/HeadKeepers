@@ -31,12 +31,6 @@ import java.util.List;
 public class LaborExchangeControllerImpl implements LaborExchangeController{
 
     private final LaborExchangeService service;
-    private GetTokenService getTokenService;
-
-    @Autowired
-    public void setGetTokenService(GetTokenService getTokenService) {
-        this.getTokenService = getTokenService;
-    }
 
     @Autowired
     public LaborExchangeControllerImpl(LaborExchangeService service) {
@@ -80,10 +74,9 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
             if (!Validator.validateResume(resume)) {
                 throw new ValidationException("Invalid resume data!");
             }
-            TokenAuthentication tokenAuthentication;
-            tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
-            resume.setUserId((int)tokenAuthentication.getDetails());
-            service.createResume(resume);
+            int userId = getUserId();
+            resume.setUserId(userId);
+            service.createResume(userId, resume);
         } catch (ExistsServiceException e) {
             throw new ExistsControllerException("User already exists", e);
         } catch (WrongInputServiceException e) {
@@ -101,10 +94,9 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
             if (!Validator.validateVacancy(vacancy)) {
                 throw new ValidationException("Invalid vacancy data!");
             }
-            TokenAuthentication tokenAuthentication;
-            tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
-            vacancy.setId((int)tokenAuthentication.getDetails());
-            service.createVacancy(vacancy);
+            int companyId = getUserId();
+            vacancy.setId(companyId);
+            service.createVacancy(companyId, vacancy);
         } catch (ExistsServiceException e) {
             throw new ExistsControllerException("User already exists", e);
         } catch (WrongInputServiceException e) {
@@ -188,5 +180,11 @@ public class LaborExchangeControllerImpl implements LaborExchangeController{
         } catch (ServiceException e) {
             throw new ControllerException("Error while perform registration", e);
         }
+    }
+
+    private int getUserId() {
+        TokenAuthentication tokenAuthentication;
+        tokenAuthentication = (TokenAuthentication) SecurityContextHolder.getContext().getAuthentication();
+        return  (int) tokenAuthentication.getDetails();
     }
 }

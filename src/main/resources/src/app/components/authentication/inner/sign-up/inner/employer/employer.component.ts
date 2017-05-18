@@ -32,21 +32,21 @@ export class SignUpCompanyComponent {
             if (this.account.password == this.rePass) {
                 this.sendRequest();
             } else {
-                alert("Password and re: doesn't match");
+                console.log("Password and re: doesn't match");
             }
         } else {
-            alert("Email isn't correct");
+            console.log("Email isn't correct");
         }
     }
 
     private sendRequest() {
         this.httpService.sendData("/registration/company", EmployerAccount.serialize(this.account))
             .catch((error) => {
-                alert("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe((response) => {
-                alert("Response: " + response);
+                console.log("Response: " + response);
                 this.servResponse = response;
                 this.httpService.setToken(this.servResponse.token);
                 this.router.navigate(['/accounts/login']);

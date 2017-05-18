@@ -28,9 +28,10 @@ export class ProfileInfoComponent implements OnInit {
 
     private loadAccount() {
         if (this.userService.getUserId() != null) { 
-            this.httpService.getData("/profile/" + this.userService.getUserId())
+            this.httpService.getData("/user/" + this.userService.getUserId())
                 .catch((error) => {
-                    alert("Something went wrong");
+                    console.log(error);
+                    // console.log("Something went wrong");
                     return null;
                 })
                 .subscribe((response) => {
@@ -38,7 +39,7 @@ export class ProfileInfoComponent implements OnInit {
                     return null;
                 });
         } else {
-            alert("You are not logged in.");
+            console.log("You are not logged in.");
             this.router.navigate(["/accounts/login/user"]);
         }
     }

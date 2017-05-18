@@ -32,7 +32,7 @@ export class VacancyCreateComponent {
     private sendRequest() {
         this.httpService.sendData("/add/vacancy", Vacancy.serialize(this.vacancy))
             .catch((error) => {
-                alert("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe(() => {

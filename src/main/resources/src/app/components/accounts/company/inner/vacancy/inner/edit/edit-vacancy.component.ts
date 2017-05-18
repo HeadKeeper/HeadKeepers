@@ -35,7 +35,7 @@ export class VacancyEditComponent implements OnInit {
         if (this.userService.getUserId() != null) { 
             this.httpService.getData("/company/" + this.userService.getUserId())
                 .catch((error) => {
-                    alert("Something went wrong");
+                    console.log("Something went wrong");
                     return null;
                 })
                 .subscribe((response) => {
@@ -43,7 +43,7 @@ export class VacancyEditComponent implements OnInit {
                     return null;
                 });
         } else {
-            alert("You are not logged in.");
+            console.log("You are not logged in.");
             this.router.navigate(["/accounts/login/company"]);
         }
     }

@@ -35,21 +35,21 @@ export class CompanyEditComponent implements OnInit {
                 
                 this.sendRequest();
             } else {
-                alert("Password doesn't match");
+                console.log("Password doesn't match");
             }
         } else {
-            alert("Email isn't correct");
+            console.log("Email isn't correct");
         }
     }
 
     private sendRequest() {
         this.httpService.sendData("/company/" + this.userService.getUserId() + "/edit", this.account)
             .catch((error) => {
-                alert("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe((response) => {
-                alert("Response: " + response);
+                console.log("Response: " + response);
                 this.servResponse = response;
                 this.httpService.setToken(this.servResponse.token);
                 this.router.navigate(['/welcome']);
@@ -61,7 +61,7 @@ export class CompanyEditComponent implements OnInit {
         if (this.userService.isCompany && this.userService.getUserId() != null) { 
             this.httpService.getData("/company/" + this.userService.getUserId())
                 .catch((error) => {
-                    alert("Something went wrong");
+                    console.log("Something went wrong");
                     return null;
                 })
                 .subscribe((response) => {
@@ -69,7 +69,7 @@ export class CompanyEditComponent implements OnInit {
                     return null;
                 });
         } else {
-            alert("You are not logged in.");
+            console.log("You are not logged in.");
             this.router.navigate(["/accounts/login/company"]);
         }
     }

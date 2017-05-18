@@ -56,7 +56,11 @@ public class Exchanger {
         companyInfo.setName(companyInfoView.getName());
         companyInfo.setAddress(companyInfoView.getAddress());
         companyInfo.setDescription(companyInfoView.getDescription());
-        companyInfo.setUser(exchangeViewToEntity(companyInfoView.getUser()));
+        if (companyInfoView.getUser() != null) {
+            companyInfo.setUser(exchangeViewToEntity(companyInfoView.getUser()));
+        } else {
+            companyInfo.setUser(null);
+        }
         companyInfo.setId(companyInfoView.getId());
 
         return companyInfo;
@@ -88,14 +92,22 @@ public class Exchanger {
         vacancyEntity.setMinSalary(vacancyView.getMinSalary());
         vacancyEntity.setMaxSalary(vacancyView.getMaxSalary());
         vacancyEntity.setAdditionalInfoAboutSalary(vacancyView.getAdditionalInfoAboutSalary());
-        vacancyEntity.setUser(exchangeViewToEntity(vacancyView.getUser()));
-
-        Set<Skill> skills = new HashSet<Skill>();
-        for (SkillView skillView : vacancyView.getSkills()) {
-            skills.add(exchangeViewToEntity(skillView));
+        if (vacancyView.getUser() != null) {
+            vacancyEntity.setUser(exchangeViewToEntity(vacancyView.getUser()));
+        } else {
+            vacancyEntity.setUser(null);
         }
 
-        vacancyEntity.setSkills(skills);
+        if (vacancyView.getSkills() != null) {
+            Set<Skill> skills = new HashSet<Skill>();
+            for (SkillView skillView : vacancyView.getSkills()) {
+                skills.add(exchangeViewToEntity(skillView));
+            }
+
+            vacancyEntity.setSkills(skills);
+        } else {
+            vacancyEntity.setSkills(null);
+        }
 
         return vacancyEntity;
     }
@@ -132,47 +144,75 @@ public class Exchanger {
         resumeEntity.setMiddleName(resume.getMiddleName());
         resumeEntity.setReferences(resume.getReferences());
 
-        Set<ResumeAchievement> achievements = new HashSet<ResumeAchievement>();
-        for (ResumeAchievementView achievement : resume.getResumeAchievements()) {
-            achievements.add(exchangeViewToEntity(achievement));
+        if (resume.getResumeAchievements() != null) {
+            Set<ResumeAchievement> achievements = new HashSet<ResumeAchievement>();
+            for (ResumeAchievementView achievement : resume.getResumeAchievements()) {
+                achievements.add(exchangeViewToEntity(achievement));
+            }
+            resumeEntity.setResumeAchievements(achievements);
+        } else {
+            resumeEntity.setResumeAchievements(null);
         }
-        resumeEntity.setResumeAchievements(achievements);
 
-        Set<ResumeAdditionalEducation> additionalEducationViews = new HashSet<ResumeAdditionalEducation>();
-        for (ResumeAdditionalEducationView additionalEducation : resume.getResumeAdditionalEducations()) {
-            additionalEducationViews.add(exchangeViewToEntity(additionalEducation));
+        if (resume.getResumeAdditionalEducations() != null) {
+            Set<ResumeAdditionalEducation> additionalEducationViews = new HashSet<ResumeAdditionalEducation>();
+            for (ResumeAdditionalEducationView additionalEducation : resume.getResumeAdditionalEducations()) {
+                additionalEducationViews.add(exchangeViewToEntity(additionalEducation));
+            }
+            resumeEntity.setResumeAdditionalEducations(additionalEducationViews);
+        } else {
+                resumeEntity.setResumeAdditionalEducations(null);
         }
-        resumeEntity.setResumeAdditionalEducations(additionalEducationViews);
 
-        Set<ResumeContactInfo> contactInfoViews = new HashSet<ResumeContactInfo>();
-        for (ResumeContactInfoView contactInfo : resume.getResumeContactInfos()) {
-            contactInfoViews.add(exchangeViewToEntity(contactInfo));
+        if (resume.getResumeContactInfos() != null) {
+            Set<ResumeContactInfo> contactInfoViews = new HashSet<ResumeContactInfo>();
+            for (ResumeContactInfoView contactInfo : resume.getResumeContactInfos()) {
+                contactInfoViews.add(exchangeViewToEntity(contactInfo));
+            }
+            resumeEntity.setResumeContactInfos(contactInfoViews);
+        } else {
+            resumeEntity.setResumeContactInfos(null);
         }
-        resumeEntity.setResumeContactInfos(contactInfoViews);
 
-        Set<ResumeEducation> resumeEducationViews = new HashSet<ResumeEducation>();
-        for (ResumeEducationView education : resume.getResumeEducations()) {
-            resumeEducationViews.add(exchangeViewToEntity(education));
+        if (resume.getResumeEducations() != null) {
+            Set<ResumeEducation> resumeEducationViews = new HashSet<ResumeEducation>();
+            for (ResumeEducationView education : resume.getResumeEducations()) {
+                resumeEducationViews.add(exchangeViewToEntity(education));
+            }
+            resumeEntity.setResumeEducations(resumeEducationViews);
+        } else {
+            resumeEntity.setResumeEducations(null);
         }
-        resumeEntity.setResumeEducations(resumeEducationViews);
 
-        Set<ResumePhoto> resumePhotoViews = new HashSet<ResumePhoto>();
-        for (ResumePhotoView photo : resume.getResumePhotos()) {
-            resumePhotoViews.add(exchangeViewToEntity(photo));
+        if (resume.getResumePhotos() != null) {
+            Set<ResumePhoto> resumePhotoViews = new HashSet<ResumePhoto>();
+            for (ResumePhotoView photo : resume.getResumePhotos()) {
+                resumePhotoViews.add(exchangeViewToEntity(photo));
+            }
+            resumeEntity.setResumePhotos(resumePhotoViews);
+        } else {
+            resumeEntity.setResumePhotos(null);
         }
-        resumeEntity.setResumePhotos(resumePhotoViews);
 
-        Set<ResumeWorkExperience> resumeWorkExperienceViews = new HashSet<ResumeWorkExperience>();
-        for (ResumeWorkExperienceView workExperience : resume.getResumeWorkExperiences()) {
-            resumeWorkExperienceViews.add(exchangeViewToEntity(workExperience));
+        if (resume.getResumeWorkExperiences() != null) {
+            Set<ResumeWorkExperience> resumeWorkExperienceViews = new HashSet<ResumeWorkExperience>();
+            for (ResumeWorkExperienceView workExperience : resume.getResumeWorkExperiences()) {
+                resumeWorkExperienceViews.add(exchangeViewToEntity(workExperience));
+            }
+            resumeEntity.setResumeWorkExperiences(resumeWorkExperienceViews);
+        } else {
+            resumeEntity.setResumeWorkExperiences(null);
         }
-        resumeEntity.setResumeWorkExperiences(resumeWorkExperienceViews);
 
-        Set<ResumeLanguage> languageViews = new HashSet<ResumeLanguage>();
-        for (ResumeLanguageView language : resume.getResumeLanguages()) {
-            languageViews.add(exchangeViewToEntity(language));
+        if (resume.getResumeLanguages() != null) {
+            Set<ResumeLanguage> languageViews = new HashSet<ResumeLanguage>();
+            for (ResumeLanguageView language : resume.getResumeLanguages()) {
+                languageViews.add(exchangeViewToEntity(language));
+            }
+            resumeEntity.setResumeLanguages(languageViews);
+        } else {
+            resumeEntity.setResumeLanguages(null);
         }
-        resumeEntity.setResumeLanguages(languageViews);
 
         return resumeEntity;
     }
@@ -242,7 +282,6 @@ public class Exchanger {
         achievementEntity.setId(achievement.getId());
         achievementEntity.setName(achievement.getName());
         achievementEntity.setValue(achievement.getValue());
-        achievementEntity.setUserResume(exchangeViewToEntity(achievement.getUserResume()));
 
         return achievementEntity;
     }
@@ -274,7 +313,7 @@ public class Exchanger {
         certificateEntity.setId(certificate.getId());
         certificateEntity.setRealName(certificate.getRealName());
         certificateEntity.setCertificateHref(certificate.getCertificateHref());
-        certificateEntity.setUser(exchangeViewToEntity(certificate.getUser()));
+//        certificateEntity.setUser(exchangeViewToEntity(certificate.getUser()));
 
         return certificateEntity;
     }
@@ -323,7 +362,7 @@ public class Exchanger {
         educationEntity.setFinishDate(education.getFinishDate());
         educationEntity.setInstitutionName(education.getInstitutionName());
         educationEntity.setType(education.getType());
-        educationEntity.setUserResume(exchangeViewToEntity(education.getUserResume()));
+//        educationEntity.setUserResume(exchangeViewToEntity(education.getUserResume()));
 
         return educationEntity;
     }
@@ -337,7 +376,7 @@ public class Exchanger {
         educationEntity.setFinishDate(education.getFinishDate());
         educationEntity.setType(education.getType());
         educationEntity.setInstitutionName(education.getInstitutionName());
-        educationEntity.setUserResume(exchangeViewToEntity(education.getUserResume()));
+//        educationEntity.setUserResume(exchangeViewToEntity(education.getUserResume()));
 
         return educationEntity;
     }
@@ -361,7 +400,7 @@ public class Exchanger {
         contactInfoEntity.setId(contactInfo.getId());
         contactInfoEntity.setType(contactInfo.getType());
         contactInfoEntity.setValue(contactInfo.getValue());
-        contactInfoEntity.setUserResumeByUserResumeId(exchangeViewToEntity(contactInfo.getUserResume()));
+//        contactInfoEntity.setUserResumeByUserResumeId(exchangeViewToEntity(contactInfo.getUserResume()));
 
         return contactInfoEntity;
     }
@@ -382,7 +421,7 @@ public class Exchanger {
         languageEntity.setId(language.getId());
         languageEntity.setLanguage(language.getLanguage());
         languageEntity.setLevel(language.getLevel());
-        languageEntity.setUserResume(exchangeViewToEntity(language.getUserResume()));
+//        languageEntity.setUserResume(exchangeViewToEntity(language.getUserResume()));
 
         return languageEntity;
     }
@@ -403,7 +442,7 @@ public class Exchanger {
         photoEntity.setId(photo.getId());
         photoEntity.setRealName(photo.getRealName());
         photoEntity.setPhotoHref(photo.getPhotoHref());
-        photoEntity.setUserResume(exchangeViewToEntity(photo.getUserResume()));
+//        photoEntity.setUserResume(exchangeViewToEntity(photo.getUserResume()));
 
         return photoEntity;
     }
@@ -427,7 +466,7 @@ public class Exchanger {
         workExperienceEntity.setDateFinish(workExperience.getDateFinish());
         workExperienceEntity.setDuties(workExperience.getDuties());
         workExperienceEntity.setPosition(workExperience.getPosition());
-        workExperienceEntity.setUserResumeByUserResumeId(exchangeViewToEntity(workExperience.getUserResume()));
+//        workExperienceEntity.setUserResumeByUserResumeId(exchangeViewToEntity(workExperience.getUserResume()));
 
         return workExperienceEntity;
     }

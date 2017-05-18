@@ -44,7 +44,7 @@ export class ResumesUserComponent {
                     return null;
                 })
         } else {
-            alert("Permission denied");
+            console.log("Permission denied");
         }
     }
 

@@ -33,7 +33,7 @@ export class VacanciesEmployerComponent implements OnInit {
         if (this.userService.getUserId() != null && this.userService.isCompany()) {
             this.httpService.getData("/companies/" + this.userService.getUserId() + "/vacancies")
                 .catch((error) => {
-                    alert("Something went wrong");
+                    console.log("Something went wrong");
                     return null;
                 })
                 .subscribe((data) => {

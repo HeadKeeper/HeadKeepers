@@ -20,7 +20,7 @@ import java.util.Map;
 @Service
 public class GetTokenServiceImpl implements GetTokenService {
 
-    private final static String TOKEN_KEY = "headkeepers";
+    private final static String TOKEN_KEY = "head_keepers";
     private final static String EMAIL = "EMAIL";
     private final static String USER_ID = "USER_ID";
     private final static String EXPIRATION_DATE = "TOKEN_EXPIRATION_DATE";

@@ -34,17 +34,17 @@ export class ProfileEditComponent implements OnInit {
                 
                 this.sendRequest();
             } else {
-                alert("Password doesn't match");
+                console.log("Password doesn't match");
             }
         } else {
-            alert("Email isn't correct");
+            console.log("Email isn't correct");
         }
     }
 
     private sendRequest() {
-        this.httpService.sendData("/profile/" + this.userService.getUserId() + "/edit", UserAccount.serialize(this.account))
+        this.httpService.sendData("/profile/" + this.userService.getUserId(), UserAccount.serialize(this.account))
             .catch((error) => {
-                alert("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe((response) => {
@@ -57,9 +57,9 @@ export class ProfileEditComponent implements OnInit {
 
     private loadAccount() {
         if (this.userService.getUserId() != null) { 
-            this.httpService.getData("/profile/" + this.userService.getUserId())
+            this.httpService.getData("/user/" + this.userService.getUserId())
                 .catch((error) => {
-                    alert("Something went wrong");
+                    console.log("Something went wrong");
                     return null;
                 })
                 .subscribe((response) => {
@@ -67,7 +67,7 @@ export class ProfileEditComponent implements OnInit {
                     return null;
                 });
         } else {
-            alert("You are not logged in.");
+            console.log("You are not logged in.");
             this.router.navigate(["/accounts/login/user"]);
         }
     }

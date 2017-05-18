@@ -33,17 +33,17 @@ export class SignUpUserComponent {
             if (this.account.password == this.rePass) {
                 this.sendRequest();
             } else {
-                alert("Password and re: doesn't match");
+                console.log("Password and re: doesn't match");
             }
         } else {
-            alert("Email isn't correct");
+            console.log("Email isn't correct");
         }
     }
 
     private sendRequest() {
         this.httpService.sendData("/registration/user", Account.serialize(this.account))
             .catch((error) => {
-                alert("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe((response) => {

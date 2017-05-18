@@ -10,7 +10,7 @@ import java.util.List;
 public interface VacancyDAO {
     /* CRUD operations */
     // CREATE
-    void addVacancy(Vacancy vacancy, int id) throws DAOException; // id - is employer's id, who added vacancy
+    void addVacancy(Vacancy vacancy, int companyId) throws DAOException;
 
     // UPDATE
     void updateVacancy(int id, Vacancy vacancy) throws DAOException;

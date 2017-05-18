@@ -6,7 +6,7 @@
             <div class="form__inner">
                 <div class="form__inner__field"> 
                     <a 
-                        [routerLink]="['/profiles',userService.getUserId(),'resumes',resume.id]">{{ resume.name }}
+                        [routerLink]="['/profiles',userService.getUserId(),'resumes',resume.id]">{{ resume.firstName }} {{ resume.lastName }}
                     </a>
                 </div>
             </div>

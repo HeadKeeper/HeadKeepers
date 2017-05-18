@@ -32,7 +32,7 @@ public interface UserController {
     @RequestMapping(value = "/user/{id}/delete")
     void deleteUser(@PathVariable int id) throws ControllerException;
 
-   /* @PreAuthorize("hasAuthority('admin')")*/
+    @PreAuthorize("hasAuthority('user')")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     @ResponseBody
     UserView getUserById(@PathVariable int id) throws ControllerException;

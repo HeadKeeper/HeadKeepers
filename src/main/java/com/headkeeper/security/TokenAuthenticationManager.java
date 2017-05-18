@@ -79,7 +79,7 @@ public class TokenAuthenticationManager implements AuthenticationManager {
                                                                 throws AuthenticationServiceException {
         SecurityUser user = (SecurityUser) userDetailsService.loadUserByUsername(claims.get(EMAIL, String.class));
 
-        if (!user.isEnabled()) {
+        if (user.isEnabled()) {
             throw new AuthenticationServiceException("User disabled");
         }
 
