@@ -7,8 +7,6 @@ import com.headkeeper.dao.ResumeDAO;
 import com.headkeeper.dao.SkillDAO;
 import com.headkeeper.dao.VacancyDAO;
 import com.headkeeper.dao.exception.DAOException;
-import com.headkeeper.dao.impl.ResumeDAOImpl;
-import com.headkeeper.dao.util.DataExchanger;
 import com.headkeeper.service.LaborExchangeService;
 import com.headkeeper.service.exception.ServiceException;
 import com.headkeeper.service.util.Exchanger;
