@@ -15,6 +15,7 @@ public interface UserService {
     void updateUserInfo(int id, UserView user) throws ServiceException;
     UserView getUser(int id) throws ServiceException;
     List<UserView> getAllUsers() throws ServiceException;
+    List<CompanyInfoView> getAllCompanies() throws ServiceException;
 
     UserView getUserByEmail(String userEmail) throws ServiceException;
 }

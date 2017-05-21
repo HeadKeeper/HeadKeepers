@@ -7,6 +7,7 @@ import com.headkeeper.dao.ResumeDAO;
 import com.headkeeper.dao.SkillDAO;
 import com.headkeeper.dao.VacancyDAO;
 import com.headkeeper.dao.exception.DAOException;
+import com.headkeeper.dao.impl.ResumeDAOImpl;
 import com.headkeeper.dao.util.DataExchanger;
 import com.headkeeper.service.LaborExchangeService;
 import com.headkeeper.service.exception.ServiceException;
@@ -190,6 +191,20 @@ public class LaborExchangeServiceImpl implements LaborExchangeService {
             return views;
         } catch (DAOException e) {
             throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<UserResumeView> getAllResumes() throws ServiceException {
+        try {
+            List<UserResumeView> resumes = new ArrayList<>();
+            List<UserResume> resumesBean = resumeDAO.getAllResumes();
+            for (int i = 0; i < resumesBean.size(); i++) {
+                resumes.add(Exchanger.exchangeEntityToView(resumesBean.get(i)));
+            }
+            return resumes;
+        } catch(DAOException exception) {
+            throw new ServiceException(exception.getMessage());
         }
     }
 

@@ -114,6 +114,7 @@ public class Exchanger {
         vacancyView.setMinSalary(vacancy.getMinSalary());
         vacancyView.setMaxSalary(vacancy.getMaxSalary());
         vacancyView.setAdditionalInfoAboutSalary(vacancy.getAdditionalInfoAboutSalary());
+        vacancyView.setUser(Exchanger.exchangeEntityToView(vacancy.getUser()));
 
         return vacancyView;
     }
@@ -190,7 +191,9 @@ public class Exchanger {
         resumeView.setMartialStatus(resumeEntity.getMartialStatus());
         resumeView.setMiddleName(resumeEntity.getMiddleName());
         resumeView.setReferences(resumeEntity.getReferences());
+        resumeView.setUserId(resumeEntity.getUser().getId());
 
+        /*
         List<ResumeAchievementView> achievements = new ArrayList<ResumeAchievementView>();
         for (ResumeAchievement achievement : resumeEntity.getResumeAchievements()) {
             achievements.add(exchangeEntityToView(achievement));
@@ -232,7 +235,7 @@ public class Exchanger {
             languageViews.add(exchangeEntityToView(language));
         }
         resumeView.setResumeLanguages(languageViews);
-
+        */
         return resumeView;
     }
 

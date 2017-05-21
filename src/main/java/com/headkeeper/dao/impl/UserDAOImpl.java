@@ -148,6 +148,19 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public List<CompanyInfo> getAllCompanies() throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            List<CompanyInfo> infos = (List<CompanyInfo>) session.createQuery(
+                    "from CompanyInfo"
+            ).list();
+            return infos;
+        } catch (HibernateException exception) {
+            throw new DAOException(exception.getMessage());
+        }
+    }
+
+    @Override
     public User getUserByEmail(String email) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();

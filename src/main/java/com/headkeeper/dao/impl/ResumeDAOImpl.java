@@ -318,6 +318,18 @@ public class ResumeDAOImpl implements ResumeDAO {
         }
     }
 
+    public List<UserResume> getAllResumes() throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            List<UserResume> resumes = (List<UserResume>) session.createQuery(
+                    "from UserResume "
+            ).list();
+            return resumes;
+        } catch (HibernateException exception) {
+            throw new DAOException(exception.getMessage());
+        }
+    }
+
     // -------------------------------- UPDATE -------------------------------------------
 
     public void updateResumeStatus(int resumeId, boolean status) throws DAOException {

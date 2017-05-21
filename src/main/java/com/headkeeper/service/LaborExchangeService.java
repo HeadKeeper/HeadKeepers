@@ -38,6 +38,8 @@ public interface LaborExchangeService {
 
     List<UserResumeView> getResumesForUser(int userId) throws ServiceException;
 
+    List<UserResumeView> getAllResumes() throws ServiceException;
+
     void setResumeStatus(int resumeId, boolean status) throws ServiceException;
 
     void deleteResume(int resumeId) throws ServiceException;

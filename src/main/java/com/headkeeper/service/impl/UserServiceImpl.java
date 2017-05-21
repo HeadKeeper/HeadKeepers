@@ -1,5 +1,6 @@
 package com.headkeeper.service.impl;
 
+import com.headkeeper.bean.entity.CompanyInfo;
 import com.headkeeper.bean.entity.User;
 import com.headkeeper.bean.view.CompanyInfoView;
 import com.headkeeper.bean.view.UserView;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -100,6 +102,20 @@ public class UserServiceImpl implements UserService {
             return userViews;
         } catch (DAOException e) {
             throw new ServiceException(e);
+        }
+    }
+
+    public List<CompanyInfoView> getAllCompanies() throws ServiceException {
+        try {
+            List<CompanyInfo> companyInfos = userDAO.getAllCompanies();
+            List<CompanyInfoView> companyInfoViews = new ArrayList<>();
+
+            for(int i = 0; i < companyInfos.size(); i++) {
+                companyInfoViews.add(Exchanger.exchangeViewToEntity(companyInfos.get(i))); //entity to view nuzhno
+            }
+            return companyInfoViews;
+        } catch (DAOException exception) {
+            throw new ServiceException(exception.getMessage());
         }
     }
 
