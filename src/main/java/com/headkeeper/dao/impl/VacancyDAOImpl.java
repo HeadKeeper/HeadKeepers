@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.List;
 
-@Transactional
 @Repository
 public class VacancyDAOImpl implements VacancyDAO {
 

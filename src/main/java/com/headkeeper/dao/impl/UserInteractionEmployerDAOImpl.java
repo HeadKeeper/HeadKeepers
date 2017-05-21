@@ -15,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 
-
-@Transactional
 @Repository
 public class UserInteractionEmployerDAOImpl implements UserInteractionEmployerDAO {
 

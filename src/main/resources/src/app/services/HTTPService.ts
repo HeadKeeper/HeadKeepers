@@ -30,7 +30,6 @@ export class HTTPService {
 
     public sendData(url: string,  data: any) {
         let headers = this.getSendHeaders();
-        alert("Data: " + JSON.stringify(data));
         return this
             .http
             .post(url, JSON.stringify(data), { headers: headers })

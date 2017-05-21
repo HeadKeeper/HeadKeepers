@@ -36,7 +36,7 @@ export class Resume {
             martialStatus : resume._martialStatus,
             references : resume._references,
             additionalInformation : resume._additionalInformation,
-            date : resume._birthdayDate,
+            birthdayDate : resume._birthdayDate,
             userId : resume._id
         }
     }

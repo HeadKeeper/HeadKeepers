@@ -34,21 +34,21 @@ export class SignInCompanyComponent implements OnInit {
             if (this.account.email != null) {
                 this.sendData();
             } else {
-                alert("Email is not correct");
+                console.log("Email is not correct");
             }
         } else {
-            alert("Password and re: doesn't match");
+            console.log("Password and re: doesn't match");
         }
     }
 
     private sendData() {
         this.httpService.sendData("/login", Account.serializeForLogin(this.account))
             .catch((error) => {
-                alert("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
             .subscribe((response) => {
-                alert("Response: " + response);
+                console.log("Response: " + response);
                 this.servResponse = response;
                 this.httpService.setToken(this.servResponse.token);
                 this.router.navigate(['/welcome']);

@@ -16,8 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
-@Transactional
 @Repository
 public class CertificateDAOImpl implements CertificateDAO {
 

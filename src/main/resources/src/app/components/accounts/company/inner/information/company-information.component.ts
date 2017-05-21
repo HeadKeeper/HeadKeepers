@@ -26,9 +26,9 @@ export class CompanyInfoComponent {
     ) { }
 
     private loadAccount() {
-        this.httpService.getData("/company/" + this.userService.getUserId())
+        this.httpService.getData("/user/" + this.userService.getUserId())
             .catch((error) => {
-                alert("Something went wrong");
+                console.log("Something went wrong");
                 return null;
             })
             .subscribe((response) => {

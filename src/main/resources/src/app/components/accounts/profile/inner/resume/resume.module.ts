@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ResumeComponent } from "./resume.component";
 import { ResumeEditComponent } from "./inner/edit/edit-resume.component";
-import { ResumesUserComponent } from "./inner/user/resume-user.component";
+import { ResumesUserComponent } from "./inner/list/resume-list.component";
 import { ResumeCreateComponent } from "./inner/create/create-resume.component";
 
 @NgModule({

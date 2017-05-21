@@ -15,7 +15,7 @@ public class SecurityUser extends User {
         this.nickname = nickname;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
