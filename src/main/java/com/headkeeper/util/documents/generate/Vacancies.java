@@ -40,11 +40,11 @@ public class Vacancies extends Document {
             PdfPTable table = new PdfPTable(3);
             table.addCell(new PdfPCell(new Paragraph("Vacancy id")));
             table.addCell(new PdfPCell(new Paragraph("Title")));
-            table.addCell(new PdfPCell(new Paragraph("User id")));
+            table.addCell(new PdfPCell(new Paragraph("Email")));
             for (ShortVacancyView vacancy : vacancies) {
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(vacancy.getId()))));
                 table.addCell(new PdfPCell(new Paragraph(vacancy.getTitle(), font)));
-                table.addCell(new PdfPCell(new Paragraph(String.valueOf(vacancy.getUserId()), font)));
+                table.addCell(new PdfPCell(new Paragraph(vacancy.getEmail(), font)));
             }
             doc.add(table);
         } catch (IOException e) {
@@ -80,14 +80,14 @@ public class Vacancies extends Document {
         headerTitle.createCell(0).setCellValue("Vacancies statistic");;
         headerTitle.getCell(0).setCellStyle(headerStyle);
 
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 3));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 2));
 
         Row header = sheet.createRow(1);
         header.createCell(0).setCellValue("Vacancy id");
         header.getCell(0).setCellStyle(style);
         header.createCell(1).setCellValue("Title");
         header.getCell(1).setCellStyle(style);
-        header.createCell(2).setCellValue("User id");
+        header.createCell(2).setCellValue("Email");
         header.getCell(2).setCellStyle(style);
 
         int rowCount = 2;
@@ -103,20 +103,20 @@ public class Vacancies extends Document {
             commentRow.getCell(0).setCellStyle(otherCellStyle);
             commentRow.createCell(1).setCellValue(vacancy.getTitle());
             commentRow.getCell(1).setCellStyle(otherCellStyle);
-            commentRow.createCell(2).setCellValue(String.valueOf(vacancy.getUserId()));
+            commentRow.createCell(2).setCellValue(vacancy.getEmail());
             commentRow.getCell(2).setCellStyle(otherCellStyle);
         }
     }
 
     @Override
     public void buildCsv(ICsvBeanWriter writer) throws IOException {
-        String[] header = {"id","title"};
+        String[] header = {"id","title","email"};
 
         writer.writeHeader(header);
 
         ArrayList<ShortVacancyView> vacancies = this.vacancyListView.getVacancies();
         for (ShortVacancyView vacancy : vacancies) {
-            writer.write(new Vacancies.VacancyBean(String.valueOf(vacancy.getId()), vacancy.getTitle(), String.valueOf(vacancy.getUserId())), header);
+            writer.write(new Vacancies.VacancyBean(String.valueOf(vacancy.getId()), vacancy.getTitle(), vacancy.getEmail()), header);
         }
     }
 
@@ -124,12 +124,12 @@ public class Vacancies extends Document {
 
         private String id;
         private String title;
-        private String userId;
+        private String email;
 
-        public VacancyBean(String id, String title, String userId) {
+        public VacancyBean(String id, String title, String email) {
             this.id = id;
             this.title = title;
-            this.userId = userId;
+            this.email = email;
         }
 
         public String getId() {
@@ -148,12 +148,12 @@ public class Vacancies extends Document {
             this.title = title;
         }
 
-        public String getUserId() {
-            return userId;
+        public String getEmail() {
+            return email;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
+        public void setEmail(String email) {
+            this.email = email;
         }
     }
 }

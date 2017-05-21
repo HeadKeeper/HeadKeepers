@@ -80,7 +80,7 @@ public class Companies extends Document {
         headerTitle.createCell(0).setCellValue("Company statistic");;
         headerTitle.getCell(0).setCellStyle(headerStyle);
 
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 3));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 2));
 
         Row header = sheet.createRow(1);
         header.createCell(0).setCellValue("Company id");

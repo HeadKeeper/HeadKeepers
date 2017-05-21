@@ -77,10 +77,10 @@ public class Resumes extends Document {
         headerStyle.setFont(fontS);
         headerStyle.setWrapText(true);
         Row headerTitle = sheet.createRow(0);
-        headerTitle.createCell(0).setCellValue("Users statistic");;
+        headerTitle.createCell(0).setCellValue("Resumes statistic");;
         headerTitle.getCell(0).setCellStyle(headerStyle);
 
-        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 3));
+        sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 2));
 
         Row header = sheet.createRow(1);
         header.createCell(0).setCellValue("Resume id");

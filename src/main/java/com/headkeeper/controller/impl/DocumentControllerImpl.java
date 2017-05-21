@@ -114,7 +114,7 @@ public class DocumentControllerImpl implements DocumentController {
                 ShortVacancyView shortInfo = new ShortVacancyView();
                 shortInfo.setId(vacancies.get(i).getId());
                 shortInfo.setTitle(vacancies.get(i).getTitle());
-                shortInfo.setUserId(vacancies.get(i).getUser().getId());
+                shortInfo.setEmail(vacancies.get(i).getEmail());
                 vacancyListView.getVacancies().add(shortInfo);
             }
             return generateModel(type, new Vacancies(), vacancyListView);
