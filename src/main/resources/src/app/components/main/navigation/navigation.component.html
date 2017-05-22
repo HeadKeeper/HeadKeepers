@@ -4,7 +4,7 @@
             <img src="src/app/assets/img/brand.png" class="navigation__inner__logo__icon" id="store-icon" alt="HK" height="30" width="30"  />
         </a>
         <a *ngIf="userService.isAuth()" class="navigation__inner__menu --show" routerLink="/profiles/{{userService.getUserId()}}">{{userService.getUserNick()}}</a><a *ngIf="userService.isAuth()"  class="navigation__inner__menu --hide" routerLink="/profiles/{{userService.getUserId()}}">{{userService.getUserNick()}}</a>
-        <a *ngIf="userService.isAuth()" class="navigation__inner__menu" style="margin-left: 40px;" (click)="logOut()" routerLink="/welcome">Sign out</a>
+        <!--<a *ngIf="userService.isAuth()" class="navigation__inner__menu" style="margin-left: 40px;" (click)="logOut()" routerLink="/welcome">Sign out</a>-->
         <a *ngIf="!userService.isAuth()" class="navigation__inner__menu --show" routerLink="/accounts/login/main">Account</a><a *ngIf="!userService.isAuth()"  class="navigation__inner__menu --hide" routerLink="/accounts/login/main">Account</a>
         <ul class="navigation__inner__menu__buttons">
             <li><a routerLink="/welcome" routerLinkActive="disabled">Home</a></li>
@@ -18,9 +18,11 @@
             <li *ngIf="userService.isAuth() && userService.isCompany() ">
                 <a routerLink="/companies/{{userService.getUserId()}}" >{{userService.getUserNick()}}</a>
             </li>
+            <li *ngIf="userService.isAdmin()">
+                <a routerLink="/documents" >Documnets</a>
+            </li>
             
             <li (click)="logOut()" *ngIf="userService.isAuth()"><a routerLink="/welcome">Sign out</a></li>
-            <li *ngIf="userService.isAdmin()">You are admin</li>
         </ul>
     </div>
 </nav>

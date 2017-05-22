@@ -9,22 +9,22 @@ import org.springframework.web.servlet.ModelAndView;
 public interface DocumentController {
 
     @PreAuthorize("permitAll()")
-    @RequestMapping(value = "/document/companies/{type}")
+    @RequestMapping(value = "/documents/companies/{type}")
     ModelAndView generateCompaniesDocument(@PathVariable String type);
 
     @PreAuthorize("permitAll()")
-    @RequestMapping(value = "/document/resumes/{type}")
+    @RequestMapping(value = "/documents/resumes/{type}")
     ModelAndView generateResumesDocument(@PathVariable String type);
 
     @PreAuthorize("permitAll()")
-    @RequestMapping(value = "/document/salaries/{type}")
+    @RequestMapping(value = "/documents/salaries/{type}")
     ModelAndView generateSalariesPetitions(@PathVariable String type);
 
     @PreAuthorize("permitAll()")
-    @RequestMapping(value = "/document/users/{type}")
+    @RequestMapping(value = "/documents/users/{type}")
     ModelAndView generateUsersDocument(@PathVariable String type);
 
     @PreAuthorize("permitAll()")
-    @RequestMapping(value = "/document/vacancies/{type}")
+    @RequestMapping(value = "/documents/vacancies/{type}")
     ModelAndView generateVacanciesDocument(@PathVariable String type);
 }
