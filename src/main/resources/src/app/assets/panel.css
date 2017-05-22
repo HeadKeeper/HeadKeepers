@@ -1,5 +1,5 @@
 .panel {
-    background-color: #16A085;
+    background-color: #F8F8F8;
     border-radius: 7px;
     text-transform: capitalize;
     margin: 5px;
@@ -13,7 +13,11 @@
 }
 
 .--color-white {
-    background-color: #b8c1b8;
+    background-color: #F8F8F8;
+}
+
+.--header {
+    margin-bottom: 10px;
 }
 
 .panel img {
@@ -61,3 +65,47 @@
 .--right {
     align-self: flex-end;
 }
+
+/* Navigation panel */
+.navigation {
+    background-color: black;
+    box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.6);
+}
+
+/*------ Buttons align ------*/
+.navigation li, .navigation a {
+    height: 50px;
+    line-height: 50px;
+}
+/* -------------------------- */
+
+
+/*------- Menu position ------*/
+.navigation__inner {
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+/* -------------------------- */
+
+
+/*------ Buttons color -------*/
+.navigation__inner a, .navigation__inner a:visited {
+    color: #ffffff;
+}
+
+.navigation__inner a:hover, .navigation__inner a:target {
+    transition: all 0.2s ease;
+    color: #e54c26;
+}  
+
+/*- Distance between buttons -*/
+.navigation__inner__menu__buttons li {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navigation__inner__menu__buttons a {
+    text-decoration: none;
+}
+/* -------------------------- */

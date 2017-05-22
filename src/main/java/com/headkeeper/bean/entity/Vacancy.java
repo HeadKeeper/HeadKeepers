@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,7 +22,7 @@ public class Vacancy {
     private BigDecimal maxSalary;
     private String additionalInfoAboutSalary;
     private boolean isActive;
-    private Set<Skill> skills;
+    private Set<Skill> skills = new HashSet<>();
     private User user;
 
     @Id
@@ -45,7 +46,7 @@ public class Vacancy {
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = -1)
+    @Column(name = "description", nullable = false)
     public String getDescription() {
         return description;
     }
@@ -183,7 +184,7 @@ public class Vacancy {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     public User getUser() {
         return user;
     }

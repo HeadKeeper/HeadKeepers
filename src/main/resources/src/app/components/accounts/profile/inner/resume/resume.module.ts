@@ -1,3 +1,4 @@
+import { ResumeInfoComponent } from './inner/info/resume.info.component';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -19,12 +20,14 @@ import { ResumeCreateComponent } from "./inner/create/create-resume.component";
     declarations: [
         ResumeComponent,
         ResumeEditComponent,
+        ResumeInfoComponent,
         ResumesUserComponent,
         ResumeCreateComponent,
     ],
     exports: [
         ResumeComponent,
         ResumeEditComponent,
+        ResumeInfoComponent,
         ResumesUserComponent,
         ResumeCreateComponent,
     ]

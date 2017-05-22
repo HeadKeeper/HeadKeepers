@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'company__vacancies__by-employer',
-    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/employer/vacancy-employer.component.html',
+    templateUrl: 'src/app/components/accounts/company/inner/vacancy/inner/list/vacancy-list.component.html',
     styleUrls: [
         'src/app/assets/grid.css',
         'src/app/assets/form.css',

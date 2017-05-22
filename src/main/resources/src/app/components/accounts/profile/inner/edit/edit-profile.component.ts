@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { UserAccount } from '../../../../../beans/account/UserAccount';
+import { Account } from '../../../../../beans/account/Account';
 import { HTTPService } from '../../../../../services/HTTPService';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../../../../services/UserService";
@@ -18,7 +18,7 @@ export class ProfileEditComponent implements OnInit {
     
     private pass: string;
 
-    private account = new UserAccount();
+    private account = new Account();
 
     private servResponse: any;
 
@@ -28,28 +28,21 @@ export class ProfileEditComponent implements OnInit {
         private router: Router    
     ) { }
 
-    public changeUser() {
-        if (this.account.email != "" && this.account.email.includes("@")) {
-            if (this.account.password == this.pass) {
-                
-                this.sendRequest();
-            } else {
-                console.log("Password doesn't match");
-            }
+    public editUser() {
+        if (this.account.email != "" && this.account.email.includes("@")) {                
+            this.sendRequest();
         } else {
             console.log("Email isn't correct");
         }
     }
 
     private sendRequest() {
-        this.httpService.sendData("/profile/" + this.userService.getUserId(), UserAccount.serialize(this.account))
+        this.httpService.sendData("/profile/" + this.userService.getUserId(), Account.serialize(this.account))
             .catch((error) => {
                 console.log("Something went wrong. Try again later. Error: " + error);
                 return null;
             })
-            .subscribe((response) => {
-                this.servResponse = response;
-                this.httpService.setToken(this.servResponse.token);
+            .subscribe(() => {
                 this.router.navigate(['/welcome']);
                 return null;
             });
@@ -63,7 +56,7 @@ export class ProfileEditComponent implements OnInit {
                     return null;
                 })
                 .subscribe((response) => {
-                    this.account = UserAccount.deserialize(response);
+                    this.account = Account.deserialize(response);
                     return null;
                 });
         } else {

@@ -1,9 +1,9 @@
 import { Vacancy } from '../../../../../../../beans/vacancy/Vacancy';
 import { UserService } from '../../../../../../../services/UserService';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HTTPService } from '../../../../../../../services/HTTPService';
 import { OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
 
@@ -17,34 +17,62 @@ import 'rxjs/Rx';
     ]
 })
 
-export class VacancyEditComponent implements OnInit {
-
+export class VacancyEditComponent implements OnInit, OnDestroy {
+    
+    private sub: any;
+    private vacancyId = 0;
     private vacancy = new Vacancy();
+
+    ngOnInit(): void {
+        this.sub = this.route.params.subscribe(params => {
+            this.vacancyId = +params['vacancyId'];
+            this.loadVacancy(this.userService.getUserId(), this.vacancyId);
+        })
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
 
     constructor(
         private httpService: HTTPService,
         private userService: UserService,
-        private router: Router    
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
-    public ngOnInit() {
-        this.loadVacancy();
+    public editVacancy() {
+        if (this.userService.isUser()) {
+            this.sendRequest();
+        } else {
+            console.log("You don't have enought permissions to perform this action");
+            this.router.navigate(['/welcome']);
+        }
     }
 
-    private loadVacancy() {
-        if (this.userService.getUserId() != null) { 
-            this.httpService.getData("/company/" + this.userService.getUserId())
-                .catch((error) => {
-                    console.log("Something went wrong");
-                    return null;
-                })
-                .subscribe((response) => {
-                    this.vacancy = response;
-                    return null;
-                });
-        } else {
-            console.log("You are not logged in.");
-            this.router.navigate(["/accounts/login/company"]);
-        }
+    private sendRequest() {
+        this.httpService.sendData("/edit/vacancy", Vacancy.serialize(this.vacancy))
+            .catch((error) => {
+                console.log("Something went wrong while editing vacancy: " + error);
+                this.router.navigate(['../']);
+                return null;
+            })
+            .subscribe(() => {
+                console.log("Successful changed vacancy");                
+                this.router.navigate(['../']);
+            });
+    }
+
+    private loadVacancy(userId: number, vacancyId: number) {
+        this.httpService.getData("/companies/" + this.userService.getUserId() + "/vacancy/" + this.vacancyId)
+            .catch((error) => {
+                console.log("Something went wrong while getting vacancy: " + error);
+                this.router.navigate(['../']);
+                return null;
+            })
+            .subscribe((vacancyJSON) => {
+                this.vacancy = Vacancy.deserialize(vacancyJSON);
+                return null;
+            });
     }
 }

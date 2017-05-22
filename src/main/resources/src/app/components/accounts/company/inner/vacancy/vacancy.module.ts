@@ -8,7 +8,7 @@ import { VacancyComponent } from "./vacancy.component";
 import { VacancyInfoComponent } from "./inner/information/vacancy.information.component";
 import { VacancyEditComponent } from "./inner/edit/edit-vacancy.component";
 import { VacancyCreateComponent } from "./inner/create/create-vacancy.component";
-import { VacanciesEmployerComponent } from "./inner/employer/vacancy-employer.component";
+import { VacanciesEmployerComponent } from "./inner/list/vacancy-list.component";
 
 
 @NgModule({

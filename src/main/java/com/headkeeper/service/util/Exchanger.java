@@ -58,8 +58,6 @@ public class Exchanger {
         companyInfo.setDescription(companyInfoView.getDescription());
         if (companyInfoView.getUser() != null) {
             companyInfo.setUser(exchangeViewToEntity(companyInfoView.getUser()));
-        } else {
-            companyInfo.setUser(null);
         }
         companyInfo.setId(companyInfoView.getId());
 
@@ -94,8 +92,6 @@ public class Exchanger {
         vacancyEntity.setAdditionalInfoAboutSalary(vacancyView.getAdditionalInfoAboutSalary());
         if (vacancyView.getUser() != null) {
             vacancyEntity.setUser(exchangeViewToEntity(vacancyView.getUser()));
-        } else {
-            vacancyEntity.setUser(null);
         }
 
         if (vacancyView.getSkills() != null) {
@@ -103,10 +99,7 @@ public class Exchanger {
             for (SkillView skillView : vacancyView.getSkills()) {
                 skills.add(exchangeViewToEntity(skillView));
             }
-
             vacancyEntity.setSkills(skills);
-        } else {
-            vacancyEntity.setSkills(null);
         }
 
         return vacancyEntity;
@@ -126,7 +119,6 @@ public class Exchanger {
         vacancyView.setMinSalary(vacancy.getMinSalary());
         vacancyView.setMaxSalary(vacancy.getMaxSalary());
         vacancyView.setAdditionalInfoAboutSalary(vacancy.getAdditionalInfoAboutSalary());
-        vacancyView.setUser(Exchanger.exchangeEntityToView(vacancy.getUser()));
 
         return vacancyView;
     }
@@ -151,8 +143,6 @@ public class Exchanger {
                 achievements.add(exchangeViewToEntity(achievement));
             }
             resumeEntity.setResumeAchievements(achievements);
-        } else {
-            resumeEntity.setResumeAchievements(null);
         }
 
         if (resume.getResumeAdditionalEducations() != null) {
@@ -161,8 +151,6 @@ public class Exchanger {
                 additionalEducationViews.add(exchangeViewToEntity(additionalEducation));
             }
             resumeEntity.setResumeAdditionalEducations(additionalEducationViews);
-        } else {
-                resumeEntity.setResumeAdditionalEducations(null);
         }
 
         if (resume.getResumeContactInfos() != null) {
@@ -171,8 +159,6 @@ public class Exchanger {
                 contactInfoViews.add(exchangeViewToEntity(contactInfo));
             }
             resumeEntity.setResumeContactInfos(contactInfoViews);
-        } else {
-            resumeEntity.setResumeContactInfos(null);
         }
 
         if (resume.getResumeEducations() != null) {
@@ -181,8 +167,6 @@ public class Exchanger {
                 resumeEducationViews.add(exchangeViewToEntity(education));
             }
             resumeEntity.setResumeEducations(resumeEducationViews);
-        } else {
-            resumeEntity.setResumeEducations(null);
         }
 
         if (resume.getResumePhotos() != null) {
@@ -191,8 +175,6 @@ public class Exchanger {
                 resumePhotoViews.add(exchangeViewToEntity(photo));
             }
             resumeEntity.setResumePhotos(resumePhotoViews);
-        } else {
-            resumeEntity.setResumePhotos(null);
         }
 
         if (resume.getResumeWorkExperiences() != null) {
@@ -201,8 +183,6 @@ public class Exchanger {
                 resumeWorkExperienceViews.add(exchangeViewToEntity(workExperience));
             }
             resumeEntity.setResumeWorkExperiences(resumeWorkExperienceViews);
-        } else {
-            resumeEntity.setResumeWorkExperiences(null);
         }
 
         if (resume.getResumeLanguages() != null) {
@@ -211,8 +191,6 @@ public class Exchanger {
                 languageViews.add(exchangeViewToEntity(language));
             }
             resumeEntity.setResumeLanguages(languageViews);
-        } else {
-            resumeEntity.setResumeLanguages(null);
         }
 
         return resumeEntity;
@@ -231,9 +209,7 @@ public class Exchanger {
         resumeView.setMartialStatus(resumeEntity.getMartialStatus());
         resumeView.setMiddleName(resumeEntity.getMiddleName());
         resumeView.setReferences(resumeEntity.getReferences());
-        resumeView.setUserId(resumeEntity.getUser().getId());
 
-        /*
         List<ResumeAchievementView> achievements = new ArrayList<ResumeAchievementView>();
         for (ResumeAchievement achievement : resumeEntity.getResumeAchievements()) {
             achievements.add(exchangeEntityToView(achievement));
@@ -275,7 +251,7 @@ public class Exchanger {
             languageViews.add(exchangeEntityToView(language));
         }
         resumeView.setResumeLanguages(languageViews);
-        */
+
         return resumeView;
     }
 

@@ -1,7 +1,7 @@
 .form {
     padding: 15px;
     border:1px solid #2C3E50;
-    background: #CCDFD1;
+    background: #f8f8f8;
     border-radius: 2px;
     text-align: center;
 
@@ -20,7 +20,7 @@
 .form__inner__buttons button {
     border: 1px solid #09464c;
     background-color: #0C555C;
-    color: #ECF0F1;
+    color: black;
     border-radius: 3px;
     margin: 5px;
     padding: 10px;
@@ -32,8 +32,8 @@
 .form__inner__field input, .form__inner__field textarea, .form__inner__field select {
     border-radius: 3px;
     border: 0.5px solid #2C3E50;
-    background-color: #CCDFCC;
-    color: #2C3E50;
+    background-color: #f8f8f8;
+    color: black;
     font-size: 17px;
     padding: 8px 16px;
 }
@@ -55,7 +55,7 @@
     cursor: not-allowed;
 }
 
-.form__inner__field input::-webkit-input-placeholder {color:rgba(44, 62, 80, 0.80)}
-.form__inner__field input::-moz-placeholder          {color:rgba(44, 62, 80, 0.80)}/* Firefox 19+ */
-.form__inner__field input:-moz-placeholder           {color:rgba(44, 62, 80, 0.80)}/* Firefox 18- */
-.form__inner__field input:-ms-input-placeholder      {color:rgba(44, 62, 80, 0.80)}  
+/*.form__inner__field input::-webkit-input-placeholder {color:rgba(44, 62, 80, 0.80)}
+.form__inner__field input::-moz-placeholder          {color:rgba(44, 62, 80, 0.80)}
+.form__inner__field input:-moz-placeholder           {color:rgba(44, 62, 80, 0.80)}
+.form__inner__field input:-ms-input-placeholder      {color:rgba(44, 62, 80, 0.80)}  */

@@ -18,7 +18,7 @@ import { UserService } from '../../../../../../../services/UserService';
     ]
 })
 
-export class ResumeEditComponent implements OnInit, OnDestroy {
+export class ResumeInfoComponent implements OnInit, OnDestroy {
     
     private sub: any;
     private birthdayDate: string = this.getDateFromProject();
@@ -43,37 +43,14 @@ export class ResumeEditComponent implements OnInit, OnDestroy {
         private router: Router
     ) { }
 
-    public editResume() {
-        if (this.userService.isUser()) {
-            this.sendRequest();
-        } else {
-            console.log("You don't have enought permissions to perform this action");
-            this.router.navigate(['/welcome']);
-        }
-    }
-
-    private sendRequest() {
-        this.resume.birthdayDate = new Date(this.birthdayDate);
-        this.httpService.sendData("/edit/resume", Resume.serialize(this.resume))
-            .catch((error) => {
-                console.log("Something went wrong while editing resume: " + error);
-                this.router.navigate(['../']);
-                return null;
-            })
-            .subscribe(() => {
-                this.router.navigate(['../']);
-            });
-    }
-
     private loadResume(userId: number, resumeId: number) {
-        this.httpService.getData("/users/" + this.userService.getUserId() + "/resume/" + this.resumeId)
+        this.httpService.getData("/resume/" + this.resumeId)
             .catch((error) => {
                 console.log("Something went wrong while getting resume: " + error);
                 return null;
             })
             .subscribe((resumeJSON) => {
                 this.resume = Resume.deserialize(resumeJSON);
-                this.router.navigate(['../']);
                 return null;
             });
     }

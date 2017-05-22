@@ -42,18 +42,6 @@
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Birthday date</h4>
-                    <input 
-                        type="date"
-                        min="1960-01-02"
-                        max="2001-01-02"
-                        placeholder="Enter birthday date" 
-                        name="birthdayDate" 
-                        [(ngModel)]="resume.birthdayDate"
-                    >
-                </div>
-
-                <div class="form__inner__field">
                     <h4>Martial status</h4>
                     <select required name="martial" [(ngModel)]="resume.martialStatus">
                         <option>Single</option>
@@ -97,13 +85,13 @@
                     >
                 </div>
 
-                <div class="form__inner__buttons container">
-                    <div class="container__element col-1-2">
-                        <button [disabled]="!form.valid" (click)="editResume()"><a>Edit</a></button>
+                <div class="form__inner__buttons container --line">
+                    <div class="container__element">
+                        <button class="--orange" [disabled]="!form.valid" (click)="editResume()"><a>Save</a></button>
                     </div>
-                    <div class="container__element col-1-2">
+                    <div class="container__element">
                         <button>
-                            <a routerLink='../'>Cancel</a>
+                            <a routerLink='../'>Back</a>
                         </button>
                     </div>
                 </div>

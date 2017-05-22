@@ -25,7 +25,6 @@ export class VacancyCreateComponent {
     ) { }
 
     public createVacancy() {
-        // TODO: ADD ID FROM TOKEN TO VACANCY!!!
         this.sendRequest();
     }
 
@@ -36,7 +35,8 @@ export class VacancyCreateComponent {
                 return null;
             })
             .subscribe(() => {
-
+                console.log("Successful added new vacancy");
+                this.router.navigate(['../']);
             });
     }
 

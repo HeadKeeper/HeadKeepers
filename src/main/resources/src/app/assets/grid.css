@@ -50,8 +50,24 @@
     flex-wrap: wrap;
 }
 
+.--line {
+    flex-direction: row !important;
+}
+
+.--orange {
+    background-color: orange !important;
+}
+
+.--green {
+    background-color: green !important;
+}
+
 .--column {
     flex-direction: column;
+}
+
+.--max-hight {
+    height: 100%;
 }
 
 /* --------------- Element ----------------*/

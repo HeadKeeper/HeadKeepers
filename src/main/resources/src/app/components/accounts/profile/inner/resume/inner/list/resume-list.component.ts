@@ -8,7 +8,12 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'profile__resumes__by-user',
-    templateUrl: 'src/app/components/accounts/profile/inner/resume/inner/list/resume-list.component.html'
+    templateUrl: 'src/app/components/accounts/profile/inner/resume/inner/list/resume-list.component.html',
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/form.css',
+        'src/app/assets/panel.css'
+    ]
 })
 
 export class ResumesUserComponent {

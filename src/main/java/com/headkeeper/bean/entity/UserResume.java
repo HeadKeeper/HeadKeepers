@@ -1,14 +1,14 @@
 package com.headkeeper.bean.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user_resume", schema = "head_keepers", catalog = "")
+@Table(name = "user_resume", schema = "head_keepers")
 public class UserResume {
 
     private int id;
@@ -22,15 +22,15 @@ public class UserResume {
     private String references;
     private String additionalInformation;
     private boolean isActive;
-    private Set<EmployerToResume> employerToResumes;
-    private Set<ResumeAchievement> resumeAchievements;
-    private Set<ResumeAdditionalEducation> resumeAdditionalEducations;
-    private Set<ResumeContactInfo> resumeContactInfos;
-    private Set<ResumeEducation> resumeEducations;
-    private Set<ResumeLanguage> resumeLanguages;
-    private Set<ResumePhoto> resumePhotos;
-    private Set<ResumeToVacancy> resumeToVacancies;
-    private Set<ResumeWorkExperience> resumeWorkExperiences;
+    private Set<EmployerToResume> employerToResumes = new HashSet<>();
+    private Set<ResumeAchievement> resumeAchievements = new HashSet<>();
+    private Set<ResumeAdditionalEducation> resumeAdditionalEducations = new HashSet<>();
+    private Set<ResumeContactInfo> resumeContactInfos = new HashSet<>();
+    private Set<ResumeEducation> resumeEducations = new HashSet<>();
+    private Set<ResumeLanguage> resumeLanguages = new HashSet<>();
+    private Set<ResumePhoto> resumePhotos = new HashSet<>();
+    private Set<ResumeToVacancy> resumeToVacancies = new HashSet<>();
+    private Set<ResumeWorkExperience> resumeWorkExperiences = new HashSet<>();
 
     @Id
     @Column(name = "id", nullable = false)
@@ -103,7 +103,7 @@ public class UserResume {
     }
 
     @Basic
-    @Column(name = "references", nullable = true, length = -1)
+    @Column(name = "user_references", length = 255)
     public String getReferences() {
         return references;
     }
@@ -113,7 +113,7 @@ public class UserResume {
     }
 
     @Basic
-    @Column(name = "additional_information", nullable = true, length = -1)
+    @Column(name = "additional_information", length = 255)
     public String getAdditionalInformation() {
         return additionalInformation;
     }
@@ -252,7 +252,7 @@ public class UserResume {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     public User getUser() {
         return user;
     }

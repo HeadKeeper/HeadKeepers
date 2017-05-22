@@ -3,7 +3,7 @@ package com.headkeeper.bean.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "company_info", schema = "head_keepers", catalog = "")
+@Table(name = "company_info", schema = "head_keepers")
 public class CompanyInfo {
 
     private int id;

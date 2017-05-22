@@ -43,16 +43,13 @@ export class CompanyEditComponent implements OnInit {
     }
 
     private sendRequest() {
-        this.httpService.sendData("/company/" + this.userService.getUserId() + "/edit", this.account)
+        this.httpService.sendData("/company/" + this.userService.getUserId() + "/edit", EmployerAccount.serialize(this.account))
             .catch((error) => {
-                console.log("Something went wrong. Try again later. Error: " + error);
+                console.log("Something went wrong while editing company: " + error);
                 return null;
             })
-            .subscribe((response) => {
-                console.log("Response: " + response);
-                this.servResponse = response;
-                this.httpService.setToken(this.servResponse.token);
-                this.router.navigate(['/welcome']);
+            .subscribe(() => {
+                console.log("Successful changed company");        
                 return null;
             });
     }
@@ -61,7 +58,7 @@ export class CompanyEditComponent implements OnInit {
         if (this.userService.isCompany && this.userService.getUserId() != null) { 
             this.httpService.getData("/company/" + this.userService.getUserId())
                 .catch((error) => {
-                    console.log("Something went wrong");
+                    console.log("Something went wrong while getting company");
                     return null;
                 })
                 .subscribe((response) => {

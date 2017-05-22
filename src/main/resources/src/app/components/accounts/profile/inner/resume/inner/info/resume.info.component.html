@@ -1,6 +1,7 @@
+<h2>Edit resume</h2>
 <div class="container">
+    
     <div class="container__element col-2-3">
-        <h2 style="margin-bottom: 10px;">Create resume</h2>
         <form class="container --column --wrap form" method="post" #form="ngForm">
 
             <div class="form__inner">
@@ -8,7 +9,7 @@
                 <div class="form__inner__field">
                     <h4>First name</h4>
                     <input 
-                        required 
+                        disabled 
                         type="text" 
                         maxlength="90" 
                         placeholder="Enter first name" 
@@ -20,7 +21,7 @@
                 <div class="form__inner__field">
                     <h4>Last name</h4>
                     <input 
-                        required 
+                        disabled 
                         type="text" 
                         maxlength="45" 
                         placeholder="Enter last name" 
@@ -30,72 +31,57 @@
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Middle name</h4>
+                    <h4>Middle name (Not required)</h4>
                     <input 
-                        required
+                        disabled 
                         type="text" 
                         maxlength="90" 
                         placeholder="Enter middle name" 
                         name="middleName" 
-                        [(ngModel)]="resume.middleName"
+                        [(ngModel)]="resume.name"
                     >
                 </div>
 
                 <div class="form__inner__field">
                     <h4>Birthday date</h4>
-                    <input 
-                        required
+                    <input
+                        disabled  
                         type="date"
                         min="1960-01-02"
                         max="2001-01-02"
                         placeholder="Enter birthday date" 
                         name="birthdayDate" 
-                        [(ngModel)]="resume.birthdayDate"
-                    >
-                </div>
-
-                <div class="form__inner__field">
-                    <h4>Address</h4>
-                    <input 
-                        required 
-                        type="text" 
-                        maxlength="45" 
-                        placeholder="Enter address name" 
-                        name="address" 
-                        [(ngModel)]="resume.address"
+                        [(ngModel)]="birthdayDate"
                     >
                 </div>
 
                 <div class="form__inner__field">
                     <h4>Martial status</h4>
-                    <select required name="martial" [(ngModel)]="resume.martialStatus">
-                        <option>Single</option>
-                        <option>Married</option>
-                    </select>
+                    <h4>{{resume.martialStatus}}</h4>
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>Additional information</h4>
+                    <h4>Description</h4>
                     <textarea 
-                        required
+                        disabled 
                         type="text" 
-                        maxlength="225" 
+                        maxlength="45" 
                         name="description" 
-                        [(ngModel)]="resume.additionalInformation"
+                        [(ngModel)]="resume.description"
                     >
                     </textarea>
                 </div>
 
                 <div class="form__inner__field">
-                    <h4>References</h4>
-                    <textarea 
-                        required
+                    <h4>Address</h4>
+                    <input 
+                        disabled 
                         type="text" 
                         maxlength="225" 
-                        name="references" 
-                        [(ngModel)]="resume.references"
+                        placeholder="Enter address" 
+                        name="address" 
+                        [(ngModel)]="resume.address"
                     >
-                    </textarea>
                 </div>
 
                 <div class="form__inner__field">
@@ -110,13 +96,10 @@
                     >
                 </div>
 
-                <div class="form__inner__buttons container --line">
-                    <div class="container__element">
-                        <button [disabled]="!form.valid" (click)="createResume()"><a>Create</a></button>
-                    </div>
-                    <div class="container__element">
+                <div class="form__inner__buttons container">
+                    <div class="container__element col-1-2">
                         <button>
-                            <a routerLink='../'>Cancel</a>
+                            <a routerLink='../'>Back</a>
                         </button>
                     </div>
                 </div>
