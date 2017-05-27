@@ -19,7 +19,7 @@ import java.util.Date;
 
 public class TokenAuthenticationManager implements AuthenticationManager {
 
-    private final static String TOKEN_KEY = "petition";
+    private final static String TOKEN_KEY = "head_keepers";
     private final static String EXPIRATION_DATE = "TOKEN_EXPIRATION_DATE";
     private final static String EMAIL = "EMAIL";
 
@@ -79,7 +79,7 @@ public class TokenAuthenticationManager implements AuthenticationManager {
                                                                 throws AuthenticationServiceException {
         SecurityUser user = (SecurityUser) userDetailsService.loadUserByUsername(claims.get(EMAIL, String.class));
 
-        if (!user.isEnabled()) {
+        if (user.isEnabled()) {
             throw new AuthenticationServiceException("User disabled");
         }
 

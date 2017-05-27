@@ -2,7 +2,11 @@ export class TokenService {
     private static _token: string;
 
     public static getToken(): string {
-        return this._token;
+        if (this._token == null) {
+            return "";
+        } else {
+            return this._token;
+        }
     }
 
     public static setToken(value: string) {

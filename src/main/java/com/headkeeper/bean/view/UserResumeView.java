@@ -15,7 +15,7 @@ public class UserResumeView implements Serializable {
     private String martialStatus;
     private String references;
     private String additionalInformation;
-    private byte isActive;
+    private boolean active;
 
     private List<ResumeAchievementView> resumeAchievements;
     private List<ResumeAdditionalEducationView> resumeAdditionalEducations;
@@ -108,12 +108,12 @@ public class UserResumeView implements Serializable {
         this.additionalInformation = additionalInformation;
     }
 
-    public byte getIsActive() {
-        return isActive;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setIsActive(byte isActive) {
-        this.isActive = isActive;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public List<ResumeAchievementView> getResumeAchievements() {

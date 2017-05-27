@@ -54,7 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         List<GrantedAuthority> authorities = getUserRoles(user);
 
-        return new SecurityUser(user.getEmail(), user.getPassword(), user.getId(),
+        return new SecurityUser(user.getEmail(), user.getPassword(), user.getNickname(), user.getId(),
                 !user.isActive(), true, true, true, authorities);
 
     }

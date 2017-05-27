@@ -1,13 +1,28 @@
 <nav class="navigation">
     <div id="menu" class="navigation__inner">
-        <a class="navigation__inner__logo" href="/home">
-            <img class="navigation__inner__logo__icon" id="store-icon" alt="HK" height="30" width="30"  />
+        <a class="navigation__inner__logo" routerLink="/welcome">
+            <img src="src/app/assets/img/brand.png" class="navigation__inner__logo__icon" id="store-icon" alt="HK" height="30" width="30"  />
         </a>
-        <a class="navigation__inner__menu--show" href="#menu">Menu</a><a class="navigation__inner__menu--hide" href="#hidemenu">Menu</a>
+        <a *ngIf="userService.isAuth()" class="navigation__inner__menu --show" routerLink="/profiles/{{userService.getUserId()}}">{{userService.getUserNick()}}</a><a *ngIf="userService.isAuth()"  class="navigation__inner__menu --hide" routerLink="/profiles/{{userService.getUserId()}}">{{userService.getUserNick()}}</a>
+        <!--<a *ngIf="userService.isAuth()" class="navigation__inner__menu" style="margin-left: 40px;" (click)="logOut()" routerLink="/welcome">Sign out</a>-->
+        <a *ngIf="!userService.isAuth()" class="navigation__inner__menu --show" routerLink="/accounts/login/main">Account</a><a *ngIf="!userService.isAuth()"  class="navigation__inner__menu --hide" routerLink="/accounts/login/main">Account</a>
         <ul class="navigation__inner__menu__buttons">
             <li><a routerLink="/welcome" routerLinkActive="disabled">Home</a></li>
-            <li><a routerLink="/help" routerLinkActive="disabled">Help</a></li>
-            <li><a routerLink="/accounts" routerLinkActive="disabled">Account</a></li>
+           
+            <li *ngIf="!userService.isAuth()"><a routerLink="/accounts/main" routerLinkActive="disabled">Account</a></li>
+
+            <li *ngIf="userService.isAuth() && userService.isUser()">
+                <a routerLink="/profiles/{{userService.getUserId()}}" >{{userService.getUserNick()}}</a>
+            </li> 
+            
+            <li *ngIf="userService.isAuth() && userService.isCompany() ">
+                <a routerLink="/companies/{{userService.getUserId()}}" >{{userService.getUserNick()}}</a>
+            </li>
+            <li *ngIf="userService.isAdmin()">
+                <a routerLink="/documents" >Documnets</a>
+            </li>
+            
+            <li (click)="logOut()" *ngIf="userService.isAuth()"><a routerLink="/welcome">Sign out</a></li>
         </ul>
     </div>
 </nav>

@@ -3,8 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ResumeComponent } from "./resume.component";
 import { ResumeEditComponent } from "./inner/edit/edit-resume.component";
-import { ResumesUserComponent } from "./inner/user/resume-user.component";
+import { ResumesUserComponent } from "./inner/list/resume-list.component";
 import { ResumeCreateComponent } from "./inner/create/create-resume.component";
+import { ResumeInfoComponent } from "./inner/info/resume.info.component";
 
 export const resumeRoutes : Routes = [
     {
@@ -21,7 +22,7 @@ export const resumeRoutes : Routes = [
             },
             {
                 path: ':resumeId',
-                component: ResumeComponent
+                component: ResumeInfoComponent
             },
             {
                 path: ':resumeId/edit',

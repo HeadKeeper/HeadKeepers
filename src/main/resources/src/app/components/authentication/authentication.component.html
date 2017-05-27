@@ -1,4 +1,10 @@
-<h2>Authentication</h2>
-<a routerLink='/accounts/login' routerLinkActive="disabled">Sign in</a>
-<a routerLink='/accounts/registration' routerLinkActive="disabled">Sign up</a>
+<div class="navigation container --no-margin">
+    <div class="container__element col-2-3 --no-height-margin">
+        <div class="container navigation__inner --no-height-margin">
+            <a class="container__element --no-height-padding" routerLink='/accounts/login/main' routerLinkActive="disabled">Sign in</a>
+            <a class="container__element --no-height-padding" routerLink='/accounts/registration/main' routerLinkActive="disabled">Sign up</a>
+        </div>
+    </div>
+</div>
+
 <router-outlet></router-outlet>

@@ -18,7 +18,9 @@
     <security:http pattern="/app/**" security="none" />
     <security:http pattern="/src/**" security="none" />
     <security:http pattern="/resources/**" security="none" />
-    <security:http pattern="/registration" security="none" />
+    <security:http pattern="/registration/user" security="none" />
+    <security:http pattern="/registration/company" security="none" />
+    <security:http pattern="/login" security="none" />
 
     <security:http auto-config="false" disable-url-rewriting="true"
                    create-session="stateless" entry-point-ref="restAuthenticationEntryPoint">

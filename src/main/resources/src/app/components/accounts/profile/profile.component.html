@@ -1,4 +1,12 @@
-<h2>Account</h2>
-<!-- <a routerLink='/profile:id' routerLinkActive="disabled">Profile</a>
-<a routerLink='/profile:id/information' routerLinkActive="disabled">Profile info</a> -->
+<div class="navigation container --no-margin" *ngIf="userService.isAuth() && userService.isUser()">
+    <div class="container__element col-2-3 --no-height-margin">
+        <div class="container navigation__inner --no-height-margin">
+            <a *ngIf="userService.isUser()" class="container__element --no-height-padding --no-height-margin" routerLink='/profiles/{{userService.getUserId()}}/edit' routerLinkActive="disabled">Edit</a>
+            <a *ngIf="userService.isUser()" class="container__element --no-height-padding --no-height-margin" routerLink='/profiles/{{userService.getUserId()}}/resumes' routerLinkActive="disabled">Resumes</a>
+            <a *ngIf="userService.isUser()" class="container__element --no-height-padding --no-height-margin" routerLink='/profiles/{{userService.getUserId()}}/resumes/create' routerLinkActive="disabled">+Resume</a>
+            <a *ngIf="userService.isAdmin()" class="container__element --no-height-padding --no-height-margin" routerLink='/documents' routerLinkActive="disabled">Docs</a>
+        </div>
+    </div>
+</div>
+
 <router-outlet></router-outlet>

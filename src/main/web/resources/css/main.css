@@ -1,15 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Signika:600|Varela+Round);
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
 body {
+    margin: 0;
     font: normal 18px/22px "Varela Round", sans-serif;
-    background-color: #f1ffff;
-    color: #2e2e2e;
+    color: #2C3E50;
+    background-color: #F8F8F8;
 }
 
 h1, h2 {
@@ -35,5 +30,6 @@ p {
 }
 
 a:link, a:visited, a:hover, a:active {
+    color: #0C555C;
     text-decoration: none;
 }

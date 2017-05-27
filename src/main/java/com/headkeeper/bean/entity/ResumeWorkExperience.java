@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "resume_work_experience", schema = "head_keepers", catalog = "")
+@Table(name = "resume_work_experience", schema = "head_keepers")
 public class ResumeWorkExperience {
 
     private int id;
@@ -46,7 +46,7 @@ public class ResumeWorkExperience {
     }
 
     @Basic
-    @Column(name = "duties", nullable = true, length = -1)
+    @Column(name = "duties")
     public String getDuties() {
         return duties;
     }
@@ -104,7 +104,7 @@ public class ResumeWorkExperience {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_resume_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "user_resume_id", referencedColumnName = "id", nullable = false)
     public UserResume getUserResumeByUserResumeId() {
         return userResumeByUserResumeId;
     }

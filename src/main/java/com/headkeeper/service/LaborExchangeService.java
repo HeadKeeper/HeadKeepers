@@ -10,7 +10,7 @@ public interface LaborExchangeService {
 
     /* -------------------- VacancyBase -------------------- */
 
-    void createVacancy(VacancyView vacancy) throws ServiceException;
+    void createVacancy(int companyId, VacancyView vacancy) throws ServiceException;
 
     void updateVacancy(int vacancyId, VacancyView vacancy) throws ServiceException;
 
@@ -18,6 +18,8 @@ public interface LaborExchangeService {
 
     List<VacancyView> getAllVacancies() throws ServiceException;
     List<VacancyView> getVacanciesForEmployer(int employerId) throws ServiceException;
+    List<VacancyView> getVacanciesByTitle(String title) throws ServiceException;
+    CompanyInfoView getCompanyByCompanyName(String companyName) throws ServiceException;
 
     void setVacancyActiveStatus(int id, boolean status) throws ServiceException;
 
@@ -28,13 +30,15 @@ public interface LaborExchangeService {
 
     /* -------------------- Resume --------------------- */
 
-    void createResume(UserResumeView resume) throws ServiceException;
+    void createResume(int userId, UserResumeView resume) throws ServiceException;
 
     void updateResume(int resumeId, UserResumeView resume) throws ServiceException;
 
     UserResumeView getResume(int resumeId) throws ServiceException;
 
     List<UserResumeView> getResumesForUser(int userId) throws ServiceException;
+
+    List<UserResumeView> getAllResumes() throws ServiceException;
 
     void setResumeStatus(int resumeId, boolean status) throws ServiceException;
 
@@ -60,7 +64,7 @@ public interface LaborExchangeService {
 
     /* ------------------ Certificate ------------------ */
 
-    void uploadCertificate(UserCertificateView certificate) throws ServiceException;
+    void uploadCertificate(int userId, UserCertificateView certificate) throws ServiceException;
 
     List<UserCertificateView> getCetificatesForUser(int userId) throws ServiceException;
 
@@ -71,7 +75,7 @@ public interface LaborExchangeService {
 
     /* ------------------ Achievement ------------------ */
 
-    void addAchievement(ResumeAchievementView achievement) throws ServiceException;
+    void addAchievement(int resumeId, ResumeAchievementView achievement) throws ServiceException;
 
     void updateAchievement(int achievementId, ResumeAchievementView achievement) throws ServiceException;
 
@@ -84,7 +88,7 @@ public interface LaborExchangeService {
 
     /* ------------------- Education ------------------- */
 
-    void addEducation(ResumeEducationView education) throws ServiceException;
+    void addEducation(int resumeId, ResumeEducationView education) throws ServiceException;
 
     void updateEducation(int educationId, ResumeEducationView education) throws ServiceException;
 
@@ -97,7 +101,7 @@ public interface LaborExchangeService {
 
     /* ------------- Additional education -------------- */
 
-    void addAdditionalEducation(ResumeAdditionalEducationView education) throws ServiceException;
+    void addAdditionalEducation(int resumeId, ResumeAdditionalEducationView education) throws ServiceException;
 
     void updateAdditionalEducation(int educationId, ResumeAdditionalEducationView education) throws ServiceException;
 
@@ -110,7 +114,7 @@ public interface LaborExchangeService {
 
     /* ----------------- Contact info ------------------ */
 
-    void addContactInfo(ResumeContactInfoView contactInfo) throws ServiceException;
+    void addContactInfo(int resumeId, ResumeContactInfoView contactInfo) throws ServiceException;
 
     void updateContactInfo(int contactInfoId, ResumeContactInfoView contactInfo) throws ServiceException;
 
@@ -123,7 +127,7 @@ public interface LaborExchangeService {
 
     /* ------------------- Language -------------------- */
 
-    void addLanguage(ResumeLanguageView language) throws ServiceException;
+    void addLanguage(int resumeId, ResumeLanguageView language) throws ServiceException;
 
     void updateLanguage(int languageId, ResumeLanguageView language) throws ServiceException;
 
@@ -136,7 +140,7 @@ public interface LaborExchangeService {
 
     /* --------------------- Photo --------------------- */
 
-    void uploadPhoto(ResumePhotoView photo) throws ServiceException;
+    void uploadPhoto(int resumeId, ResumePhotoView photo) throws ServiceException;
 
     List<ResumePhotoView> getPhotosForResume(int resumeId) throws ServiceException;
 
@@ -147,7 +151,7 @@ public interface LaborExchangeService {
 
     /* ---------------- Work experience ---------------- */
 
-    void addWorkExperience(ResumeWorkExperienceView workExperience) throws ServiceException;
+    void addWorkExperience(int resumeId, ResumeWorkExperienceView workExperience) throws ServiceException;
 
     void updateWorkExperience(int workExperienceId, ResumeWorkExperienceView workExperience) throws ServiceException;
 

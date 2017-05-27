@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'sign-up',
+    selector: 'authentication__registration',
     templateUrl: 'src/app/components/authentication/inner/sign-up/sign-up.component.html',
     styleUrls: ['src/app/components/authentication/inner/sign-up/sign-up.component.css']
 })

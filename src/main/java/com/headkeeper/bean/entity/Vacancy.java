@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,14 +16,13 @@ public class Vacancy {
     private String description;
     private String essentialSkills;
     private String preferableSkills;
-    private byte jobType;
     private String phoneNumber;
     private String email;
     private BigDecimal minSalary;
     private BigDecimal maxSalary;
     private String additionalInfoAboutSalary;
     private boolean isActive;
-    private Set<Skill> skills;
+    private Set<Skill> skills = new HashSet<>();
     private User user;
 
     @Id
@@ -46,7 +46,7 @@ public class Vacancy {
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = -1)
+    @Column(name = "description", nullable = false)
     public String getDescription() {
         return description;
     }
@@ -73,16 +73,6 @@ public class Vacancy {
 
     public void setPreferableSkills(String preferableSkills) {
         this.preferableSkills = preferableSkills;
-    }
-
-    @Basic
-    @Column(name = "job_type", nullable = false)
-    public byte getJobType() {
-        return jobType;
-    }
-
-    public void setJobType(byte jobType) {
-        this.jobType = jobType;
     }
 
     @Basic
@@ -155,7 +145,6 @@ public class Vacancy {
 
         if (id != vacancy.id) return false;
         if (essentialSkills != vacancy.essentialSkills) return false;
-        if (jobType != vacancy.jobType) return false;
         if (isActive != vacancy.isActive) return false;
         if (title != null ? !title.equals(vacancy.title) : vacancy.title != null) return false;
         if (description != null ? !description.equals(vacancy.description) : vacancy.description != null) return false;
@@ -177,7 +166,6 @@ public class Vacancy {
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (preferableSkills != null ? preferableSkills.hashCode() : 0);
-        result = 31 * result + (int) jobType;
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (minSalary != null ? minSalary.hashCode() : 0);
@@ -196,7 +184,7 @@ public class Vacancy {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     public User getUser() {
         return user;
     }

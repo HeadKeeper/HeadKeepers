@@ -9,7 +9,7 @@ public interface ResumeDAO {
     /* CRUD OPERATIONS */
 
     // CREATE
-    void addNewResume(UserResume resume) throws DAOException;
+    void addNewResume(int userId, UserResume resume) throws DAOException;
     void addResumeAchievement(ResumeAchievement achievement, int resumeId) throws DAOException;
     void addAdditionalEducation(ResumeAdditionalEducation additionalEducation, int resumeId) throws DAOException;
     void addContactInfo(ResumeContactInfo contactInfo, int resumeId) throws DAOException;
@@ -28,6 +28,7 @@ public interface ResumeDAO {
     List<ResumePhoto> getResumePhotos(int id) throws DAOException;
     List<UserResume> getResumeForUser(int userId) throws DAOException;
     List<ResumeWorkExperience> getResumeWorkExperiences(int id) throws DAOException;
+    List<UserResume> getAllResumes() throws DAOException;
 
     // UPDATE
     void updateResumeStatus(int id, boolean status) throws DAOException;

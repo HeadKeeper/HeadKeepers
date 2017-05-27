@@ -3,6 +3,7 @@ package com.headkeeper.bean.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,7 +12,7 @@ public class Role {
 
     private int id;
     private String value;
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     @Id
     @Column(name = "id", nullable = false)

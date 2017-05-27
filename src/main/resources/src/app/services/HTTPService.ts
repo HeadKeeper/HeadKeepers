@@ -4,6 +4,7 @@ import { TokenService } from "./TokenService";
 import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/map';
+import { CookiesService } from "./CookiesService";
 
 @Injectable()
 export class HTTPService {
@@ -53,22 +54,21 @@ export class HTTPService {
     }
 
     public getToken() {
-        if (TokenService.getToken() !== "") {
-            return TokenService.getToken();
-        } else {
-            //TODO : get from cookie
-        }
+		if (TokenService.getToken() !== "") {
+			return TokenService.getToken();
+		} else {
+			return CookiesService.getCookie("token");
+		}
 
-    }
+	}
 
-    public setToken(temp : string) {
-        TokenService.setToken(temp);
-        // TODO : set to cookie
-    }
+	public setToken(token : string) {
+		TokenService.setToken(token);
+		CookiesService.setCookie("token", token, 3600 * 24, "/");
+	}
 
-    public deleteToken() {
-        TokenService.setToken(null);
-        // TODO : delete from cookie
-    }
-
+	public deleteToken() {
+		TokenService.setToken("");
+		CookiesService.deleteCookie("token");
+	}
 }

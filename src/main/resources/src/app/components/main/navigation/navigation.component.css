@@ -1,13 +1,7 @@
 /*------ Navigation settings -----*/
 .navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    width: 100%;
     height: 50px;
-    background-color: rgba(40, 96, 144, 0.99);
+    background-color: black;
     box-shadow: 0 0 3px 0 rgba(50, 50, 50, 0.6);
 }
 
@@ -50,8 +44,10 @@
 }
 
 .navigation__inner a:hover, .navigation__inner a:target {
-    color: #ebebeb;
-}
+    transition: all 0.2s ease;
+    color: #e54c26;
+}  
+
 /* -------------------------- */
 
 a.navigation__inner__logo, a:visited.navigation__inner__logo {
@@ -65,7 +61,7 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
     margin-left: 10px;
 }
 
-.navigation__inner__menu--show, .navigation__inner__menu--hide {
+.--show, .--hide {
     display: none;
     padding-left: 15px;
     background: transparent no-repeat center left;
@@ -78,7 +74,7 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
 /* -------------------------- */
 
 /* ------ Mobile devices ---- */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 640px) {
     .navigation__inner {
         position: relative;
         width: 100%;
@@ -96,7 +92,7 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
         width: 100%;
         margin-top: 50px;
         margin-left: 0px;
-        background-color: rgba(40, 96, 145, 0.95);
+        background-color: #0C555C;
     }
 
     .navigation__inner__menu__buttons li {
@@ -104,31 +100,31 @@ a.navigation__inner__logo, a:visited.navigation__inner__logo {
         text-align: center;
     }
 
-    .navigation__inner__menu--show, .navigation__inner__menu--hide {
+    .--show, .--hide {
         position: absolute;
         top: 0;
         right: 15px;
     }
 
-    .navigation__inner__menu--show {
+    .--show {
         display: inline-block;
     }
 
-    .navigation__inner__menu--hide {
+    .--hide {
         display: none;
     }
 
-    #menu:target .navigation__inner__menu--show {
+    #menu:target .--show {
         display: none;
     }
 
-    #menu:target .navigation__inner__menu--hide, #menu:target .navigation__inner__menu__buttons {
+    #menu:target .--hide, #menu:target .navigation__inner__menu__buttons {
         display: inline-block;
     }
 }
 
 @media only screen and (max-width: 220px) {
-    .navigation__inner__logo, .navigation__inner__menu--show, .navigation__inner__menu--hide {
+    .navigation__inner__logo {
         font-size: 14px;
     }
 }

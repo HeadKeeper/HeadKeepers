@@ -1,1 +1,36 @@
-<h2>Profile info</h2>
+<h2>Information about {{account.nickname}}</h2>
+<div class="container">
+    
+    <div class="container__element col-2-3">
+        <form class="container --column --wrap form" method="post" #form="ngForm">
+
+            <div class="form__inner">
+
+                <div class="form__inner__field">
+                    <h4>Email</h4>
+                    <input 
+                        disabled
+                        type="text" 
+                        maxlength="90" 
+                        placeholder="Enter email" 
+                        name="email" 
+                        [(ngModel)]="account.email"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Nickname</h4>
+                    <input 
+                        disabled 
+                        type="text" 
+                        maxlength="45" 
+                        placeholder="Enter nickname" 
+                        name="nickName" 
+                        [(ngModel)]="account.nickname"
+                    >
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

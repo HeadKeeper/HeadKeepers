@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "employer_to_resume", schema = "head_keepers", catalog = "")
+@Table(name = "employer_to_resume", schema = "head_keepers")
 @IdClass(EmployerToResumePK.class)
 public class EmployerToResume implements Serializable {
 

@@ -1,1 +1,109 @@
 <h2>Edit vacancy</h2>
+<div class="container">
+    
+    <div class="container__element col-2-3">
+        <form class="container --column --wrap form" method="post" #form="ngForm">
+
+            <div class="form__inner">
+
+                <div class="form__inner__field">
+                    <h4>Title</h4>
+                    <input 
+                        required 
+                        type="text" 
+                        maxlength="90" 
+                        placeholder="Enter title" 
+                        name="title" 
+                        [(ngModel)]="vacancy.title"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Description</h4>
+                    <textarea 
+                        required
+                        type="text" 
+                        maxlength="500" 
+                        name="description" 
+                        [(ngModel)]="vacancy.description"
+                    >
+                    </textarea>
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Phone number</h4>
+                    <input 
+                        required 
+                        type="tel" 
+                        maxlength="20" 
+                        placeholder="Enter phone number" 
+                        name="phoneNumber" 
+                        [(ngModel)]="vacancy.phoneNumber"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Email</h4>
+                    <input 
+                        required 
+                        type="text" 
+                        maxlength="90" 
+                        placeholder="Enter email" 
+                        name="email" 
+                        [(ngModel)]="vacancy.email"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Min salary</h4>
+                    <input 
+                        required
+                        type="number" 
+                        min="1.0"
+                        max="50000.0" 
+                        placeholder="Enter min salary" 
+                        name="minSalary" 
+                        [(ngModel)]="vacancy.minSalary"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Max salary</h4>
+                    <input 
+                        type="number" 
+                        min="1.0"
+                        max="50000.0" 
+                        placeholder="Enter max salary" 
+                        name="maxSalary" 
+                        [(ngModel)]="vacancy.maxSalary"
+                    >
+                </div>
+
+                <div class="form__inner__field">
+                    <h4>Additional info about salary</h4>
+                    <textarea 
+                        type="text" 
+                        maxlength="225" 
+                        name="additionalInfoAboutSalary" 
+                        [(ngModel)]="vacancy.additionalInfoAboutSalary"
+                    >
+                    </textarea>
+                </div>
+
+
+                <div class="form__inner__buttons container">
+                    <div class="container__element col-1-2">
+                        <button [disabled]="!form.valid" (click)="editVacancy()"><a>Edit</a></button>
+                    </div>
+                    <div class="container__element col-1-2">
+                        <button>
+                            <a routerLink='../../'>Cancel</a>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>

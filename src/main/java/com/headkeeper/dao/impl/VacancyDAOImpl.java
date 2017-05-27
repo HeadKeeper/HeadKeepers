@@ -1,5 +1,6 @@
 package com.headkeeper.dao.impl;
 
+import com.headkeeper.bean.entity.CompanyInfo;
 import com.headkeeper.bean.entity.User;
 import com.headkeeper.bean.entity.Vacancy;
 import com.headkeeper.dao.VacancyDAO;
@@ -13,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.List;
 
-@Transactional
 @Repository
 public class VacancyDAOImpl implements VacancyDAO {
 
@@ -29,7 +29,6 @@ public class VacancyDAOImpl implements VacancyDAO {
         oldVacancy.setAdditionalInfoAboutSalary(newVacancy.getAdditionalInfoAboutSalary());
         oldVacancy.setDescription(newVacancy.getDescription());
         oldVacancy.setEssentialSkills(newVacancy.getEssentialSkills());
-        oldVacancy.setJobType(newVacancy.getJobType());
         oldVacancy.setMinSalary(newVacancy.getMinSalary());
         oldVacancy.setMaxSalary(newVacancy.getMaxSalary());
         oldVacancy.setPhoneNumber(newVacancy.getPhoneNumber());
@@ -124,6 +123,30 @@ public class VacancyDAOImpl implements VacancyDAO {
         }
         catch (HibernateException exception) {
             throw new DAOException("Can't find user with id = " + id);
+        }
+    }
+
+    public List<Vacancy> getVacanciesByTitle(String title) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            List<Vacancy> vacancies = (List<Vacancy>) session.createQuery(
+                    "from Vacancy where Vacancy.title = " + title
+            ).list();
+            return vacancies;
+        } catch (HibernateException exception) {
+            throw new DAOException(exception);
+        }
+    }
+
+    public CompanyInfo getCompanyByCompanyName(String companyName) throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            CompanyInfo companyInfo = (CompanyInfo) session.createQuery(
+                    "from CompanyInfo where CompanyInfo.name = " + companyName
+            ).getSingleResult();
+            return companyInfo;
+        } catch (HibernateException exception) {
+            throw new DAOException(exception);
         }
     }
 

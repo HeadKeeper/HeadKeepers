@@ -1,94 +1,137 @@
 import { Skill } from "../skill/Skill";
 
 export class Vacancy {
+
     private _title: string;
     private _description: string;
-    private _essentialSkills: Array<Skill>;
-    private _preferableSkills: Array<Skill>;
+    private _essentialSkills: string;
+    private _preferableSkills: string;
     private _jobType: number;
     private _phoneNumber: string;
     private _email: string;
     private _minSalary: number;
     private _maxSalary: number;
     private _additionalInfoAboutSalary: string;
+    private _userId : number;
 
-    public getTitle(): string {
+    public static serialize(vacancy : Vacancy) {
+        return {
+            title : vacancy._title,
+            description : vacancy._description,
+            jobType : vacancy._jobType,
+            phoneNumber : vacancy._phoneNumber,
+            email : vacancy._email,
+            minSalary : vacancy._minSalary,
+            maxSalary : vacancy._maxSalary,
+            essentialSkills: vacancy._essentialSkills,
+            preferableSkills: vacancy._preferableSkills,
+            additionalInfoAboutSalary : vacancy._additionalInfoAboutSalary
+        }
+    }
+
+    public static deserialize(object : any): Vacancy {
+        
+        var vacancy = new Vacancy();
+
+        vacancy.title = object.title;
+        vacancy.description = object.description;
+        vacancy.jobType = object.jobType;
+        vacancy.phoneNumber = object.phoneNumber;
+        vacancy.email = object.email;
+        vacancy.minSalary = object.minSalary;
+        vacancy.maxSalary = object.maxSalary;
+        vacancy.essentialSkills = vacancy._essentialSkills;
+        vacancy.preferableSkills = vacancy._preferableSkills;
+        vacancy.additionalInfoAboutSalary = object.additionalInfoAboutSalary;
+
+        return vacancy;
+    }
+
+    get userId(): number {
+        return this._userId;
+    }
+
+    set userId(value: number) {
+        this._userId = value;
+    }
+
+    get title(): string {
         return this._title;
     }
 
-    public setTitle(value: string) {
+    set title(value: string) {
         this._title = value;
     }
 
-    public getDescription(): string {
+    get description(): string {
         return this._description;
     }
 
-    public setDescription(value: string) {
+    set description(value: string) {
         this._description = value;
     }
 
-    public getEssentailSkills(): Array<Skill> {
-        return this._essentialSkills;
-    }
-
-    public addEssentailSkill(value: Skill) {
-        this._essentialSkills.concat(value);
-    }
-
-    public getPreferableSkills(): Array<Skill> {
+    get preferableSkills(): string {
         return this._preferableSkills;
     }
 
-    public addPreferableSkill(value: Skill) {
-        this._preferableSkills.concat(value);
+    set preferableSkills(value: string) {
+        this._preferableSkills = value;
     }
 
-    public getJobType(): number {
+    get essentialSkills(): string {
+        return this._essentialSkills;
+    }
+
+    set essentialSkills(value: string) {
+        this._essentialSkills = value;
+    }
+
+    get jobType(): number {
         return this._jobType;
     }
 
-    public setJobType(value: number) {
+    set jobType(value: number) {
         this._jobType = value;
     }
 
-    public getPhoneNumber(): string {
+    get phoneNumber(): string {
         return this._phoneNumber;
     }
 
-    public setPhoneNumber(value: string) {
+    set phoneNumber(value: string) {
         this._phoneNumber = value;
     }
 
-    public getEmail(): string {
+    get email(): string {
         return this._email;
     }
 
-    public setEmail(value: string) {
+    set email(value: string) {
         this._email = value;
     }
 
-    public getMinSalary(): number {
+    get minSalary(): number {
         return this._minSalary;
     }
 
-    public setMinSalary(value: number) {
+    set minSalary(value: number) {
         this._minSalary = value;
     }
 
-    public getMaxSalary(): number {
+    get maxSalary(): number {
         return this._maxSalary;
     }
 
-    public setMaxSalary(value: number) {
+    set maxSalary(value: number) {
         this._maxSalary = value;
     }
 
-    public getAdditionalInfoAboutSalary(): string {
+    get additionalInfoAboutSalary(): string {
         return this._additionalInfoAboutSalary;
     }
 
-    public setAdditionalInfoAboutSalary(value: string) {
+    set additionalInfoAboutSalary(value: string) {
         this._additionalInfoAboutSalary = value;
     }
 }

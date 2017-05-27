@@ -12,6 +12,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionException;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
-
 @Repository
-@Transactional
 public class UserDAOImpl implements UserDAO {
 
     // TODO Add logging for all operations
@@ -58,8 +57,7 @@ public class UserDAOImpl implements UserDAO {
     public void addCompanyInfo(CompanyInfo companyInfo, int ownerId) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            User user = session.load(User.class, ownerId);
-            EntityPreprocessor.checkEntityOnExist(USER_ENTITY_NAME, ownerId, session);
+            User user = session.get(User.class, ownerId);
             companyInfo.setUser(user);
             session.save(companyInfo);
         }
@@ -148,11 +146,29 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public List<CompanyInfo> getAllCompanies() throws DAOException {
+        try {
+            Session session = sessionFactory.getCurrentSession();
+            List<CompanyInfo> infos = (List<CompanyInfo>) session.createQuery(
+                    "from CompanyInfo"
+            ).list();
+            return infos;
+        } catch (HibernateException exception) {
+            throw new DAOException(exception.getMessage());
+        }
+    }
+
+    @Override
     public User getUserByEmail(String email) throws DAOException {
         try {
             Session session = sessionFactory.getCurrentSession();
-            User user = (User) session.createQuery("from User where User.email = " + email).getSingleResult();
-            return user;
+            Query query = session.createQuery("from User where email = :inputEmail");
+            query.setParameter("inputEmail", email);
+            User user = (User) query.getSingleResult();
+            if (user.getIsActive()) {
+                return user;
+            }
+            return null;
         }
         catch (SessionException exception) {
             throw new DAOException("Can't get current session");

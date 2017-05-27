@@ -1,13 +1,57 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { HTTPService } from "../../../../../../services/HTTPService";
+import { EmployerAccount } from '../../../../../../beans/account/EmployerAccount';
 import 'rxjs/Rx';
 
 @Component({
     selector: 'sing-up-company',
     templateUrl: 'src/app/components/authentication/inner/sign-up/inner/employer/employer.component.html',
-    styleUrls: ['src/app/components/authentication/inner/sign-up/inner/employer/employer.component.css']
+    styleUrls: [
+        'src/app/assets/grid.css',
+        'src/app/assets/panel.css',
+        'src/app/assets/form.css'
+    ]
 })
 
 export class SignUpCompanyComponent {
 
+    private rePass: string;
+
+    private account = new EmployerAccount();
+
+    private servResponse: any;
+
+    constructor(
+        private httpService: HTTPService,
+        private router: Router    
+    ) { }
+
+    public signUp() {
+        if (this.account.email != "" && this.account.email.includes("@")) {
+            if (this.account.password == this.rePass) {
+                this.sendRequest();
+            } else {
+                console.log("Password and re: doesn't match");
+            }
+        } else {
+            console.log("Email isn't correct");
+        }
+    }
+
+    private sendRequest() {
+        this.httpService.sendData("/registration/company", EmployerAccount.serialize(this.account))
+            .catch((error) => {
+                console.log("Something went wrong. Try again later. Error: " + error);
+                return null;
+            })
+            .subscribe((response) => {
+                console.log("Response: " + response);
+                this.servResponse = response;
+                this.httpService.setToken(this.servResponse.token);
+                this.router.navigate(['/accounts/login']);
+                return null;
+            });
+    }
+    
 }

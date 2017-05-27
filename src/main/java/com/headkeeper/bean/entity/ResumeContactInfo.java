@@ -3,7 +3,7 @@ package com.headkeeper.bean.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "resume_contact_info", schema = "head_keepers", catalog = "")
+@Table(name = "resume_contact_info", schema = "head_keepers")
 public class ResumeContactInfo {
 
     private int id;
@@ -64,7 +64,7 @@ public class ResumeContactInfo {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_resume_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "user_resume_id", referencedColumnName = "id", nullable = false)
     public UserResume getUserResumeByUserResumeId() {
         return userResumeByUserResumeId;
     }

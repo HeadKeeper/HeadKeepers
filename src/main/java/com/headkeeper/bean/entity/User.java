@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class User {
     private String nickname;
     private boolean isActive;
     private Timestamp creationDate;
-    private Set<Skill> skills;
+    private Set<Skill> skills = new HashSet<>();
     private Role role;
 
     @Id
